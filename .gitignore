@@ -145,3 +145,8 @@ wrappers/
 # prompts/ — kept (Grok prompts)
 # images/ — kept (illustrations)
 # reports/ — kept (phase reports)
+
+# --- Allow core protocol files despite broader ignores ---
+!Living_Code_Protocol_Report.md
+!lord_of_code.py
+!agents/TASK_CONTRACT.md
