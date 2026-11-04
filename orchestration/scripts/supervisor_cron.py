@@ -429,6 +429,8 @@ def main() -> int:
     # 8. Доставка отчёта в топик 252 через Cathedral Bot API (curl, минуя Hermes-шлюз)
     # Токен берётся из профиля cathedral; здесь используется заглушка —
     # реальный токен подставляется из окружения или .env.
+    from _secrets import load_cathedral_token as _load_secrets
+    _load_secrets()
     tg_token = os.environ.get("CATHEDRAL_BOT_TOKEN", "")
     if tg_token and report_path.exists():
         log("Доставка отчёта в топик 252...")

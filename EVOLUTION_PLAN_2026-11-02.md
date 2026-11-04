@@ -1,13 +1,13 @@
 # 🧬 EVOLUTION PLAN v2 — Протокол Живого Кода (2026-11-02)
 
 **Создан:** 2026-11-02, после ревизии 01.11 (миграция модели протокола, оживление роя).
-**Статус прошлого плана:** EVOLUTION_PLAN.md (баннеры, covid-эра) — архив. Этот план — актуальный.
+**Статус:** архив с 2026-11-04 — актуальный план: `EVOLUTION_PLAN_2026-11-04.md` (v3, собран по базе знаний `knowledge-base/`).
 **Принципы (не менять):** один запуск агента = один пункт плана = один завершённый цикл (код + тест + коммит); все отчёты на русском; межролевой контракт — машиночитаемые маркеры (`[TRIGGER_*]`, `[ART_DONE]`, `ВЕРДИКТ: <проект> — ГОРЯЧИЙ|ХОЛОДНЫЙ|ВЕРНУТЬ`); перед правкой живого скрипта — бэкап `.orig-<дата>`.
 
 ## Контекст: что произошло 01.11.2026
 
-- Замер моделей nvidia: `minimax-m3.1-flash` висит 39–120с (за гранью stale-guard 60с) → **весь протокол стоял**. Живые: `nvidia/nemotron-3-ultra-550b-a55b` (≈1с, content непустой), `nemotron-3.5-lightning-30b-a3b` (3–9с), `mistral-large-4-1t-a52b` (6–12с). Мёртвые: glm-5.3-flash (95–115с), gpt-oss-20b/deepseek-v4.1-flash (таймаут), super-120b/4-340b/codestral/kimi-k2.6/nano (404/410).
-- Миграция применена во всех 4 слоях синхронно: движок `living_code_agent_wrapper.py`, `check_roster.py`, 19 обёрток, `orchestration/hermes-config/config.yaml`; реестр кронов — 31 задание на ultra; minimax внесён в `HISTORICALLY_DEAD`.
+- Замер моделей nvidia: `minimax-m3.1-flash` висит 39–120с (за гранью stale-guard 60с) → **весь протокол стоял**. Живые: `nvidia/nemotron-3.5-super-vl-120b-a12b` (≈1с, content непустой), `mistralai/mistral-large-4-1t-a52b` (6–12с). Мёртвые: `nvidia/nemotron-3-ultra-550b-a55b` (rc=75 на кронах кодеров 03.11), glm-5.3-flash (95–115с), gpt-oss-20b/deepseek-v4.1-flash (таймаут), super-120b/4-340b/codestral/kimi-k2.6/nano (404/410). `minimax-m3.1-flash` внесён в `HISTORICALLY_DEAD`.
+- Миграция применена во всех 4 слоях синхронно: движок `living_code_agent_wrapper.py`, `check_roster.py`, 19 обёрток, `orchestration/hermes-config/config.yaml`; реестр кронов — 31 задание на `nvidia/nemotron-3.5-super-vl-120b-a12b`; minimax внесён в `HISTORICALLY_DEAD`.
 - Создано недостающее задание **LV-coder-cybertarot-full** (`e66796ccbbb4`) + обёртка — 4-й проект (2-я версия CyberTarot) теперь в рое.
 - Пуш: `PerfectFriend/living-code@main = 3940d0c` (ветка-страховка `backup-revizija-20261101`).
 - Доказательство жизни: 02.11 отчёты кодеров elemental-life-2 (00:42) и cybertarot-full (00:20, 61/61 тестов, build success), художника (00:45), Профессора (01:01–01:37, 5 тем), Инквизитора (01:50, knowledge-graph 164→169 узлов).
@@ -33,7 +33,7 @@
 
 - [ ] Еженедельный probe nvidia (`probe_provider_models.py`, max_tokens ≥ 1024, 2–3 раунда + сквозная проверка через `hermes chat`): искать новые живые модели, особенно творческие/кодовые.
 - [ ] При нахождении новой — миграция по 4-слойной процедуре (движок → check_roster → обёртки → реестр) с замером и смоук-тестом; старая модель → `HISTORICALLY_DEAD`.
-- [ ] Держать primary = ultra; фолбэк-цепочка ultra → lightning → mistral-large.
+- [x] **БАН NEMOTRON (решение владельца 04.11.2026):** nemotron без спроса уничтожил локальные проекты и GitHub (саботаж). Все модели с подстрокой `nemotron` — под жёстким баном (`BANNED_MODEL_SUBSTRINGS`, `sys.exit(3)` без вызова API). Primary = единственная разрешённая `mistralai/mistral-large-4-1t-a52b` (nvidia). Эксперименты с немотронами завершены навсегда.
 - [ ] LV-model-sync держать включённым; следить, чтобы `orchestration/jobs/jobs.json` не расходился с live-реестром.
 
 ## Фаза 3 — Четыре игровых проекта (непрерывно, по циклам кодеров)

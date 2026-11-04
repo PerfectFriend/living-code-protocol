@@ -93,7 +93,7 @@
 
 ## Фаза 6 — Эксплуатация (постоянно)
 
-- [ ] Компакция `state.db` (2.5 ГБ) в окно с остановленным gateway — `compact_state_db.sh` готов.
+- [x] Компакция `state.db`: VACUUM в окне со стопом gateway — **2.4 ГБ → 1.62 ГБ** (freelist 186536→40 стр., 04.11.2026). `optimize-storage` сказал «нечего сжимать», т.к. FTS уже в layout v23 — реальный выигрыш дал VACUUM. Дополнительно удалены 1470 завершённых `gateway.admission.result.*` из state_meta (+224 МБ во freelist к следующему VACUUM).
 - [x] `CATHEDRAL_BOT_TOKEN` — задан владельцем 04.11.2026; хранится в `~/.hermes/secrets/cathedral_bot_token` (600, вне git), подхватывается `scripts/_secrets.py` (`load_cathedral_token`) в release_project/supervisor_cron/media_contract. Доставка проверена: sendMessage в топик 252 → ok, message_id 31004. Значение токена не хранить в памяти/отчётах/коммитах.
 - [ ] rc=75: авто-ретрай в движке (сейчас ручной `resume --run-now` каждый цикл).
 - [ ] 3 проекта с uncommitted-изменениями (superguard, elemental-life, cybertarot) — закоммитить или откатить.
@@ -136,6 +136,6 @@
 
 **Фаза 5:** deadman `scripts/role_pulse.py` + джоб `LV-role-pulse` (`0 */4 * * *`) — прогон: 33 роли, МЁРТВ: 0; 3-уровневая память зафиксирована в COMPONENTS.md (c8); prune по decay — следующий инкремент. KG lifecycle STUDIED→DEPLOYED→RETIRED + `retire_reason` — в `kg_validate.py`.
 
-**Фаза 6:** `check_roster --update` после изменения jobs.json — сделано (33 роли, 0 ошибок). `CATHEDRAL_BOT_TOKEN` — задан 04.11.2026, лежит в `~/.hermes/secrets/` (600), доставка в топик 252 проверена. Осталось владельцу/окну: компакция state.db (стоп gateway), 3 проекта с uncommitted (проекты не трогаем по указанию), зеркало на F2DB-14E5 после ремоунта.
+**Фаза 6:** `check_roster --update` после изменения jobs.json — сделано (33 роли, 0 ошибок). `CATHEDRAL_BOT_TOKEN` — задан 04.11.2026, лежит в `~/.hermes/secrets/` (600), доставка в топик 252 проверена. Компакция state.db — выполнена: 2.4 ГБ → 1.62 ГБ (VACUUM) + чистка state_meta (1470 завершённых admission-результатов). Осталось владельцу/окну: 3 проекта с uncommitted (проекты не трогаем по указанию), зеркало на F2DB-14E5 после ремоунта, следующий VACUUM соберёт ещё ~224 МБ из freelist.
 
 **Реестр:** live 34 джоба (добавлены LV-critic, LV-proposer, LV-role-pulse), все model-поля вне бана; зеркало `orchestration/jobs/jobs.json` = 34; ростер 33 роли, 0 ошибок.

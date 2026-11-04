@@ -257,6 +257,8 @@ def build_media_report(proj: str) -> str:
 
 def deliver_media_report(report_path: Path) -> None:
     """Доставляет MEDIA отчёт в топик 252."""
+    from _secrets import load_cathedral_token as _load_secrets
+    _load_secrets()
     tg_token = os.environ.get("CATHEDRAL_BOT_TOKEN", "")
     if not tg_token:
         log("⚠️ CATHEDRAL_BOT_TOKEN не задан — отчёт не доставлен в Telegram")

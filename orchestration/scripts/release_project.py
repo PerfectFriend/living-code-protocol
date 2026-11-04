@@ -42,6 +42,7 @@ JOURNAL = AGENTS_DIR / "journal.md"
 ORCHESTRATION = LIVING_CODE / "orchestration"
 CHECK_ROSTER = ORCHESTRATION / "scripts" / "check_roster.py"
 APKEXPORT = HOME / "apkexport"
+COMPLETE_PROJECTS_DIR = HOME / "LivingCode" / "CompleteProjects"
 
 PROJECTS = ["superguard", "elemental-life", "cybertarot", "elemental-life-2"]
 
@@ -120,6 +121,13 @@ def check_release_checklist(proj: str) -> tuple[bool, list[str]]:
     rc, stdout, _ = run([sys.executable, str(CHECK_ROSTER)], cwd=ORCHESTRATION)
     if rc != 0:
         problems.append(f"check_roster.py rc={rc}: {stdout[:200]}")
+
+    # 3b. L2-гейт самого протокола (план v3, фаза 3): py_compile + bash -n + guard + kg_validate
+    log("Запуск release_gate.py (L2-гейт протокола)...")
+    rc, stdout, _ = run([sys.executable, str(ORCHESTRATION / "scripts" / "release_gate.py")],
+                        cwd=ORCHESTRATION)
+    if rc != 0:
+        problems.append(f"release_gate.py rc={rc}: {stdout[-400:]}")
 
     # 4. Ассеты закоммичены (если есть директория assets/)
     assets_dir = proj_dir / "assets"
@@ -282,11 +290,12 @@ def write_report(content: str) -> Path:
 
 def deliver_report(report_path: Path) -> None:
     """Доставляет отчёт в топик 252 через Telegram Bot API."""
+    from _secrets import load_cathedral_token as _load_secrets
+    _load_secrets()
     tg_token = os.environ.get("CATHEDRAL_BOT_TOKEN", "")
     if not tg_token:
         log("⚠️ CATHEDRAL_BOT_TOKEN не задан — отчёт не доставлен в Telegram")
         return
-
     rc, out, err = run([
         "curl", "-s", "-X", "POST",
         f"https://api.telegram.org/bot{tg_token}/sendDocument",
@@ -311,6 +320,45 @@ def deliver_report(report_path: Path) -> None:
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Главная функция
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+def migrate_to_complete_projects(proj: str) -> tuple[bool, str]:
+    """Переносит завершённый (FROZEN) проект из Projects/ в CompleteProjects/.
+
+    Шаги:
+    1. Проверяет, что проект существует в Projects/
+    2. Создаёт CompleteProjects/ если нужно
+    3. Перемещает директорию проекта (включая .git) в архив
+    4. Создаёт маркерный файл с датой замораживания
+    5. Возвращает (ok, сообщение)
+    """
+    proj_dir = PROJECTS_DIR / proj
+    dest_dir = COMPLETE_PROJECTS_DIR / proj
+
+    if not proj_dir.exists():
+        return False, f"Проект {proj} не найден в Projects/"
+
+    if dest_dir.exists():
+        return False, f"Проект {proj} уже есть в CompleteProjects/"
+
+    try:
+        COMPLETE_PROJECTS_DIR.mkdir(parents=True, exist_ok=True)
+        # Перемещаем всю директорию (включая .git, историю коммитов, теги)
+        import shutil
+        shutil.move(str(proj_dir), str(dest_dir))
+
+        # Маркер замораживания
+        marker = dest_dir / "FROZEN_AT.md"
+        marker.write_text(
+            f"# Проект {proj} заморожен (FROZEN)\n"
+            f"Дата: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}\n"
+            f"Причина: выполнен авто-релиз через release_project.py\n"
+            f"Статус: архив, изменения не принимаются.\n",
+            encoding="utf-8",
+        )
+        log(f"Проект {proj} перенесён в CompleteProjects/")
+        return True, f"Проект {proj} перенесён в CompleteProjects/"
+    except Exception as e:
+        return False, f"Ошибка переноса {proj} в CompleteProjects/: {e}"
 
 def release_project(proj: str) -> int:
     """Выполняет полный цикл релиза для проекта."""
@@ -379,6 +427,10 @@ def release_project(proj: str) -> int:
 
     # 7. Доставка в топик 252
     deliver_report(report_path)
+
+    # 8. Миграция в CompleteProjects (FROZEN архив)
+    migr_ok, migr_msg = migrate_to_complete_projects(proj)
+    report_lines.append(f"\n## Архивация: {'✅ ' + migr_msg if migr_ok else '⚠️ ' + migr_msg}")
 
     return 0
 

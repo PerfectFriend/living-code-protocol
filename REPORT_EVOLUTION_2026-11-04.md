@@ -94,7 +94,7 @@
 | Night artist / musician на паузе (с 18.08) | Открыто | Скрипты `artist_entry.py` / `musician_entry.py` живы, но внешние сервисы недоступны (Tailscale mesh, Nano Banana 2 требует средств). Пауза приемлема пока нет бюджета/меша. |
 | `cybertarot`, `elemental-life-2` получают rc=75 | Открыто | Движок не ретраит rc=75 автоматически — нужен ручной `resume --run-now` каждый цикл. Гипотеза: конфликт session/binding у wrapper-скриптов. |
 | HTTP 429 flood control (retry 900с) | Частично | Backoff добавлен в движок, но 429 от Telegram API остаётся — требует отдельного обработчика в `tg_send.py`. |
-| `state.db` 2.5 ГБ, WAL растёт | Процедура готова | Запустить `compact_state_db.py --yes` в окне простоя (gateway остановлен). |
+| `state.db` 2.5 ГБ → **1.62 ГБ** | Выполнено 04.11 | VACUUM в окне со стопом gateway (freelist 186536→40 стр.) + DELETE 1470 завершённых `gateway.admission.result.*` (ещё ~224 МБ во freelist к след. VACUUM). |
 | `orchestrator_state.json` обновлён | Исправлено | Требует периодической сверки с фактическим состоянием. |
 | 3 проекта с uncommitted-изменениями | Открыто | superguard, elemental-life, cybertarot — закоммитить или откатить изменения перед релизом. |
 | `CompleteProjects/` пуст | Инструмент готов | Запустить `release_project.py <проект>` для каждого FROZEN-проекта — перенесёт в архив. |
@@ -116,7 +116,7 @@
 ## 4. Рекомендации по дальнейшей эволюции
 
 1. **Установить CATHEDRAL_BOT_TOKEN** — без него отчёты супер-супервайзера не доходят до Telegram, мониторинг слепой.
-2. **Запустить компакцию state.db** в окне простоя (освободит до 1 ГБ).
+2. ~~Запустить компакцию state.db~~ — **выполнено 04.11**: 2.4 ГБ → 1.62 ГБ (VACUUM) + чистка state_meta; `release_gate` PASS 7/7.
 3. **Закоммитить или откатить uncommitted-изменения** в superguard, elemental-life, cybertarot — иначе релиз не пройдётチェклист.
 4. **Перенести готовые проекты в CompleteProjects/** через `release_project.py` — архивировать как FROZEN.
 5. **Решить с rc=75** — добавить автоматический ретрат в движок или выяснить причину конфликта session/binding.

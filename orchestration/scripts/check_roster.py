@@ -23,14 +23,15 @@ ORC = pathlib.Path.home() / "LivingCode/orchestration"
 ROSTER = ORC / "roster.json"
 HERMES_JOBS = pathlib.Path.home() / ".hermes/cron/jobs.json"
 
-# 01.11.2026 ревизия: minimax-m3.1-flash на nvidia висит 39-120с; nemotron-3-ultra-550b-a55b мёртвая с того же числа (rc=75 на кронах кодеров 03.11).
-# Единственная живая удалённая пара протокола — nvidia/nemotron-3.5-super-vl-120b-a12b (nvidia); фолбэк — mistral-large-4-1t-a52b.
-# Локальная Laya остаётся судьёй (logprobs).
-PROTOCOL_MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
+# 04.11.2026 решением владельца: ВСЕ NEMOTRON под жёстким баном (саботаж —
+# уничтожены локальные проекты и GitHub). Основная пара протокола —
+# mistralai/mistral-large-4-1t-a52b (nvidia). Любой nemotron в jobs.json —
+# ошибка ростера. Локальная Laya остаётся судьёй (logprobs).
+PROTOCOL_MODEL = "mistralai/mistral-large-4-1t-a52b"
 PROTOCOL_PROVIDER = "nvidia"
+BANNED_MODEL_SUBSTRINGS = ("nemotron",)
 ALLOWED_PAIRS = frozenset({
     (PROTOCOL_MODEL, PROTOCOL_PROVIDER),
-    ("mistralai/mistral-large-4-1t-a52b", "nvidia"),
 })
 
 
@@ -58,11 +59,15 @@ def build_roster() -> dict:
 def check(roster: dict) -> tuple[list[str], list[str]]:
     """(errors, warnings): расхождения roster.json с диском и живым jobs.json."""
     errors, warnings = [], []
+    roles = roster.get("roles", {})
+    # N=0 rule (план v3): пустой ростер = разрыв непрерывности, а не «всё ок»
+    if not roles:
+        errors.append("N=0: ростер пуст — реестр ролей потерян (правило N=0 ⇒ не проверено)")
     jobs = json.loads(HERMES_JOBS.read_text(encoding="utf-8"))["jobs"]
     live = {j["id"]: j for j in jobs}
     live_names = {str(j.get("name", "")) for j in jobs}
 
-    for name, r in roster.get("roles", {}).items():
+    for name, r in roles.items():
         cid = r.get("cron_id")
         if cid not in live:
             errors.append(f"разрыв: роль '{name}' ссылается на крон {cid}, которого нет в jobs.json")
@@ -80,7 +85,9 @@ def check(roster: dict) -> tuple[list[str], list[str]]:
             if not sp.exists():
                 errors.append(f"разрыв: скрипт роли '{name}' не существует: {script}")
         model, provider = r.get("model"), r.get("provider")
-        if model and (model, provider) not in ALLOWED_PAIRS:
+        if model and any(b in model.lower() for b in BANNED_MODEL_SUBSTRINGS):
+            errors.append(f"БАН NEMOTRON у '{name}': {model} — запрещена решением владельца 04.11.2026 (саботаж)")
+        elif model and (model, provider) not in ALLOWED_PAIRS:
             errors.append(f"модель/провайдер вне белого списка у '{name}': {model} ({provider})")
         # Пин в Hermes = сами значения model/provider в задаче (_job_route_pinned):
         # поле pinned не хранится. no_agent-роли ходят через собственный движок —
@@ -106,6 +113,17 @@ def main() -> None:
             return  # первая генерация — только создать
     roster = json.loads(ROSTER.read_text(encoding="utf-8"))
     errors, warnings = check(roster)
+    # Фаза 0 плана v3 (2026-11-04): stale-score rule — если условия протокола ушли
+    # от снимка, старые оценки протухли. Предупреждение, не падение.
+    try:
+        import subprocess as _sp
+        _r = _sp.run([sys.executable, str(ORC / "scripts" / "condition_snapshot.py"), "check"],
+                     capture_output=True, text=True, timeout=30)
+        if _r.returncode != 0:
+            warnings.append("CONDITION_STALE: условия изменились со снимка state/condition_snapshot.json — "
+                            "старые scores протухли; после приёмки правки: condition_snapshot.py snapshot")
+    except Exception:
+        pass
     for w in warnings:
         print(f"⚠️  {w}")
     for e in errors:

@@ -150,3 +150,7 @@ wrappers/
 !Living_Code_Protocol_Report.md
 !lord_of_code.py
 !agents/TASK_CONTRACT.md
+
+# runtime-песочницы со встроенными git-репо (не коммитить)
+.reef/
+orchestration/skills-export/

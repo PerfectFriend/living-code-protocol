@@ -170,8 +170,18 @@ class EvidenceGate:
         r"gotovo,?\s*otpravlju",  # gotovo, otpravlju
     ]
 
-    def __init__(self, min_grounded_ratio: float = 0.9):
+    # Утверждение о завершении работы (claim) — требует artifacts_checked > 0 (N=0 ⇒ не проверено)
+    CLAIM_PATTERN = re.compile(
+        r"(сделан\w*|готов\w*|исправлен\w*|запущен\w*|запушен\w*|верифицирован\w*|"
+        r"проверен\w*|пройден\w*|собран\w*|выполнен\w*|закрыт\w*|готово)",
+        re.IGNORECASE,
+    )
+
+    def __init__(self, min_grounded_ratio: float = 0.9, min_sample: int = 5,
+                 baseline: float | None = None):
         self.min_grounded_ratio = min_grounded_ratio
+        self.min_sample = min_sample
+        self.baseline = baseline
         self.hollow_regex = [re.compile(p, re.IGNORECASE | re.MULTILINE) for p in self.HOLLOW_PATTERNS]
         self.receipt_regex = [re.compile(p, re.IGNORECASE | re.MULTILINE) for p in self.RECEIPT_PATTERNS]
         # Compile metadata patterns with MULTILINE so ^ matches line starts in context substrings
@@ -323,6 +333,32 @@ class EvidenceGate:
                 f"HOLLOW_DETECTED: найдены паттерны пустых обещаний: {hollow_violations[:5]}"
             )
 
+        # 2a. N=0 rule (HarnessMaster): claim о готовности без проверенных артефактов = NOT_VERIFIED
+        claim = bool(self.CLAIM_PATTERN.search(report_text))
+        results["finished_claimed"] = claim
+        m_art = re.search(r"artifacts_checked\s*[:=]\s*(\d+)", report_text)
+        artifacts = int(m_art.group(1)) if m_art else None
+        results["metrics"]["artifacts_checked"] = artifacts
+        if claim and (artifacts is None or artifacts == 0):
+            results["passed"] = False
+            results["violations"].append(
+                "NOT_VERIFIED: claim о готовности, но artifacts_checked="
+                f"{artifacts if artifacts is not None else 'не указан'} (N=0 ⇒ не проверено, правило HarnessMaster)"
+            )
+        # 2b. min sample size: claim при малом числе чисел — низкая уверенность в метрике
+        if claim and total < self.min_sample:
+            results["warnings"].append(f"LOW_SAMPLE: чисел {total} < min_sample={self.min_sample}")
+        # 2c. baseline: quality = treatment − contemporaneous baseline
+        if self.baseline is not None:
+            results["metrics"]["baseline"] = self.baseline
+            results["metrics"]["delta_vs_baseline"] = round(ratio - self.baseline, 4)
+            if ratio < self.baseline:
+                results["passed"] = False
+                results["violations"].append(
+                    f"BASELINE_REGRESSION: ratio={ratio:.3f} < baseline={self.baseline} "
+                    "(причина: регрессия относительно contemporaneous baseline)"
+                )
+
         # 3. Receipts existence check
         has_receipts, receipt_count = self.check_receipts_exist(report_text)
         results["metrics"]["receipt_count"] = receipt_count
@@ -336,17 +372,24 @@ class EvidenceGate:
             if not has_diff:
                 results["warnings"].append("NO_DIFF: кодер-отчёт без unified diff (prose не становится патчар)")
 
+        # «закончил» ≠ «принято» (Orbit): accepted только если гейт зелёный
+        results["accepted"] = results["passed"]
         return results
 
 
 def main():
-    """CLI для Evidence Gate: python evidence_gate.py <report_file|-> [role]"""
-    if len(sys.argv) < 2:
-        print("Usage: evidence_gate.py <report_file|-> [role]")
-        sys.exit(1)
+    """CLI: python evidence_gate.py <report_file|-> [role] [--baseline X] [--min-sample N] [--min-grounded X]"""
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("report_path")
+    ap.add_argument("role", nargs="?", default="")
+    ap.add_argument("--baseline", type=float, default=None, help="contemporaneous baseline для grounded ratio")
+    ap.add_argument("--min-sample", type=int, default=5)
+    ap.add_argument("--min-grounded", type=float, default=0.9)
+    args = ap.parse_args()
 
-    report_path = sys.argv[1]
-    role = sys.argv[2] if len(sys.argv) > 2 else ""
+    report_path = args.report_path
+    role = args.role
 
     if report_path == "-":
         text = sys.stdin.read()
@@ -357,7 +400,8 @@ def main():
             sys.exit(1)
         text = report_path.read_text(encoding="utf-8", errors="replace")
 
-    gate = EvidenceGate()
+    gate = EvidenceGate(min_grounded_ratio=args.min_grounded, min_sample=args.min_sample,
+                        baseline=args.baseline)
     result = gate.validate(text, role)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     sys.exit(0 if result["passed"] else 1)
