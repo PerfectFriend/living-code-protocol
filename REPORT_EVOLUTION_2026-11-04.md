@@ -162,4 +162,4 @@
 | Laya: fallback-алерт, verdict в цикле, KG-схема v3 | `laya_bridge.py [LAYA_FALLBACK]`, шаг 3a в producer.txt, `kg_migrate/kg_validate` | маркер записан в журнал (selftest 07:48); граф: 232 ребра/210 узлов, 10 stub-узлов, validate OK |
 | Deadman-пульс ролей | `scripts/role_pulse.py` + джоб `LV-role-pulse` | прогон: 33 роли, МЁРТВ: 0 |
 
-Осталось владельцу/окну: компакция state.db (стоп gateway), `CATHEDRAL_BOT_TOKEN`, uncommitted в 3 проектах (не трогаем), зеркало на F2DB-14E5.
+Осталось владельцу/окну: компакция state.db (стоп gateway), uncommitted в 3 проектах (не трогаем), зеркало на F2DB-14E5. `CATHEDRAL_BOT_TOKEN` задан 04.11.2026 (файл `~/.hermes/secrets/cathedral_bot_token`, 600; доставщики подхватывают через `scripts/_secrets.py`; проверено sendMessage в топик 252).
