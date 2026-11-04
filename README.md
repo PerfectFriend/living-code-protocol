@@ -1,3 +1,5 @@
+[![Living Code Protocol — Banner](https://raw.githubusercontent.com/PerfectFriend/GodModeCoder/main/assets/header-banner.jpg)](https://github.com/PerfectFriend/GodModeCoder)
+
 # 🏛️ CATHEDRAL — Autonomous Code Machine
 
 > **Autonomous full-cycle development system** — from brief to release and automatic evolution.  
@@ -13,7 +15,7 @@
 
 ## 📖 About
 
-**CATHEDRAL — Autonomous Code Machine** is an autonomous development system based on the **Living Code Protocol** (ЖК) with **GodModeCoder** integration. The system enables 4 agent roles (coder, artist/musician, producer, release) to autonomously evolve 4 projects through 5 evolution phases, with automatic Self-HPO cycle and release shipping.
+**CATHEDRAL — Autonomous Code Machine** is an autonomous development system based on the **Living Code Protocol** (ЖК) with **[GodModeCoder](https://github.com/PerfectFriend/GodModeCoder)** integration. The system enables 4 agent roles (coder, artist/musician, producer, release) to autonomously evolve 4 projects through 5 evolution phases, with automatic Self-HPO cycle and release shipping.
 
 ---
 
@@ -146,7 +148,7 @@ MIT License — see [LICENSE](LICENSE)
 
 ## 🙏 Acknowledgments
 
-- **GodModeCoder** — sample illustration prompts and Cathedral concept
+- **[GodModeCoder](https://github.com/PerfectFriend/GodModeCoder)** — sample illustration prompts and Cathedral concept
 - **Living Code Protocol** — base for autonomous project evolution
 - **xAI Grok** — illustration generation for the repository
 
