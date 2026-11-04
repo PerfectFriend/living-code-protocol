@@ -3,7 +3,7 @@
 > **Автономная система полного цикла разработки** — от брифа до релиза и автоматической эволюции.  
 > Протокол Живого Кода + GodModeCoder интеграция. 4 проекта, 5 фаз эволюции, Self-HPO цикл, авто-релиз.
 
-[![Протокол Живого Кода](https://img.shields.io/badge/Протокол-Живого%20Кода-purple)](https://github.com/PerfectFriend/NeXXus-Node)
+[![Протокол Живого Кода](https://img.shields.io/badge/Протокол-Живого%20Кода-purple)](https://github.com/PerfectFriend/living-code-protocol)
 [![Фаза эволюции v4](https://img.shields.io/badge/Эволюция-v4-blue)](docs/CATHEDRAL_AUTONOMOUS_CODE_MACHINE.ru.md)
 [![Техническая документация](https://img.shields.io/badge/Документация-CATHEDRAL-green)](docs/CATHEDRAL_AUTONOMOUS_CODE_MACHINE.ru.md)
 [![Руководство пользователя](https://img.shields.io/badge/Руководство-Пользователя-orange)](docs/USER_GUIDE.ru.md)
@@ -42,8 +42,8 @@
 
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/PerfectFriend/NeXXus-Node.git
-cd NeXXus-Node
+git clone https://github.com/PerfectFriend/living-code-protocol.git
+cd living-code-protocol
 
 # Установить зависимости
 source ~/build/env.sh

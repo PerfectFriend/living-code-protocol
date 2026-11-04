@@ -1,23 +1,59 @@
-orchestration/
+# Протокол Живого Кода: скрипты оркестрации — часть репозитория
+# (Projects/ — отдельные репозитории, не попадают сюда)
 Projects/*/
-
-# Скомпилированный Python-код не должен попадать в индекс
-__pycache__/
-*.pyc
-*.pyo
-
-# Согласованно с правилом Projects/*/ — каталог проектов без 's'
-Project1*/__pycache__/
-
-# Протокол Живого Кода: проекты живут в СОБСТВЕННЫХ репозиториях
-# (remotes flash+github), релизные снимки — производное от них
 Project1/
 Project2/
 Project3/
 Project4/
 Releases/
 
-# Служебные бэкапы и временные файлы — в индекс не попадают
-*.bak
+# Компилированный код
+__pycache__/
+*.pyc
+*.pyo
+*.so
+node_modules/
+*.exe
+/target/
+*.rs.bak
+.dart_tool/
+build/
+
+# Система
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Локальное окружение
+.env
+.env.local
+*.key
+*.pem
+*.crt
+
+# Hermes
+.hermes/
+
+# Логи
+*.log
+logs/
+
+# Временные файлы
 *.tmp
-*.md.bak-*
+scratch/
+.tmp/
+
+# Большие бинарники — в ~/apkexport, не в репозитории
+*.apk
+*.aab
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# vigiles audit report (generated)
+vigiles-report.json
+vigiles-report.html

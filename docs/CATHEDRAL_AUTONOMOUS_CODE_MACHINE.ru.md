@@ -160,7 +160,7 @@ cd ~/build
 source ~/build/env.sh
 
 # 4. Клонировать репозиторий
-git clone https://github.com/PerfectFriend/NeXXus-Node.git ~/LivingCode
+git clone https://github.com/PerfectFriend/living-code-protocol.git ~/LivingCode
 cd ~/LivingCode
 
 # 5. Настроить Hermes
@@ -194,7 +194,7 @@ mkdir ~/build
 source ~/build/env.sh
 
 # 5. Клонировать репозиторий
-git clone https://github.com/PerfectFriend/NeXXus-Node.git ~/LivingCode
+git clone https://github.com/PerfectFriend/living-code-protocol.git ~/LivingCode
 cd ~/LivingCode
 
 # 6. Настроить Hermes (аналогично Linux)

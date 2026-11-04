@@ -3,7 +3,7 @@
 > **Autonomous full-cycle development system** — from brief to release and automatic evolution.  
 > Living Code Protocol + GodModeCoder integration. 4 projects, 5 evolution phases, Self-HPO cycle, auto-release.
 
-[![Living Code Protocol](https://img.shields.io/badge/Protocol-Living%20Code-purple)](https://github.com/PerfectFriend/NeXXus-Node)
+[![Living Code Protocol](https://img.shields.io/badge/Protocol-Living%20Code-purple)](https://github.com/PerfectFriend/living-code-protocol)
 [![Evolution v4](https://img.shields.io/badge/Evolution-v4-blue)](docs/CATHEDRAL_AUTONOMOUS_CODE_MACHINE.en.md)
 [![Technical Documentation](https://img.shields.io/badge/Documentation-CATHEDRAL-green)](docs/CATHEDRAL_AUTONOMOUS_CODE_MACHINE.en.md)
 [![User Guide](https://img.shields.io/badge/User%20Guide-orange)](docs/USER_GUIDE.en.md)
@@ -42,8 +42,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/PerfectFriend/NeXXus-Node.git
-cd NeXXus-Node
+git clone https://github.com/PerfectFriend/living-code-protocol.git
+cd living-code-protocol
 
 # Install dependencies
 source ~/build/env.sh
