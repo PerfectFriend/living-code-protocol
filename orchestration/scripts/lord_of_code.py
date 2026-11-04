@@ -302,9 +302,12 @@ def main(argv=None):
         chat_id = "-1004431090317"
         thread_id = "252"
         cap = f"Lord report: {project}"
+        # Токен — из env CATHEDRAL_BOT_TOKEN или ~/.hermes/secrets/cathedral_bot_token, НЕ инлайн (зачистка 04.11.2026)
+        _tok = os.environ.get("CATHEDRAL_BOT_TOKEN") or open(
+            os.path.expanduser("~/.hermes/secrets/cathedral_bot_token"), encoding="utf-8").read().strip()
         proc = subprocess.run([
             "curl", "-s", "-X", "POST",
-            f"https://api.telegram.org/bot8883516682:AAH0Vuc8LvKjwWUUFxJUL8WWvqen7sc-HMg/sendDocument",
+            f"https://api.telegram.org/bot{_tok}/sendDocument",
             "-F", f"chat_id={chat_id}",
             "-F", f"message_thread_id={thread_id}",
             "-F", f"caption={cap}",

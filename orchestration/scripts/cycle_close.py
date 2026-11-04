@@ -202,10 +202,13 @@ def do_release(project, project_dir):
            f'Релиз переложен в Releases/{project} ({stamp}).\n'
            f'Код запушен во все git (flash + github).')
     # Отправка через Cathedral Bot API (curl), минуя заблокированный Hermes шлюз
+    # Токен — из env CATHEDRAL_BOT_TOKEN или ~/.hermes/secrets/cathedral_bot_token, НЕ инлайн (зачистка 04.11.2026)
     import json as _json
+    _tok = os.environ.get("CATHEDRAL_BOT_TOKEN") or open(
+        os.path.expanduser("~/.hermes/secrets/cathedral_bot_token"), encoding="utf-8").read().strip()
     proc = subprocess.run([
         "curl", "-s", "-X", "POST",
-        "https://api.telegram.org/bot8883516682:AAH0Vuc8LvKjwWUUFxJUL8WWvqen7sc-HMg/sendMessage",
+        f"https://api.telegram.org/bot{_tok}/sendMessage",
         "-d", f"chat_id=-1004431090317",
         "-d", f"message_thread_id=252",
         "-d", f"text={msg}",
