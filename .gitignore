@@ -1,13 +1,31 @@
-# Протокол Живого Кода: скрипты оркестрации — часть репозитория
-# (Projects/ — отдельные репозитории, не попадают сюда)
-Projects/*/
-Project1/
-Project2/
-Project3/
-Project4/
+# ============================================================
+# Living Code Protocol — .gitignore
+# ============================================================
+
+# --- Secret / real projects — NOT part of the base protocol ---
+# These live in their own repositories (separate remotes).
+Projects/
+CompleteProjects/
+Project*/
+Project*/
+Project*/
+Project*/
 Releases/
 
-# Компилированный код
+# --- Keys, secrets, credentials — NEVER in the repository ---
+keys/
+*.key
+*.pem
+*.crt
+.env
+.env.local
+*.bak
+
+# --- Hermes / local environment ---
+.hermes/
+hermes_providers_addon.yaml
+
+# --- Compiled code ---
 __pycache__/
 *.pyc
 *.pyo
@@ -19,41 +37,111 @@ node_modules/
 .dart_tool/
 build/
 
-# Система
+# --- OS ---
 .DS_Store
 Thumbs.db
 *.swp
 *.swo
 *~
 
-# Локальное окружение
-.env
-.env.local
-*.key
-*.pem
-*.crt
-
-# Hermes
-.hermes/
-
-# Логи
+# --- Logs ---
 *.log
 logs/
 
-# Временные файлы
+# --- Temporary files ---
 *.tmp
 scratch/
 .tmp/
+temp_audit_note.sh
+test_temp/
+tmp/
 
-# Большие бинарники — в ~/apkexport, не в репозитории
+# --- Large binaries — kept in ~/apkexport, not in the repo ---
 *.apk
 *.aab
 
-# IDE
+# --- IDE ---
 .idea/
 .vscode/
 *.code-workspace
 
-# vigiles audit report (generated)
+# --- Generated audit / vigiles reports ---
 vigiles-report.json
 vigiles-report.html
+audit_*.log
+audit_*.txt
+audit_*.sh
+audit_*.py
+audit_collection.log
+audit_cycles_log.txt
+audit_log_*
+audit_notes/
+audit_output.log
+audit_temp
+audit_temp.txt
+
+# --- Root-level non-protocol files (kept locally, not in repo) ---
+EVOLUTION_PLAN.md
+EVOLUTION_PLAN_DISTRIBUTED.md
+PLAN.md
+PLAN_AUDIT.md
+PLAN_PRODUCER.md
+PLAN_PRODUCER.md.backup
+PLAN_PRODUCER.md.backup2
+PLAN_PRODUCER.md.bak
+QUEUE.json
+Status_Ispravlenij.md
+Protokol_Zhivogo_Koda_Otchet.md
+Living_Code_Protocol_Report.md
+Archify_Agent_Skill_Research_Report.md
+Privacy_Networks_Research_Report.md
+Professor_Report_BeeLlama_KVarN_20260831.md
+Professor_Report_Code_Verification_20260831.md
+Professor_Report_VPN_Tor_Chains_20260830.md
+beellama-kvarn-research-report.md
+living_code_educational_report.md
+pipeline_fixes_report.md
+professor_report_20260830.md
+professor_report_20260830_2.md
+synthesis_report_20260830.md
+architecture.html
+architecture.png
+generate_music.py
+generate_sounds.py
+get_red_topics.py
+fix_git_markers.py
+fix_lord.py
+lord_agent_fixed.py
+lord_of_code.py
+lord_of_code.py.backup
+lord_of_code.py.bak
+parse_not_studied.py
+update_all_markers.py
+cron_commands.sh
+
+# --- Directories not part of the base protocol ---
+agents/
+artifacts/
+assets/
+cache/
+cron/
+dev/
+events/
+knowledge-base/
+logs/
+model_registry.local.json
+model_registry.local.json.backup
+nodes/
+producer_work/
+scripts/
+state/
+systemd/
+tools/
+wrappers/
+
+# --- Protocol scripts that ARE part of the repo (kept) ---
+# orchestration/ — kept (Living Code Protocol scripts)
+# docs/ — kept (documentation)
+# prompts/ — kept (Grok prompts)
+# images/ — kept (illustrations)
+# reports/ — kept (phase reports)
