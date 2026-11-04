@@ -6,16 +6,17 @@
 
 ```
 images/
-├── banner-main.png          — Главный баннер репозитория (16:9)
-├── banner-footer.png        — Баннер подвала (16:9)
-├── phase-0-foundation.png   — Фаза 0: Фундамент и закачивание
-├── phase-1-self-hpo.png     — Фаза 1: Self-HPO цикл harness
-├── phase-2-a-evolve.png     — Фаза 2: A-Evolve (3 слоя)
-├── phase-3-release.png      — Фаза 3: Конвейер «код → релиз»
-├── phase-4-ui-media.png     — Фаза 4: UI/Озвучка контракты
-├── phase-5-publikation.png  — Фаза 5: Publikation (репозиторий)
-└── receipt-log.png          — Лог квитаций Живого Кода
+├── banner-main.jpg           — Главный баннер репозитория (16:9)
+├── banner-footer.jpg         — Баннер подвала (16:9)
+├── phase-0-foundation.jpg    — Фаза 0: Фундамент и закачивание
+├── phase-1-self-hpo.jpg      — Фаза 1: Self-HPO цикл harness
+├── phase-2-a-evolve.jpg      — Фаза 2: A-Evolve (3 слоя)
+├── phase-3-release.jpg       — Фаза 3: Конвейер «код → релиз»
+├── phase-4-ui-media.jpg      — Фаза 4: UI/Озвучка контракты
+├── phase-5-publikation.jpg   — Фаза 5: Publikation (репозиторий)
+└── receipt-log.jpg           — Лог квитаций Живого Кода (будет добавлен позже)
 ```
+> ⚠️ Все файлы в формате **JPG**. `receipt-log.jpg` ещё не сгенерирован — будет добавлен после сброса лимита Grok.
 
 ## Промпты для Grok
 
@@ -39,7 +40,7 @@ images/
 Иллюстрации вставляются в Markdown-документы так:
 
 ```markdown
-![Фаза 1: Self-HPO](images/phase-1-self-hpo.png)
+![Фаза 1: Self-HPO](images/phase-1-self-hpo.jpg)
 ```
 
 ---
