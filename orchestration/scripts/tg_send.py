@@ -17,11 +17,16 @@ sendMessage — метод отправки, он не требует getUpdates
   TG_CHAT_ID/-100..., TG_THREAD_ID/252 управляют целью.
 
 Код выхода: 0 — доставлено (ok:true от Telegram), 1 — ошибка (детали в stderr).
+
+04.11.2026, Инквизитор: добавлен send_with_retry — повтор при flood_control/429
+с ожиданием retry_after (до 4 попыток). Раньше скрипт падал на первом же rate
+limit топика 252 (HTTPError 429 не перехватывался) и отчёт терялся.
 """
 import json
 import mimetypes
 import os
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -65,7 +70,11 @@ def find_token():
 
 
 def api_call(token, method, fields, files=None):
-    """POST multipart (если files) или form-urlencoded. Возвращает распарсенный JSON."""
+    """POST multipart (если files) или form-urlencoded. Возвращает распарсенный JSON.
+
+    HTTPError (429 и др.) не выбрасывается: тело ошибки парсится и возвращается
+    как обычный ответ {"ok": false, ...} — иначе терялся parameters.retry_after.
+    """
     url = f'https://api.telegram.org/bot{token}/{method}'
     if files:
         boundary = uuid.uuid4().hex
@@ -85,11 +94,49 @@ def api_call(token, method, fields, files=None):
         req = urllib.request.Request(
             url, data=urllib.parse.urlencode(fields).encode(),
             headers={'Content-Type': 'application/x-www-form-urlencoded'})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        return json.loads(resp.read().decode())
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            return json.loads(resp.read().decode())
+    except urllib.error.HTTPError as e:
+        # Telegram на rate limit отвечает 429 + JSON {"ok":false,"error_code":429,
+        # "description":"Too many requests: retry after N","parameters":{"retry_after":N}}
+        try:
+            return json.loads(e.read().decode())
+        except Exception:
+            return {"ok": False, "error_code": e.code, "description": str(e)}
+
+
+def send_with_retry(token, method, fields, files=None, max_attempts=4):
+    """Отправка с повтором при flood_control/429: ждём retry_after и пробуем снова.
+
+    Без этого первая же 429 в топике 252 обрывала доставку отчёта (flood_control).
+    """
+    res = None
+    for attempt in range(1, max_attempts + 1):
+        res = api_call(token, method, fields, files)
+        if res.get('ok'):
+            return res
+        desc = str(res.get('description', '')).lower()
+        retry_after = (res.get('parameters') or {}).get('retry_after')
+        is_flood = res.get('error_code') == 429 or 'flood' in desc or 'too many requests' in desc
+        if not is_flood or attempt == max_attempts:
+            return res
+        try:
+            wait = min(int(retry_after) + 1, 120) if retry_after else min(2 ** attempt, 30)
+        except (TypeError, ValueError):
+            wait = min(2 ** attempt, 30)
+        print(f'tg_send: flood_control, попытка {attempt}/{max_attempts}, жду {wait}s', file=sys.stderr)
+        time.sleep(wait)
+    return res
 
 
 def main(argv):
+    # 04.11.2026: -h/--help перехватываем ДО отправки — раньше строка "--help"
+    # уходила в топик 252 как обычное текстовое сообщение (message_id=31090).
+    if len(argv) >= 2 and argv[1] in ('-h', '--help'):
+        print('usage: tg_send.py "text" | tg_send.py MEDIA:/path "caption" | tg_send.py PHOTO:/path "caption"')
+        print(__doc__)
+        return 0
     if len(argv) < 2:
         print('usage: tg_send.py "text" | tg_send.py MEDIA:/path "caption"', file=sys.stderr)
         return 2
@@ -114,11 +161,11 @@ def main(argv):
             return 1
         fields = {'chat_id': chat_id, 'message_thread_id': thread_id, 'caption': caption}
         files = {filekey: (os.path.basename(path), blob)}
-        res = api_call(token, method, fields, files)
+        res = send_with_retry(token, method, fields, files)
     else:
         fields = {'chat_id': chat_id, 'message_thread_id': thread_id,
                   'disable_web_page_preview': 'true', 'text': argv[1]}
-        res = api_call(token, 'sendMessage', fields)
+        res = send_with_retry(token, 'sendMessage', fields)
 
     if res.get('ok'):
         print(f"tg_send: ok → message_id={res['result']['message_id']} "
