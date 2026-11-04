@@ -33,7 +33,7 @@
 
 - [Living Code Protocol](https://github.com/PerfectFriend/living-code-protocol)
 - [GodModeCoder — образец](https://github.com/PerfectFriend/GodModeCoder)
-- [CATHEDRAL Technical Docs](docs/CATHEDRAL_AUTONOMOUS_CODE_MACHINE.en.md)
+- [CATHEDRAL Technical Docs](/docs/CATHEDRAL_AUTONOMOUS_CODE_MACHINE.en.md)
 
 ---
 
