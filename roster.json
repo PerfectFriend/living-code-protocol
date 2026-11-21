@@ -1,0 +1,265 @@
+{
+  "_generated": "2026-11-21T19:05:52.135389+01:00",
+  "roles": {
+    "LV-extinction-check": {
+      "cron_id": "9a0002295b51",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/living-code-extinction-check.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-graph-pulse-export": {
+      "cron_id": "d63b06c71b4b",
+      "enabled": true,
+      "no_agent": true,
+      "script": "run_graph_pulse.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/.hermes/scripts"
+    },
+    "LV-artist": {
+      "cron_id": "004fdb156a82",
+      "enabled": true,
+      "no_agent": false,
+      "script": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-dj-musician": {
+      "cron_id": "a1efc19ab826",
+      "enabled": true,
+      "no_agent": false,
+      "script": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-searcher": {
+      "cron_id": "da6991877b14",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_searcher.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-professor": {
+      "cron_id": "3e18b5951ee5",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_professor.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-inquisitor": {
+      "cron_id": "e9cecea7874b",
+      "enabled": true,
+      "no_agent": false,
+      "script": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-harness-opt": {
+      "cron_id": "e169a2b3db99",
+      "enabled": true,
+      "no_agent": false,
+      "script": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-cycle-start": {
+      "cron_id": "e8d24ce90705",
+      "enabled": true,
+      "no_agent": true,
+      "script": "cycle_start_cron.py",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/.hermes/scripts"
+    },
+    "LV-vault-sync": {
+      "cron_id": "ad747df8b74b",
+      "enabled": true,
+      "no_agent": true,
+      "script": "run_vault_sync.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/.hermes/scripts"
+    },
+    "LV-model-sync": {
+      "cron_id": "9b02899a0169",
+      "enabled": true,
+      "no_agent": true,
+      "script": "sync_models.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/.hermes/scripts"
+    },
+    "LV-node-health": {
+      "cron_id": "e6738e2b9396",
+      "enabled": true,
+      "no_agent": true,
+      "script": "node_health.py",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "Topic252 → Учебник конвейер": {
+      "cron_id": "e635a66c3e95",
+      "enabled": true,
+      "no_agent": true,
+      "script": "topic252_to_textbook.py",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/.hermes/scripts"
+    },
+    "LV-config-backup": {
+      "cron_id": "be65a65d784e",
+      "enabled": true,
+      "no_agent": true,
+      "script": "backup-config.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": null
+    },
+    "LV-coder-project1": {
+      "cron_id": "98b0ab9c37ec",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_project1.sh",
+      "model": "qwen35-coder-vulkan",
+      "provider": "custom",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode/Project1"
+    },
+    "LV-coder-project2": {
+      "cron_id": "b87ad1b5c770",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_project2.sh",
+      "model": "qwen35-coder-vulkan",
+      "provider": "custom",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode/Project2"
+    },
+    "LV-coder-project3": {
+      "cron_id": "ec9bf2639910",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_project3.sh",
+      "model": "qwen35-coder-vulkan",
+      "provider": "custom",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode/Project3"
+    },
+    "LV-coder-project4": {
+      "cron_id": "435fcd067442",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_project4.sh",
+      "model": "qwen35-coder-vulkan",
+      "provider": "custom",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode/Project4"
+    },
+    "LV-super-supervisor": {
+      "cron_id": "super-supervisor-001",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_super_supervisor.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-critic": {
+      "cron_id": "560a7ff96d7d",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_critic.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode/orchestration"
+    },
+    "LV-proposer": {
+      "cron_id": "74dbec7efa04",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_proposer.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode/orchestration"
+    },
+    "LV-role-pulse": {
+      "cron_id": "65832fd38d11",
+      "enabled": true,
+      "no_agent": true,
+      "script": "role_pulse.py",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode/orchestration"
+    },
+    "LV-intake": {
+      "cron_id": "3559121cb5be",
+      "enabled": true,
+      "no_agent": true,
+      "script": "intake_cron.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-lord-of-code": {
+      "cron_id": "80487bc08a9c",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_lord_of_code.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-producer": {
+      "cron_id": "90f76ccbbdab",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_producer.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    },
+    "LV-auditor": {
+      "cron_id": "7924c46d8dbf",
+      "enabled": true,
+      "no_agent": true,
+      "script": "wrappers/wrapper_auditor.sh",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "pinned": false,
+      "workdir": "/home/thomas/LivingCode"
+    }
+  }
+}

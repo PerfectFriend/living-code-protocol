@@ -1,0 +1,15 @@
+Mastra: TypeScript-native AI agent framework, 29.6k★, graph workflows, 4-tier memory, 81+ provider integrations
+LangGraph: production-grade agent orchestration with state management, checkpointing, human-in-the-loop
+Claude Agent SDK: best for coding agents, repository management, terminal workflows
+OpenAI Agents SDK: tools, handoffs, guardrails, multi-agent workflows
+PydanticAI: type-safe Python agents, dependency injection, structured outputs
+CrewAI: role-based multi-agent collaboration, rapid prototyping
+Microsoft AutoGen: conversational multi-agent systems, transitioning to maintenance mode
+Google ADK: Agent Development Kit, A2A protocol, multi-agent conversations
+AG-UI: Agent-User Interaction Protocol, 16.5k★, adopted by Google/Microsoft/AWS/Oracle
+CopilotKit + AG-UI: Full-stack Claude-like apps with human-in-the-loop approvals
+XERJ: 15MB Rust binary, AST-aware search, MCP server for AI agents
+agent-browser: Vercel's Rust CLI for browser automation, 52.6k★, stealth browsers
+Swarms v17 InterLink: 11-73мс overhead, 118x less overhead than CrewAI, 100 agents support
+Reason AI Harness: 20x lower costs, outperforms Terminal-Bench, DeepSWE
+Grok Bot 1.0: Persistent AI teammates, Slack/Teams integration, 3x productivity boost

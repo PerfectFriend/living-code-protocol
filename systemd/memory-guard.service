@@ -1,0 +1,17 @@
+[Unit]
+Description=Memory guard: tmpfs-мусор, сироты, давление на RAM
+After=default.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/thomas/LivingCode
+# Пороги можно менять здесь: возраст мусора, порог /tmp, порог свободной памяти
+Environment=TMP_MAX_AGE_H=24
+Environment=TMP_MAX_GB=1.5
+Environment=MIN_AVAIL_MB=1200
+Environment=WARN_TMP_MB=512
+# Сироты только докладываются. Включить реальное убийство — KILL_ORPHANS=1.
+Environment=KILL_ORPHANS=0
+Nice=10
+IOSchedulingClass=idle
+ExecStart=/usr/bin/python3 /home/thomas/LivingCode/orchestration/scripts/memory_guard.py --apply

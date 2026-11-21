@@ -1,0 +1,20 @@
+#!/bin/bash
+# Обёртка Аудитора — слот 20 минут, триггерится кодером через LV-auditor (f683abe80fb5).
+# Ψ-FIX 19.10.2026: промпт вынесен в файл wrappers/prompts/auditor.txt; маркер теперь
+# несёт ИМЯ проекта "[TRIGGER_LORD] ProjectN" (было "[TRIGGER_LORD] lord-of-code" —
+# Владыка не понимал, какой проект аудирован); мёртвый hermes send вырезан; бюджет 1200с.
+set -o pipefail
+export LIVING_CODE_ROLE="Аудитор"
+DIR=/home/thomas/LivingCode/orchestration/scripts
+export LIVING_CODE_CRON_BUDGET=3400   # слот 1200s + хвост на отчёт/журнал/Telegram.
+# Ψ-FIX 31.10.2026 (Инквизитор): было 1900 — агент-таймаут считается как
+# budget-60, т.е. 1840s. Аудитор 31.10 писал отчёт 05:34→05:59 и добивал
+# журнал до 06:11, а обёртка убивала его на 1839s: отчёт и вердикт
+# [AUDIT_RETURN] оказывались на диске, но код выхода 124 обрывал цепочку
+# ДО trigger_next_cron_job — Владыка (LV-lord-of-code) не стартовал.
+# Теперь таймаут прогона (3900s у nvidia) больше бюджета, как у Профессора
+# и Искателя: «слот + хвост на отчёт».
+PROMPT=$(cat "$DIR/wrappers/prompts/auditor.txt")
+NEXT_JOB_ID="12aa48017088"  # LV-lord-of-code
+
+/usr/bin/python3 "$DIR/living_code_agent_wrapper.py" "$PROMPT" "$NEXT_JOB_ID" "minimaxai/minimax-m3.1-flash" "nvidia"

@@ -1,0 +1,150 @@
+diff --git a/lord_of_code.py.orig-20260929 b/lord_of_code.py
+index d8ab409..a07387e 100644
+--- a/lord_of_code.py.orig-20260929
++++ b/lord_of_code.py
+@@ -126,10 +126,51 @@ def build_hot_summary(project_path, max_files=5, per_file=800):
+     return "\n\n".join(parts)
+ 
+ 
+-def update_hot_cold_markers(project_path):
++JOURNAL_PATH = '/home/thomas/LivingCode/agents/journal.md'
++REPORTS_DIR = '/home/thomas/LivingCode/reports'
++PROJECTS_ROOT = '/home/thomas/LivingCode/Projects'
++
++# Значения, которые никогда не являются именем проекта: подстановки-заглушки,
++# оставленные человеком/агентом в прозе («последний [TRIGGER_LORD] — от 24.09»).
++PLACEHOLDER_TOKENS = {'—', '-', '–', '.', '..', '?', '??', '...', 'N/A', 'n/a'}
++TRIGGER_LINE_RE = re.compile(r'^\[TRIGGER_LORD\][ \t]+(\S+)[ \t]*$', re.MULTILINE)
++# Заголовок журнальной записи Владыки: всё, что лежит ДО последнего такого заголовка,
++# уже отработано. Триггер, стоящий перед ним, — потреблённый (иначе скрипт вечно
++# «переоткрывает» последний триггер от 24.09 и льёт отчёты-заглушки).
++VERDICT_HEADER_RE = re.compile(r'^#{1,3}\s*\[[^\]]*\]\s*Lord of Code', re.MULTILINE)
++
++
++def parse_last_trigger(journal):
++    """Последний ЖИВОЙ триггер [TRIGGER_LORD] из текста журнала.
++
++    Настоящий триггер — отдельная строка целиком вида `[TRIGGER_LORD] project`.
++    Упоминания маркера внутри прозы (например «вердикт по [TRIGGER_LORD] x (стр. 292)»
++    или «последний [TRIGGER_LORD] — от 24.09») игнорируются: именно они давали
++    мусорный проект «—» и поток отчётов-заглушек.
++    Рассматривается только область ПОСЛЕ последнего вердикта Владыки: триггер,
++    на который вердикт уже вынесен, потреблён и живым не считается.
++    Возвращает имя проекта или None, если живого триггера нет.
++    """
++    headers = list(VERDICT_HEADER_RE.finditer(journal))
++    region = journal[headers[-1].end():] if headers else journal
++    for m in reversed(list(TRIGGER_LINE_RE.finditer(region))):
++        token = m.group(1)
++        if token in PLACEHOLDER_TOKENS:
++            continue
++        if not re.fullmatch(r'[A-Za-z0-9._-]+', token):
++            continue
++        return token
++    return None
++
++
++def update_hot_cold_markers(project_path, projects_root=PROJECTS_ROOT):
+     # Only process files under Projects/ subdirectories (actual project code)
+     # Skip root-level scripts, configs, logs, nodes/, etc.
+-    projects_root = Path('/home/thomas/LivingCode/Projects')
++    #
++    # ВАЖНО (2026-09-29): projects_root обязан быть параметром. Раньше корень был
++    # захардкожен и аргумент project_path игнорировался — вызов из теста или из
++    # другого каталога всё равно обходил и правил ЖИВОЕ дерево Projects/.
++    projects_root = Path(projects_root)
+     if not projects_root.exists():
+         return
+ 
+@@ -147,8 +188,8 @@ def update_hot_cold_markers(project_path):
+                 update_file_markers(filepath)
+ 
+ 
+-def main():
+-    journal_path = '/home/thomas/LivingCode/agents/journal.md'
++def main(journal_path=JOURNAL_PATH, reports_dir=REPORTS_DIR,
++         projects_root=PROJECTS_ROOT, do_send=True):
+     if not os.path.exists(journal_path):
+         print(f'Journal not found: {journal_path}')
+         return
+@@ -156,33 +197,23 @@ def main():
+         journal = f.read()
+     print(f'Journal length: {len(journal)}')
+     print(f'First 100 chars: {repr(journal[:100])}')
+-    # Find last [TRIGGER_LORD] line
+-    matches = list(re.finditer(r'\[TRIGGER_LORD\]\s*(\S+)', journal))
+-    print(f'Number of matches: {len(matches)}')
+-    for m in matches:
+-        print(f'  Match: {m.group(0)} -> {m.group(1)}')
+-    if not matches:
+-        print('No TRIGGER_LORD found in journal')
++    project = parse_last_trigger(journal)
++    if project is None:
++        # Холостой проход: живого триггера нет. Отчёт-заглушка не пишется,
++        # [TRIGGER_PRODUCER] не выставляется — их ставит Владыка после заморозки.
++        print('Last trigger: — (нет отдельной строки [TRIGGER_LORD])')
++        print('Idle pass: no report, no [TRIGGER_PRODUCER] written')
+         return
+-    last_match = matches[-1]
+-    project = last_match.group(1)
+     print(f'Last trigger: {project}')
+-    # Determine project path - if trigger is bogus (lord-of-code), find real project from TRIGGER_AUDITOR
+-    if project == 'lord-of-code':
+-        # Find the real project from the last TRIGGER_AUDITOR
+-        audit_matches = list(re.finditer(r'\[TRIGGER_AUDITOR\]\s*(\S+)', journal))
+-        if audit_matches:
+-            project = audit_matches[-1].group(1)
+-            print(f'Corrected project from TRIGGER_AUDITOR: {project}')
+     # Determine project path
+-    project_path = f'/home/thomas/LivingCode/Projects/{project}'
++    project_path = os.path.join(projects_root, project)
+     if not os.path.exists(project_path):
+         print(f'Project path not found: {project_path}')
+         # Don't fallback to root - skip marker updates
+         project_path = None
+     # Update hot/cold markers only if valid project
+     if project_path:
+-        update_hot_cold_markers(project_path)
++        update_hot_cold_markers(project_path, projects_root=projects_root)
+     # Laya-вердикт по hot-коду (детерминированный суд, миллисекунды на CPU)
+     laya_verdict_block = ''
+     if project_path:
+@@ -207,7 +238,7 @@ def main():
+                         f"проверь перед заморозкой HOT→COLD.\n")
+     # Simplistic: just produce a report
+     date_str = datetime.datetime.now().strftime('%Y%m%d-%H%M')
+-    report_path = f'/home/thomas/LivingCode/reports/lord-{date_str}.md'
++    report_path = os.path.join(reports_dir, f'lord-{date_str}.md')
+     os.makedirs(os.path.dirname(report_path), exist_ok=True)
+     with open(report_path, 'w') as f:
+         f.write(f'# Lord Report - {date_str}\n\n')
+@@ -223,17 +254,18 @@ def main():
+         f.write('\n---\n')
+         f.write('Report generated by Lord Agent.\n')
+     # Send report via hermes send to specific telegram topic
+-    send_cmd = ['hermes', 'send', '--to', 'telegram:-1004431090317:252', f'MEDIA:{report_path}']
+-    res = subprocess.run(send_cmd, capture_output=True, text=True)
+-    if res.returncode != 0:
+-        print(f'Failed to send report: {res.stderr}')
+-    else:
+-        print('Report sent via hermes send')
+-    # Add trigger for producer - use the corrected project
+-    with open(journal_path, 'a') as f:
+-        f.write(f'\n[TRIGGER_PRODUCER] {project}\n')
++    if do_send:
++        send_cmd = ['hermes', 'send', '--to', 'telegram:-1004431090317:252', f'MEDIA:{report_path}']
++        res = subprocess.run(send_cmd, capture_output=True, text=True)
++        if res.returncode != 0:
++            print(f'Failed to send report: {res.stderr}')
++        else:
++            print('Report sent via hermes send')
++    # [TRIGGER_PRODUCER] НЕ пишем: по протоколу его выставляет Владыка Кода после
++    # фактической заморозки HOT→COLD. Обёртка, писавшая его каждый час, наплодила
++    # ~14 дублей «[TRIGGER_PRODUCER] elemental-life-2» при нуле заморозок.
+     print('Done')
+ 
+ 
+ if __name__ == '__main__':
+-    main()
++    main()
+\ No newline at end of file

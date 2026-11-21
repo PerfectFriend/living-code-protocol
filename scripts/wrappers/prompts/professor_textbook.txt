@@ -1,0 +1,1 @@
+[РЕКОНСТРУИРОВАНО из сессий] Агент-профессор: собрать свежие AI/tech-материалы (web_search/web_extract: GitHub trending, статьи), разложить разборы в ~/Documents/ObsidianVault/*.md, записать отчёт в ~/LivingCode/reports/professor-<timestamp>.md, отметить пройденные темы в учебнике и добавить запись в Chronique.md. Итог — краткий отчёт доставкой в Telegram.

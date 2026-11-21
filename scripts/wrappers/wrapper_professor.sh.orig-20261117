@@ -1,0 +1,22 @@
+#!/bin/bash
+# Профессор — обёртка движка Живого Кода (переведена из агентного режима 02.10.2026).
+# Агентные задачи шли мимо движка: получали HTTP 429 на выжженной модели и падали,
+# поэтому модель не ротировалась. Теперь роль идёт через living_code_agent_wrapper.py,
+# который сам обходит исчерпанные квоты (см. FREE_POOL в движке).
+set -o pipefail
+export LIVING_CODE_ROLE="Профессор"
+export LIVING_CODE_CRON_BUDGET=2700   # слот Профессора 45 мин (промпт, шаг 0)
+DIR=/home/thomas/LivingCode/orchestration/scripts
+PROMPT=$(cat "$DIR/wrappers/prompts/professor.txt")
+
+# Скилл Профессора: obsidian — чтение/правка Учебника и конспектов в Хранилище
+# (vault /home/thomas/Documents/ObsidianVault). Предзагружается движком
+# (`hermes chat -s`), иначе агент не знает инструментом пользоваться.
+# ВАЖНО: именно `note-taking/obsidian`, а НЕ `obsidian`. В ~/.hermes/skills
+# лежат ДВА скилла с именем obsidian (локальный ./obsidian и builtin
+# note-taking/obsidian) — резолвер видит коллизию имён и отказывается угадывать:
+#   Error: Unknown skill(s): obsidian
+# Полное имя однозначно. Тела у обоих идентичны, отличается лишь frontmatter.
+SKILLS="note-taking/obsidian"
+
+/usr/bin/python3 "$DIR/living_code_agent_wrapper.py" "$PROMPT" "None" "mistralai/mistral-large-4-1t-a52b" "nvidia" "$SKILLS"

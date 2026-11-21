@@ -1,0 +1,11 @@
+#!/bin/bash
+# Профессор — Textbook — обёртка движка Живого Кода (переведена из агентного режима 02.10.2026).
+# Агентные задачи шли мимо движка: получали HTTP 429 на выжженной модели и падали,
+# поэтому модель не ротировалась. Теперь роль идёт через living_code_agent_wrapper.py,
+# который сам обходит исчерпанные квоты (см. FREE_POOL в движке).
+set -o pipefail
+export LIVING_CODE_ROLE="Профессор Учебник"
+DIR=/home/thomas/LivingCode/orchestration/scripts
+PROMPT=$(cat "$DIR/wrappers/prompts/professor_textbook.txt")
+
+/usr/bin/python3 "$DIR/living_code_agent_wrapper.py" "$PROMPT" "None" "minimaxai/minimax-m3.1-flash" "nvidia"

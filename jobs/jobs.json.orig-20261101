@@ -1,0 +1,1657 @@
+{
+  "jobs": [
+    {
+      "id": "9a0002295b51",
+      "name": "LV-extinction-check",
+      "prompt": "Daily Extinction Check (03:00). python extinction.py --min-days 7. Nodes dead >7 days -> move to Evolution/Archive/, update graph.yaml, commit.",
+      "skills": [
+        "godmode-coder",
+        "graph-engineering",
+        "obsidian-graph-engineering"
+      ],
+      "skill": "godmode-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "wrappers/living-code-extinction-check.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "display": "0 3 * * *"
+      },
+      "schedule_display": "0 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 21
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-15T23:03:31.175711+02:00",
+      "next_run_at": "2026-11-02T03:00:00+01:00",
+      "last_run_at": "2026-11-01T08:23:02.150591+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T03:00:00+01:00",
+        "dispatched_at": "2026-11-01T08:23:00.817465+01:00",
+        "lateness_seconds": 19380.8,
+        "kind": "catch_up"
+      }
+    },
+    {
+      "id": "d63b06c71b4b",
+      "name": "LV-graph-pulse-export",
+      "prompt": "Graph Pulse Export (every 4h). Export graph.yaml to Obsidian Vault, git commit, run verification.",
+      "skills": [
+        "obsidian-graph-engineering"
+      ],
+      "skill": "obsidian-graph-engineering",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "run_graph_pulse.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "display": "0 */4 * * *"
+      },
+      "schedule_display": "0 */4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 72
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-15T23:03:51.010796+02:00",
+      "next_run_at": "2026-11-01T12:00:00+01:00",
+      "last_run_at": "2026-11-01T08:23:02.789239+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T00:00:00+01:00",
+        "dispatched_at": "2026-11-01T08:23:00.817465+01:00",
+        "lateness_seconds": 30180.8,
+        "kind": "catch_up"
+      },
+      "last_failure": {
+        "at": "2026-10-23T12:41:21.089970+02:00",
+        "detail": "Script exited with code 1\nstdout:\n[2026-10-23 12:41:20] Starting graph pulse export...\nEXPORT FAILED: /home/thomas/Projects/GodModeCoder/scripts/export_graph_to_obsidian.py:8: SyntaxWarning: \"\\V\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\V\"? A raw string is also an option.\n  Запуск:  python export_graph_to_obsidian.py [--vault C:\\Vault] [--config ru/configs/graph.yaml]\nTraceback (most recent call last):\n  File \"/home/thomas/Projects/GodModeCoder/scripts/export_graph_to_obsidian.py\", line 18, in <module>\n    import yaml\nModuleNotFoundError: No module named 'yaml'"
+      }
+    },
+    {
+      "id": "8193679a7473",
+      "name": "key-rotation",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": "deepseek-ai/deepseek-v4.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "monitor_llm_keys.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/30 * * * *",
+        "display": "*/30 * * * *"
+      },
+      "schedule_display": "*/30 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 1537
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T20:13:05.159530+02:00",
+      "next_run_at": "2026-11-01T10:30:00+01:00",
+      "last_run_at": "2026-11-01T08:23:02.941804+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T10:00:00+01:00",
+        "dispatched_at": "2026-11-01T10:00:00.449765+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-10-30T20:04:13.845739+01:00",
+        "detail": "Script exited with code 1\nstdout:\n[key-rotation] auth.json не читается\n[key-rotation] дубликатов ключей нет\n[key-rotation] ⚠️  openrouter: HTTP 000000 после 3 попыток (сеть/ключ) — рой уйдёт на локальную модель\n[key-rotation] ⚠️  OPENCODE_ZEN_API_KEY нет в .env — локальный оплот недоступен\n[key-rotation] квоты пула: все свободны\n[key-rotation] СТАТУС: FAIL — ни быстрый пул, ни локальная модель недоступны"
+      },
+      "pending_slot": {
+        "scheduled_at": "2026-11-01T10:00:00+01:00",
+        "at": "2026-11-01T10:00:00.449765+01:00",
+        "by": "cathedral:2980"
+      }
+    },
+    {
+      "id": "9773866ed22c",
+      "name": "LV-coder-superguard",
+      "prompt": "Ты Агент-Кодер проекта SuperGuard в Протоколе Живого Кода. Твоё имя и отчество — придумай сам при первом запуске и записей в журнал.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — изучи заметки от Профессора, Искателя и Аудитора.\n2. Прочитай и обнови план: /home/thomas/LivingCode/Projects/superguard/PLAN.md — атомизированный план эволюции.\n3. Выбери 10 пунктов из плана.\n4. Выполни 10 циклов эволюции проекта: код, тесты, комментарии. Не делай ошибок.\n5. Составь отчёт: /home/thomas/LivingCode/reports/coder-superguard-$(date +%Y%m%d-%H%M).md\n6. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/coder-superguard-$(date +%Y%m%d-%H%M).md\"\n7. Оставь заметку в журнале переписки о проделанной работе, обратившись по имени к Аудитору.\n8. Триггер Аудитора: запиши в журнал \"[TRIGGER_AUDITOR] superguard\".",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": "wrappers/wrapper_superguard.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2099-01-01T00:00:00+02:00",
+        "display": "never — только по триггеру"
+      },
+      "schedule_display": "trigger-only (нет самостоятельного крона)",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": false,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:14.063432+02:00",
+      "last_run_at": "2026-10-02T20:44:04.263432+02:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 1\nstderr:\nTraceback (most recent call last):\n  File \"/home/thomas/.hermes/scripts/living_code_agent_wrapper.py\", line 178, in <module>\n    model = model or DEFAULT_PAIR[0]\n    ^^^^^^\n  File \"/home/thomas/.hermes/scripts/living_code_agent_wrapper.py\", line 154, in main\n    return subprocess.CompletedProcess(cmd, 1, \"\", str(e))\n             ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/home/thomas/.hermes/scripts/living_code_agent_wrapper.py\", line 104, in run_hermes_agent\n    except Exception as e:\n             ^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/subprocess.py\", line 557, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/subprocess.py\", line 1221, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/subprocess.py\", line 2154, in _communicate\n    self._check_timeout(endtime, orig_timeout, stdout, stderr)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/subprocess.py\", line 1268, in _check_timeout\n    raise TimeoutExpired(\n    ...<2 lines>...\n            stderr=b''.join(stderr_seq) if stderr_seq else None)\nsubprocess.TimeoutExpired: Command '['hermes', 'chat', '-m', 'deepseek-ai/deepseek-v4.1-flash', '--provider', 'nvidia', '-q', 'Ты Агент-Кодер проекта SuperGuard в Протоколе Живого Кода. Твоё имя и отчество — придумай сам при первом запуске и записей в журнал.\\n\\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — изучи заметки от Профессора, Искателя и Аудитора.\\n2. Прочитай и обнови план: /home/thomas/LivingCode/Projects/superguard/PLAN.md — атомизированный план эволюции.\\n3. Выбери 10 пунктов из плана.\\n4. Выполни 10 циклов эволюции проекта: код, тесты, комментарии. Не делай ошибок.\\n5. Составь отчёт: /home/thomas/LivingCode/reports/coder-superguard-$(date +%Y%m%d-%H%M).md\\n6. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/coder-superguard-$(date +%Y%m%d-%H%M).md\"\\n7. Оставь заметку в журнале переписки о проделанной работе, обратившись по имени к Аудитору.\\n8. Триггер Аудитора: запиши в журнал \"[TRIGGER_AUDITOR] superguard\".\\n\\nВажно: Всё общение и отчёты должны вестись исключительно на русском языке. Не используй английский.']' timed out after 1800 seconds\nstdout:\nAttempt 1: Trying model=stealth/space-bunny-alpha, provider=openrouter via Hermes\nRunning: hermes chat -m stealth/space-bunny-alpha --provider openrouter -q Ты Агент-Кодер проекта SuperGuard в Протоколе Живого Кода. Твоё имя и отчество — придумай сам при первом запуске и записей в журнал.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — изучи заметки от Профессора, Искателя и Аудитора.\n2. Прочитай и обнови план: /home/thomas/LivingCode/Projects/superguard/PLAN.md — атомизированный план эволюции.\n3. Выбери 10 пунктов из плана.\n4. Выполни 10 циклов эволюции проекта: код, тесты, комментарии. Не делай ошибок.\n5. Составь отчёт: /home/thomas/LivingCode/reports/coder-superguard-$(date +%Y%m%d-%H%M).md\n6. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/coder-superguard-$(date +%Y%m%d-%H%M).md\"\n7. Оставь заметку в журнале переписки о проделанной работе, обратившись по имени к Аудитору.\n8. Триггер Аудитора: запиши в журнал \"[TRIGGER_AUDITOR] superguard\".\n\nВажно: Всё общение и отчёты должны вестись исключительно на русском языке. Не используй английский.\nAttempt failed: \nAttempt 2: Trying model=deepseek-ai/deepseek-v4.1-flash, provider=nvidia via Hermes\nRunning: hermes chat -m deepseek-ai/deepseek-v4.1-flash --provider nvidia -q Ты Агент-Кодер проекта SuperGuard в Протоколе Живого Кода. Твоё имя и отчество — придумай сам при первом запуске и записей в журнал.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — изучи заметки от Профессора, Искателя и Аудитора.\n2. Прочитай и обнови план: /home/thomas/LivingCode/Projects/superguard/PLAN.md — атомизированный план эволюции.\n3. Выбери 10 пунктов из плана.\n4. Выполни 10 циклов эволюции проекта: код, тесты, комментарии. Не делай ошибок.\n5. Составь отчёт: /home/thomas/LivingCode/reports/coder-superguard-$(date +%Y%m%d-%H%M).md\n6. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/coder-superguard-$(date +%Y%m%d-%H%M).md\"\n7. Оставь заметку в журнале переписки о проделанной работе, обратившись по имени к Аудитору.\n8. Триггер Аудитора: запиши в журнал \"[TRIGGER_AUDITOR] superguard\".\n\nВажно: Всё общение и отчёты должны вестись исключительно на русском языке. Не используй английский.",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Projects/superguard",
+      "failure_streak": 3,
+      "next_run_at": "2099-01-01T00:00:00+02:00"
+    },
+    {
+      "id": "f9365e6513e5",
+      "name": "LV-coder-elemental-life",
+      "prompt": "Ты Агент-Кодер проекта Elemental Life в Протоколе Живого Кода. Твоё имя и отчество — придумай сам при первом запуске и запиши в журнал.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — изучи заметки от Профессора, Искателя и Аудитора.\n2. Прочитай и обнови план: /home/thomas/LivingCode/Projects/elemental-life/PLAN.md\n3. Выбери 10 пунктов из плана.\n4. Выполни 10 циклов эволюции проекта: код, тесты, комментарии. Не делай ошибок.\n5. Составь отчёт: /home/thomas/LivingCode/reports/coder-elemental-life-$(date +%Y%m%d-%H%M).md\n6. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/coder-elemental-life-$(date +%Y%m%d-%H%M).md\"\n7. Оставь заметку в журнале переписки о проделанной работе.\n8. Триггер Аудитора: запиши в журнал \"[TRIGGER_AUDITOR] elemental-life\".",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": "wrappers/wrapper_elemental_life.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2099-01-01T00:00:00+02:00",
+        "display": "never — только по триггеру"
+      },
+      "schedule_display": "trigger-only (нет самостоятельного крона)",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": false,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:14.096466+02:00",
+      "last_run_at": "2026-10-03T00:16:03.393446+02:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Projects/elemental-life",
+      "failure_streak": 0
+    },
+    {
+      "id": "ecc3105fe44d",
+      "name": "LV-coder-cybertarot",
+      "prompt": "Ты Агент-Кодер проекта CyberTarot в Протоколе Живого Кода. Твоё имя и отчество — придумай сам при первом запуске и запиши в журнал.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — изучи заметки от Профессора, Искателя и Аудитора.\n2. Прочитай и обнови план: /home/thomas/LivingCode/Projects/cybertarot/PLAN.md\n3. Выбери 10 пунктов из плана.\n4. Выполни 10 циклов эволюции проекта: код, тесты, комментарии. Не делай ошибок.\n5. Составь отчёт: /home/thomas/LivingCode/reports/coder-cybertarot-$(date +%Y%m%d-%H%M).md\n6. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/coder-cybertarot-$(date +%Y%m%d-%H%M).md\"\n7. Оставь заметку в журнале переписки о проделанной работе.\n8. Триггер Аудитора: запиши в журнал \"[TRIGGER_AUDITOR] cybertarot\".",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": "wrappers/wrapper_cybertarot.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2099-01-01T00:00:00+02:00",
+        "display": "never — только по триггеру"
+      },
+      "schedule_display": "trigger-only (нет самостоятельного крона)",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": false,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:14.132681+02:00",
+      "last_run_at": "2026-10-03T00:26:28.832533+02:00",
+      "last_status": "delivery_failed",
+      "last_error": null,
+      "last_delivery_error": "1 media attachment(s) dropped by media path policy (missing file, denied prefix, or strict-mode miss); see gateway.strict / media_delivery_allow_dirs in config.yaml",
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Projects/cybertarot",
+      "failure_streak": 0
+    },
+    {
+      "id": "2e4da3acd07b",
+      "name": "LV-coder-elemental-life-2",
+      "prompt": "Ты Агент-Кодер проекта Elemental Life 2 в Протоколе Живого Кода. Твоё имя и отчество — придумай сам при первом запуске и запиши в журнал.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — изучи заметки от Профессора, Искателя и Аудитора.\n2. Прочитай и обнови план: /home/thomas/LivingCode/Projects/elemental-life-2/PLAN.md\n3. Выбери 10 пунктов из плана.\n4. Выполни 10 циклов эволюции проекта: код, тесты, комментарии. Не делай ошибок.\n5. Составь отчёт: /home/thomas/LivingCode/reports/coder-elemental-life-2-$(date +%Y%m%d-%H%M).md\n6. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/coder-elemental-life-2-$(date +%Y%m%d-%H%M).md\"\n7. Оставь заметку в журнале переписки о проделанной работе.\n8. Триггер Аудитора: запиши в журнал \"[TRIGGER_AUDITOR] elemental-life-2\".",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": "wrappers/wrapper_elemental_life_2.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2099-01-01T00:00:00+02:00",
+        "display": "never — только по триггеру"
+      },
+      "schedule_display": "trigger-only (нет самостоятельного крона)",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": false,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:14.163993+02:00",
+      "last_run_at": "2026-10-02T21:11:03.361470+02:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 1\nstdout:\nAttempt 1/5: Trying model=stealth/space-bunny-alpha, provider=openrouter via Hermes\nRunning (timeout 600s): hermes chat -m stealth/space-bunny-alpha --provider openrouter\nAttempt failed: \nAttempt 2/5: Trying model=z-ai/glm-5.3, provider=nvidia via Hermes\nRunning (timeout 600s): hermes chat -m z-ai/glm-5.3 --provider nvidia\nTIMEOUT after 600s: model=z-ai/glm-5.3 provider=nvidia. Переход к следующей модели в цепочке фолбэков.\nAttempt failed: TIMEOUT after 600s: model=z-ai/glm-5.3 provider=nvidia. Переход к следующей модели в цепочке фолбэков.\nAttempt 3/5: Trying model=deepseek-ai/deepseek-v4.1-flash, provider=nvidia via Hermes\nRunning (timeout 600s): hermes chat -m deepseek-ai/deepseek-v4.1-flash --provider nvidia\nTIMEOUT after 600s: model=deepseek-ai/deepseek-v4.1-flash provider=nvidia. Переход к следующей модели в цепочке фолбэков.\nAttempt failed: TIMEOUT after 600s: model=deepseek-ai/deepseek-v4.1-flash provider=nvidia. Переход к следующей модели в цепочке фолбэков.\nAttempt 4/5: Trying model=moonshotai/kimi-k3, provider=nvidia via Hermes\nRunning (timeout 600s): hermes chat -m moonshotai/kimi-k3 --provider nvidia\nTIMEOUT after 600s: model=moonshotai/kimi-k3 provider=nvidia. Переход к следующей модели в цепочке фолбэков.\nAttempt failed: TIMEOUT after 600s: model=moonshotai/kimi-k3 provider=nvidia. Переход к следующей модели в цепочке фолбэков.\nAttempt 5/5: Trying model=z-ai/glm-5.3-flash, provider=nvidia via Hermes\nRunning (timeout 600s): hermes chat -m z-ai/glm-5.3-flash --provider nvidia\nTIMEOUT after 600s: model=z-ai/glm-5.3-flash provider=nvidia. Переход к следующей модели в цепочке фолбэков.\nAttempt failed: TIMEOUT after 600s: model=z-ai/glm-5.3-flash provider=nvidia. Переход к следующей модели в цепочке фолбэков.\nAll fallback attempts failed. Last error: TIMEOUT after 600s: model=z-ai/glm-5.3-flash provider=nvidia. Переход к следующей модели в цепочке фолбэков.",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Projects/elemental-life-2",
+      "failure_streak": 1
+    },
+    {
+      "id": "12aa48017088",
+      "name": "LV-lord-of-code",
+      "prompt": "Ты Агент Владыка Кода в Протоколе Живого Кода. Тебя триггерит Аудитор.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — найди [TRIGGER_LORD].\n2. Изучи новый горячий код в соответствующем проекте.\n3. Заморозь ту часть кода, которая более не нуждается в ревью и дебаге — переведи из горячего в холодный.\n4. Обнови маркеры горячего/холодного кода в проекте.\n5. Составь отчёт: /home/thomas/LivingCode/reports/lord-$(date +%Y%m%d-%H%M).md\n6. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/lord-$(date +%Y%m%d-%H%M).md\"\n7. Триггер Продюсера: запиши в журнал \"[TRIGGER_PRODUCER] <project>\".\n\nКАЧЕСТВЕННЫЕ ГЕЙТЫ МЕЖДУ ФАЗАМИ (паспорт Agents Orchestrator):\n- Не переводи код из горячего в холодный без зелёных тестов и закрытых критических замечаний ([СР]). Гейт: тесты ✓ И нет [СР] → заморозка; иначе оставляешь горячим и адресуешь Кодеру конкретный фидбек.\n- Task-by-task validation: каждый пункт цикла проверен по факту (не «по-видимому»).\n- Max-retry 2: если Кодер не закрыл критические замечания 2 цикла подряд — эскалация оператору в отчёте (не бесконечный конвейер).\n- laya-verdict перед заморозкой: echo \"<состояние проекта>\" | /home/thomas/LivingCode/orchestration/scripts/laya_bridge.py verdict — verdict_decision.stabilen=false → НЕ замораживать.",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "github-repo-management"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": "wrappers/wrapper_lord_of_code.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-10-31T12:14:53.389879+01:00",
+        "display": "once at 2026-10-31 12:14"
+      },
+      "schedule_display": "once at 2026-10-31 12:14",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": false,
+      "state": "completed",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:37.089633+02:00",
+      "last_run_at": "2026-10-31T13:23:42.006952+01:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 124\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 1600s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=1539s\nRunning (timeout 1539s, skills=—): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nTIMEOUT after 1539s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n\nTIMEOUT after 1539s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены.",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "failure_streak": 1,
+      "fire_claim": null,
+      "next_run_at": null,
+      "last_failure": {
+        "at": "2026-10-31T13:23:42.006952+01:00",
+        "detail": "Script exited with code 124\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 1600s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=1539s\nRunning (timeout 1539s, skills=—): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nTIMEOUT after 1539s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n\nTIMEOUT after 1539s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены."
+      },
+      "run_claim": null
+    },
+    {
+      "id": "3afe931bdf6c",
+      "name": "LV-producer",
+      "prompt": "Ты Агент-Продюсер в Протоколе Живого Кода. Тебя триггерит Владыка Кода.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — найди [TRIGGER_PRODUCER].\n2. Изучи код проекта и журнал Владыки.\n3. Подготовь код к публикации: обнови README.md, документацию.\n4. Проверь готовность: весь код холодный + план эволюции выполнен на 100%?\n   - ДА: создай промпты для Артиста и Музыканта, запиши в журнал \"[TRIGGER_ARTIST] <project>\" и \"[TRIGGER_MUSICIAN] <project>\"\n   - НЕТ: пушь на локальный гитхаб как есть, без триггеров творческих агентов.\n5. Пушь проект на локальный GitHub: cd /home/thomas/LivingCode/Projects/<project> && git add -A && git commit -m \"Auto-deploy $(date)\" && git push\n6. Составь отчёт: /home/thomas/LivingCode/reports/producer-$(date +%Y%m%d-%H%M).md\n7. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/producer-$(date +%Y%m%d-%H%M).md\"",
+      "skills": [
+        "super-coder",
+        "github-repo-management",
+        "claude-design"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": "wrappers/wrapper_producer.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-10-31T11:00:23.132297+01:00",
+        "display": "once at 2026-10-31 11:00"
+      },
+      "schedule_display": "once at 2026-10-31 11:00",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": false,
+      "state": "completed",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:37.124343+02:00",
+      "last_run_at": "2026-10-31T11:28:27.158156+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "failure_streak": 0,
+      "next_run_at": null,
+      "fire_claim": null,
+      "run_claim": null
+    },
+    {
+      "id": "004fdb156a82",
+      "name": "LV-artist",
+      "prompt": "Ты Агент ХудожникАртист в Протоколе Живого Кода. Тебя триггерит Продюсер.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — найди [TRIGGER_ARTIST].\n2. Изучи задание от Продюсера: какие баннеры, иконки, графика нужны.\n3. Сгенерируй графику используя доступные инструменты (comfyui, canvas-design, sketch).\n4. Изучи полученные результаты — если качество недостаточно, повтори.\n5. Сохрани файлы в /home/thomas/LivingCode/Projects/<project>/assets/ с правильными именами.\n6. Напиши пояснительную записку в журнал переписки для Продюсера — про каждый файл.\n7. Составь отчёт: /home/thomas/LivingCode/reports/artist-$(date +%Y%m%d-%H%M).md\n8. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/artist-$(date +%Y%m%d-%H%M).md\"",
+      "skills": [
+        "claude-design",
+        "comfyui",
+        "canvas-design",
+        "frontend-design"
+      ],
+      "skill": "claude-design",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 0,2,4,6,8,10,12,14,16,18,20,22 * * *",
+        "display": "30 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
+      },
+      "schedule_display": "30 0,2,4,6,8,10,12,14,16,18,20,22 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 108
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:37.157351+02:00",
+      "next_run_at": "2026-11-01T10:30:00+01:00",
+      "last_run_at": "2026-11-01T08:23:00.525143+01:00",
+      "last_status": "error",
+      "last_error": "interrupted",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "failure_streak": 9,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T08:30:00+01:00",
+        "dispatched_at": "2026-11-01T08:30:00.438341+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-11-01T08:23:00.525143+01:00",
+        "detail": "interrupted"
+      },
+      "canonical_completions": [
+        "32cef3d2f1634e078dbfeb077da9b388"
+      ],
+      "pending_slot": {
+        "scheduled_at": "2026-11-01T08:30:00+01:00",
+        "at": "2026-11-01T08:30:00.438341+01:00",
+        "by": "cathedral:2980"
+      }
+    },
+    {
+      "id": "a1efc19ab826",
+      "name": "LV-dj-musician",
+      "prompt": "Ты Агент DJМузыкант в Протоколе Живого Кода. Тебя триггерит Продюсер.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — найди [TRIGGER_MUSICIAN].\n2. Изучи задание от Продюсера: какие звуки, музыка, эффекты нужны.\n3. Сгенерируй аудио используя доступные инструменты.\n4. Изучи полученные результаты — если качество недостаточно, повтори.\n5. Сохрани файлы в /home/thomas/LivingCode/Projects/<project>/assets/sounds/ с правильными именами.\n6. Напиши пояснительную записку в журнал переписки для Продюсера — про каждый файл.\n7. Составь отчёт: /home/thomas/LivingCode/reports/musician-$(date +%Y%m%d-%H%M).md\n8. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/musician-$(date +%Y%m%d-%H%M).md\"",
+      "skills": [
+        "songwriting-and-ai-music",
+        "comfyui",
+        "audio-visualization-presets"
+      ],
+      "skill": "songwriting-and-ai-music",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "40 1,3,5,7,9,11,13,15,17,19,21,23 * * *",
+        "display": "40 1,3,5,7,9,11,13,15,17,19,21,23 * * *"
+      },
+      "schedule_display": "40 1,3,5,7,9,11,13,15,17,19,21,23 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 111
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:37.191225+02:00",
+      "next_run_at": "2026-11-01T11:40:00+01:00",
+      "last_run_at": "2026-11-01T10:20:50.710470+01:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Provider has been unresponsive (no response received) for 6 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry.",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "failure_streak": 9,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T09:40:00+01:00",
+        "dispatched_at": "2026-11-01T09:40:00.442007+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "canonical_completions": [
+        "3df48bc7b62c488e9e3d31733a79d616"
+      ],
+      "last_failure": {
+        "at": "2026-11-01T10:20:50.710470+01:00",
+        "detail": "RuntimeError: Provider has been unresponsive (no response received) for 6 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry."
+      }
+    },
+    {
+      "id": "da6991877b14",
+      "name": "LV-searcher",
+      "prompt": "Ты Агент-Искатель в Протоколе Живого Кода. Модель: MiniMax M3.1 Flash (NVIDIA). Ты единственный агент с правом закачки и установки софта.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — найди все запросы от кодеров и других агентов на поиск информации, софта, библиотек.\n2. Исследуй соцсети, GitHub, топ-20 IT порталов на тему AI Engineering и Programming — самое горячее.\n3. Выполни поиск по конкретным запросам агентов из переписки.\n4. Если нужно — скачай и установи софт/библиотеки по запросам.\n5. Результаты по запросам агентов верни в /home/thomas/LivingCode/agents/journal.md — сообщи что скачал, установил, ссылки.\n6. Laya-скоринг находок перед раскладкой (внешний судья, миллисекунды на CPU, калиброванный скор вместо эвристики):\n   printf \"%s\\n\" \"<находка1>\" \"<находка2>\" | /home/thomas/LivingCode/orchestration/scripts/laya_bridge.py score --state-context \"Проекты Живого Кода: рой агентов-кодеров на MiniMax M3.1 Flash (NVIDIA), оркестрация кронов Hermes, UI-гейты\"\n   — score 1.2+ = приоритет изучения высокий, 0.8-1.2 = средний, ниже 0.8 = отложить или отбросить.\n7. Дайджест IT/AI/Code новостей расклади по темам в /home/thomas/LivingCode/textbook/ помечая красными метками [NEW] как новые материалы для изучения. Приоритет изучения — по laya-скору из шага 6.\n8. Составь отчёт: /home/thomas/LivingCode/reports/searcher-$(date +%Y%m%d-%H%M).md\n9. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/searcher-$(date +%Y%m%d-%H%M).md\"\n10. Триггер Профессора: запиши в журнал \"[TRIGGER_PROFESSOR]\".\n\nРОУТЕР СПЕЦИАЛИСТОВ (agency_router, Фаза 4): при незнакомой задаче подбери специалиста из каталога The Agency и возьми его паспорт:\n  /home/thomas/LivingCode/venvs/laya/bin/python /home/thomas/LivingCode/orchestration/scripts/agency_router.py search \"<тема>\"\n  ... load <slug> --task \"<задача>\" → готовый промпт-паспорт специалиста.\nМалый вход — большой каталог на диске (280 паспортов, 19 дивизионов); паспорт читается только по request.",
+      "skills": [
+        "web-research",
+        "social-web-research",
+        "blogwatcher"
+      ],
+      "skill": "web-research",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "wrappers/wrapper_searcher.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "50 * * * *"
+      },
+      "schedule_display": "cron 50 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 184
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:51.215661+02:00",
+      "last_run_at": "2026-11-01T09:18:42.967478+01:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 124\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 3400s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3339s\nRunning (timeout 3339s, skills=['note-taking/obsidian', 'agent-reach']): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nTIMEOUT after 3339s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n\nTIMEOUT after 3339s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены.",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "failure_streak": 7,
+      "next_run_at": "2026-11-01T10:50:00+01:00",
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T09:50:00+01:00",
+        "dispatched_at": "2026-11-01T09:50:00.444451+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-11-01T09:18:42.967478+01:00",
+        "detail": "Script exited with code 124\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 3400s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3339s\nRunning (timeout 3339s, skills=['note-taking/obsidian', 'agent-reach']): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nTIMEOUT after 3339s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n\nTIMEOUT after 3339s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены."
+      },
+      "pending_slot": {
+        "scheduled_at": "2026-11-01T09:50:00+01:00",
+        "at": "2026-11-01T09:50:00.444451+01:00",
+        "by": "cathedral:2980"
+      }
+    },
+    {
+      "id": "3e18b5951ee5",
+      "name": "LV-professor",
+      "prompt": "Ты Агент-Профессор в Протоколе Живого Кода. Модель: MiniMax M3.1 Flash (NVIDIA). Тебя триггерит Искатель.\n\nСРОЧНО: Все неизученные темы (🔴) в Учебнике должны быть изучены ДО 08:00 завтра!\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — найди [TRIGGER_PROFESSOR].\n2. Прочитай ГЛАВНЫЙ УЧЕБНИК: /home/thomas/Documents/ObsidianVault/Учебник.md — найди ВСЕ темы с 🔴 (не изучено).\n3. Laya-приоритизация тем перед изучением (внешний судья, миллисекунды на CPU, калиброванный скор):\n   printf \"%s\\n\" \"<тема1>\" \"<тема2>\" | /home/thomas/LivingCode/orchestration/scripts/laya_bridge.py score --state-context \"Проекты Живого Кода: рой агентов-кодеров на MiniMax M3.1 Flash (NVIDIA), UI-гейты, самообучение роя\"\n   — score 1.2+ = изучать первым, 0.8-1.2 = следующим, ниже 0.8 = в конец очереди.\n4. За ОДИН запуск изучи МАКСИМУМ тем (минимум 3-5) в порядке laya-приоритета.\n5. Для каждой темы: извлеки пользу в виде краткого конспекта со ссылками.\n6. Добавь темы в базу знаний: обнови wiki и граф знаний в /home/thomas/LivingCode/knowledge-base/\n   - В Учебнике сними 🔴 и поставь 🟢 (Изучено) для каждой изученной темы\n7. Сообщи в /home/thomas/LivingCode/agents/journal.md какие темы изучены и их laya-скоры.\n8. Составь отчёт: /home/thomas/LivingCode/reports/professor-$(date +%Y%m%d-%H%M).md\n9. Отправь Инквизитору: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/professor-$(date +%Y%m%d-%H%M).md\"\n\nЦЕЛЬ: К 08:00 завтра В Учебнике не должно остаться НИ ОДНОЙ 🔴 темы!\n\nРОУТЕР СПЕЦИАЛИСТОВ (agency_router, Фаза 4): при незнакомой задаче подбери специалиста из каталога The Agency и возьми его паспорт:\n  /home/thomas/LivingCode/venvs/laya/bin/python /home/thomas/LivingCode/orchestration/scripts/agency_router.py search \"<тема>\"\n  ... load <slug> --task \"<задача>\" → готовый промпт-паспорт специалиста.\nМалый вход — большой каталог на диске (280 паспортов, 19 дивизионов); паспорт читается только по request.",
+      "skills": [
+        "web-research",
+        "blogwatcher",
+        "obsidian"
+      ],
+      "skill": "web-research",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "wrappers/wrapper_professor.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/30 * * * *"
+      },
+      "schedule_display": "cron */30 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 241
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:51.251514+02:00",
+      "last_run_at": "2026-11-01T09:19:32.985892+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "failure_streak": 0,
+      "next_run_at": "2026-11-01T10:30:00+01:00",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T10:00:00+01:00",
+        "dispatched_at": "2026-11-01T10:00:00.449765+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "fire_claim": null,
+      "last_failure": {
+        "at": "2026-10-31T23:49:55.675853+01:00",
+        "detail": "Script exited with code 78\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 3400s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3339s\nRunning (timeout 3339s, skills=['note-taking/obsidian']): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\n\nInvalid inference receipt: [Errno 2] No such file or directory: '/home/thomas/LivingCode/orchestration/logs/inference/attempt_2121496_100061769699080.json'\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены."
+      },
+      "pending_slot": {
+        "scheduled_at": "2026-11-01T10:00:00+01:00",
+        "at": "2026-11-01T10:00:00.449765+01:00",
+        "by": "cathedral:2980"
+      }
+    },
+    {
+      "id": "e9cecea7874b",
+      "name": "LV-inquisitor",
+      "prompt": "Ты Агент-Инквизитор в Протоколе Живого Кода. Ты собираешь все отчёты и решаешь проблемы.\n\n1. Прочитай все отчёты в /home/thomas/LivingCode/reports/ за текущий час.\n2. Прочитай /home/thomas/LivingCode/agents/journal.md — выпиши все проблемы и ошибки упомянутые агентами.\n3. Laya-триаж каждой проблемы перед решением (внешний судья, миллисекунды на CPU — приоритизация без траты больших моделей):\n   echo \"<проблема>\" | /home/thomas/LivingCode/orchestration/scripts/laya_bridge.py triage\n   — маршрутизация по verdict: kritichno/chinit_seychas → фиксируй немедленно (шаг 4-6), otlozhit → запиши в план, operatoru → оставь оператору с пометкой в отчёте.\n   laya — первый фильтр и приоритизатор, НЕ замена твоего анализа. Семантика и уроки: /home/thomas/LivingCode/orchestration/LAYA.md\n4. Изучи каждую проблему (начиная с laya-критичных) и реши максимально эффективно и оперативно. Не делай ошибок.\n5. Если проблема требует код-fix — исправь напрямую.\n6. Если проблема требует изменения кронов — исправь кроны.\n7. Если проблема требует изменения конфигурации — исправь конфиг.\n8. Открой профессора: если в учебнике есть темы помеченные [STUDIED] (жёлтые) — отметь их [DEPLOYED] (зелёные) в knowledge-base.\n9. Запиши в журнал переписки \"[KNOWLEDGE_BASE_UPDATED] обновления готовы к загрузке всеми агентами\".\n10. Составь отчёт: /home/thomas/LivingCode/reports/inquisitor-$(date +%Y%m%d-%H%M).md\n11. Отправь в Telegram: hermes send --to telegram \"MEDIA:/home/thomas/LivingCode/reports/inquisitor-$(date +%Y%m%d-%H%M).md\"",
+      "skills": [
+        "super-coder",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "35 * * * *",
+        "display": "35 * * * *"
+      },
+      "schedule_display": "35 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 137
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:07:05.553895+02:00",
+      "next_run_at": "2026-11-01T10:35:00+01:00",
+      "last_run_at": "2026-10-31T23:36:50.612632+01:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Provider has been unresponsive (no response received) for 5 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry.",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": {
+        "at": "2026-11-01T10:20:44.866372+01:00",
+        "by": "cathedral:2980:cea34744cacd45a2aa120ccd207ed1e4"
+      },
+      "failure_streak": 7,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T09:35:00+01:00",
+        "dispatched_at": "2026-11-01T09:35:00.440570+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-10-31T23:36:50.612632+01:00",
+        "detail": "RuntimeError: Provider has been unresponsive (no response received) for 5 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry."
+      },
+      "canonical_completions": [
+        "2f48a89a0d254ba18725bb8e43cedb25"
+      ],
+      "pending_slot": {
+        "scheduled_at": "2026-11-01T09:35:00+01:00",
+        "at": "2026-11-01T09:35:00.440570+01:00",
+        "by": "cathedral:2980"
+      }
+    },
+    {
+      "id": "e169a2b3db99",
+      "name": "LV-supervisor",
+      "prompt": "Supervisor check",
+      "skills": [
+        "godmode-coder"
+      ],
+      "skill": "godmode-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 * * * *",
+        "display": "45 * * * *"
+      },
+      "schedule_display": "45 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 182
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:07:05.587162+02:00",
+      "next_run_at": "2026-11-01T10:45:00+01:00",
+      "last_run_at": "2026-10-31T23:49:57.509731+01:00",
+      "last_status": "error",
+      "last_error": "GatewayUnavailableError: Gateway draining: not_ready",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": {
+        "at": "2026-11-01T10:20:34.588195+01:00",
+        "by": "cathedral:2980:f7a33d2c22ce4b79935f42b124f059d9"
+      },
+      "failure_streak": 8,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T09:45:00+01:00",
+        "dispatched_at": "2026-11-01T09:45:00.443332+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-10-31T23:49:57.509731+01:00",
+        "detail": "GatewayUnavailableError: Gateway draining: not_ready"
+      },
+      "canonical_completions": [
+        "d4d55ea7c7d443088c84a206fced2563"
+      ],
+      "pending_slot": {
+        "scheduled_at": "2026-11-01T09:45:00+01:00",
+        "at": "2026-11-01T09:45:00.443332+01:00",
+        "by": "cathedral:2980"
+      }
+    },
+    {
+      "id": "e8d24ce90705",
+      "name": "LV-cycle-start",
+      "prompt": "Living Code Cycle Start — runs every 4 hours at :00. Git sync, health checks, promotion check, chronicle, briefing.",
+      "skills": [],
+      "skill": null,
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "cycle_start_cron.py",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "display": "0 */4 * * *"
+      },
+      "schedule_display": "0 */4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 94
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:27:51.275820+02:00",
+      "next_run_at": "2026-11-01T12:00:00+01:00",
+      "last_run_at": "2026-11-01T10:20:51.920963+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T00:00:00+01:00",
+        "dispatched_at": "2026-11-01T08:23:00.817465+01:00",
+        "lateness_seconds": 30180.8,
+        "kind": "catch_up"
+      }
+    },
+    {
+      "id": "ad747df8b74b",
+      "name": "LV-vault-sync",
+      "prompt": "Bidirectional Vault sync across Tailscale nodes every 30 minutes",
+      "skills": [],
+      "skill": null,
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "run_vault_sync.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/30 * * * *",
+        "display": "*/30 * * * *"
+      },
+      "schedule_display": "*/30 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 268
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-17T00:47:18.098461+02:00",
+      "next_run_at": "2026-11-01T10:30:00+01:00",
+      "last_run_at": "2026-11-01T10:20:58.312219+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T10:00:00+01:00",
+        "dispatched_at": "2026-11-01T10:00:00.449765+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-10-24T16:00:40.061400+02:00",
+        "detail": "Script exited with code 128\nstderr:\nfatal: Unable to create '/home/thomas/Documents/ObsidianVault/.git/index.lock': File exists.\n\nAnother git process seems to be running in this repository, e.g.\nan editor opened by 'git commit'. Please make sure all processes\nare terminated then try again. If it still fails, a git process\nmay have crashed in this repository earlier:\nremove the file manually to continue.\nstdout:\n[2026-10-24 14:00:39] === Vault Sync Started ==="
+      }
+    },
+    {
+      "id": "9b02899a0169",
+      "name": "LV-model-sync",
+      "prompt": "Sync Ollama models across Tailscale nodes weekly",
+      "skills": [],
+      "skill": null,
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "sync_models.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 2 * * 0",
+        "display": "0 2 * * 0"
+      },
+      "schedule_display": "0 2 * * 0",
+      "repeat": {
+        "times": null,
+        "completed": 2
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-17T00:47:23.878160+02:00",
+      "next_run_at": "2026-11-08T02:00:00+01:00",
+      "last_run_at": "2026-11-01T10:20:59.365408+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T02:00:00+01:00",
+        "dispatched_at": "2026-11-01T08:23:00.817465+01:00",
+        "lateness_seconds": 22980.8,
+        "kind": "catch_up"
+      },
+      "failure_streak": 0,
+      "last_failure": {
+        "at": "2026-10-26T09:41:48.524446+01:00",
+        "detail": "Blocked: script path resolves outside the scripts directory (/home/thomas/LivingCode/orchestration/scripts): 'sync_models.sh'"
+      }
+    },
+    {
+      "id": "e6738e2b9396",
+      "name": "LV-node-health",
+      "prompt": "Node Health Monitor — publish metrics every 30 seconds",
+      "skills": [],
+      "skill": null,
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "node_health.py",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/1 * * * *",
+        "display": "*/1 * * * *"
+      },
+      "schedule_display": "*/1 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 7280
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-17T12:57:02.051323+02:00",
+      "next_run_at": "2026-11-01T10:22:00+01:00",
+      "last_run_at": "2026-11-01T10:21:01.543276+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T10:21:00+01:00",
+        "dispatched_at": "2026-11-01T10:21:00.443833+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-10-24T06:40:02.702627+02:00",
+        "detail": "Blocked: script path resolves outside the scripts directory (/home/thomas/LivingCode/orchestration/scripts): 'node_health.py'"
+      }
+    },
+    {
+      "id": "e70975dcbd0b",
+      "name": "LV-night-artist",
+      "prompt": "Night Artist — runs 02:00-06:00, processes artist queue via free cloud APIs",
+      "skills": [],
+      "skill": null,
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "wrappers/wrapper_night_artist.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/30 2-5 * * *",
+        "display": "*/30 2-5 * * *"
+      },
+      "schedule_display": "*/30 2-5 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-09-25T23:29:41.621909+02:00",
+      "paused_reason": "Восстановлено из бэкапа 2026-08-22 (внешний диск F2DB-14E5). Импортировано на паузе, расписание не активно.",
+      "created_at": "2026-08-17T13:46:19.767144+02:00",
+      "next_run_at": null,
+      "last_run_at": "2026-08-18T07:29:05.124507+02:00",
+      "last_status": "error",
+      "last_error": "Script not found: /home/thomas/.hermes/scripts/python /home/thomas/LivingCode/scripts/artist_entry.py --project elemental-life --cycle 9999 --force",
+      "last_delivery_error": null,
+      "failure_streak": 1,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null
+    },
+    {
+      "id": "4625865cc4dc",
+      "name": "LV-night-musician",
+      "prompt": "Night Musician — runs 02:00-06:00, processes musician queue via unsloth-studio Tailscale",
+      "skills": [],
+      "skill": null,
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "wrappers/wrapper_night_musician.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/30 2-5 * * *",
+        "display": "*/30 2-5 * * *"
+      },
+      "schedule_display": "*/30 2-5 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-09-25T23:29:41.621909+02:00",
+      "paused_reason": "Восстановлено из бэкапа 2026-08-22 (внешний диск F2DB-14E5). Импортировано на паузе, расписание не активно.",
+      "created_at": "2026-08-17T13:46:25.044633+02:00",
+      "next_run_at": null,
+      "last_run_at": "2026-08-18T07:29:05.205579+02:00",
+      "last_status": "error",
+      "last_error": "Script not found: /home/thomas/.hermes/scripts/python /home/thomas/LivingCode/scripts/musician_entry.py --project elemental-life --cycle 9999 --force",
+      "last_delivery_error": null,
+      "failure_streak": 1,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null
+    },
+    {
+      "id": "e635a66c3e95",
+      "name": "Topic252 → Учебник конвейер",
+      "prompt": "[РЕКОНСТРУИРОВАНО] Каждые 15 минут: python3 topic252_to_textbook.py — забрать новые сообщения из topic 252 и превратить их в записи учебника; при отсутствии новых сообщений скрипт печатает NO_NEW_MESSAGES и отчёт не отправляется.",
+      "skills": [
+        "textbook-learning-pipeline"
+      ],
+      "skill": "textbook-learning-pipeline",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "opencode",
+      "model_snapshot": "space-bunny-free",
+      "base_url": null,
+      "script": "topic252_to_textbook.py",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/15 * * * *",
+        "display": "*/15 * * * *"
+      },
+      "schedule_display": "*/15 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 2629
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-27T04:45:17+02:00",
+      "next_run_at": "2026-11-01T10:30:00+01:00",
+      "last_run_at": "2026-11-01T10:21:02.647557+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "drift_alerted": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T10:15:00+01:00",
+        "dispatched_at": "2026-11-01T10:15:00.450077+01:00",
+        "lateness_seconds": 0.5,
+        "kind": "on_time"
+      }
+    },
+    {
+      "id": "be65a65d784e",
+      "name": "LV-config-backup",
+      "prompt": "Ежедневный экспорт конфига Hermes в репозиторий living-code и на внешний диск",
+      "skills": [],
+      "skill": null,
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "backup-config.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 3 * * *",
+        "display": "30 3 * * *"
+      },
+      "schedule_display": "30 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 9
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-09-26T02:55:24.419482+02:00",
+      "next_run_at": "2026-11-02T03:30:00+01:00",
+      "last_run_at": "2026-10-31T04:08:14.248832+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "failure_deliver": "telegram:-1004431090317:252",
+      "model_snapshot": "space-bunny-free",
+      "provider_snapshot": "opencode",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T03:30:00+01:00",
+        "dispatched_at": "2026-11-01T08:23:00.817465+01:00",
+        "lateness_seconds": 17580.8,
+        "kind": "catch_up"
+      },
+      "fire_claim": {
+        "at": "2026-11-01T10:21:03.605831+01:00",
+        "by": "cathedral:2980:fb2c9610161c4c51a092360456910ef3"
+      },
+      "last_failure": {
+        "at": "2026-10-30T03:30:11.178198+01:00",
+        "detail": "Script exited with code 2\nstderr:\nfatal: The current branch feature/laya-auto-install has no upstream branch.\nTo push the current branch and set the remote as upstream, use\n\n    git push --set-upstream origin feature/laya-auto-install\n\nTo have this happen automatically for branches without a tracking\nupstream, see 'push.autoSetupRemote' in 'git help config'.\nstdout:\n[backup-config] слепки сняты: config.yaml, jobs.json, скиллы\nСканирую /home/thomas/LivingCode/orchestration/skills-export\n  очищено   2 в devops/repair-api-keys/SKILL.md\n  очищено  21 в devops/repair-api-keys/scripts/full_clean.sh\n  очищено   9 в hermes/hermes-api-key-rotation/references/key-file-format.md\nСканирую /home/thomas/LivingCode/orchestration/hermes-config\n  чисто — ключей не найдено\nСканирую /home/thomas/LivingCode/orchestration/jobs\n  чисто — ключей не найдено\nСканирую /home/thomas/LivingCode/orchestration/runtime\n  чисто — ключей не найдено\n\nВсего очищено: 32\n[backup-config] коммит создан\n[backup-config] git push: ОШИБКА (проверь сеть/токен)"
+      }
+    },
+    {
+      "id": "9adba5e8a387",
+      "name": "LV-ui-gate",
+      "prompt": "LV-ui-gate: ревизия UI перед шипом (паспорт UI Finish-Gate Reviewer, laya-гейт первый фильтр)",
+      "skills": [],
+      "skill": null,
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "wrappers/wrapper_ui_gate.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2099-01-01T00:00:00+02:00",
+        "display": "never — только по триггеру"
+      },
+      "schedule_display": "trigger-only (нет самостоятельного крона)",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": false,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-09-29T22:18:40.455790+02:00",
+      "last_run_at": "2026-10-03T00:48:20.022785+02:00",
+      "last_status": "delivery_failed",
+      "last_error": null,
+      "last_delivery_error": "1 media attachment(s) dropped by media path policy (missing file, denied prefix, or strict-mode miss); see gateway.strict / media_delivery_allow_dirs in config.yaml",
+      "last_delivery_unverified": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "model_snapshot": "space-bunny-free",
+      "provider_snapshot": "opencode"
+    },
+    {
+      "id": "98b0ab9c37ec",
+      "name": "LV-coder-project1",
+      "prompt": "Агент-Кодер проекта Project1 в Протоколе Живого Кода. Слот 1 — запуск в 01:00, далее каждые 4 часа. Один запуск = ОДИН цикл эволюции. Проект: /home/thomas/LivingCode/Project1",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": "wrappers/wrapper_project1.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3,7,11,15,19,23 * * *"
+      },
+      "schedule_display": "cron 0 3,7,11,15,19,23 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 97
+      },
+      "enabled": true,
+      "created_at": "2026-08-16T23:06:14.132681+02:00",
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Project1",
+      "next_run_at": "2026-11-01T11:00:00+01:00",
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T03:00:00+01:00",
+        "dispatched_at": "2026-11-01T08:23:00.817465+01:00",
+        "lateness_seconds": 19380.8,
+        "kind": "catch_up"
+      },
+      "last_run_at": "2026-10-31T23:49:56.700205+01:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 78\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 4000s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3900s\nRunning (timeout 3900s, skills=—): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\n\nInvalid inference receipt: [Errno 2] No such file or directory: '/home/thomas/LivingCode/orchestration/logs/inference/attempt_2121746_100062892166670.json'\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены.",
+      "failure_streak": 1,
+      "last_delivery_error": null,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "last_failure": {
+        "at": "2026-10-31T23:49:56.700205+01:00",
+        "detail": "Script exited with code 78\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 4000s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3900s\nRunning (timeout 3900s, skills=—): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\n\nInvalid inference receipt: [Errno 2] No such file or directory: '/home/thomas/LivingCode/orchestration/logs/inference/attempt_2121746_100062892166670.json'\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены."
+      },
+      "failure_deliver": "local",
+      "pending_slot": {
+        "scheduled_at": "2026-11-01T03:00:00+01:00",
+        "at": "2026-11-01T08:23:00.817465+01:00",
+        "by": "cathedral:2980"
+      }
+    },
+    {
+      "id": "b87ad1b5c770",
+      "name": "LV-coder-project2",
+      "prompt": "Агент-Кодер проекта Project2 в Протоколе Живого Кода. Слот 2 — запуск в 02:00, далее каждые 4 часа. Один запуск = ОДИН цикл эволюции. Проект: /home/thomas/LivingCode/Project2",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": "wrappers/wrapper_project2.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 4,8,12,16,20 * * *"
+      },
+      "schedule_display": "cron 0 4,8,12,16,20 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 85
+      },
+      "enabled": true,
+      "created_at": "2026-08-16T23:06:14.132681+02:00",
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Project2",
+      "next_run_at": "2026-11-01T12:00:00+01:00",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T04:00:00+01:00",
+        "dispatched_at": "2026-11-01T08:23:00.817465+01:00",
+        "lateness_seconds": 15780.8,
+        "kind": "catch_up"
+      },
+      "fire_claim": null,
+      "last_run_at": "2026-10-31T21:52:02.586791+01:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 75\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 4000s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3900s\nRunning (timeout 3900s, skills=—): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nNVIDIA NIM rejected the request and retrying won't help. Pick another model with /model, or check the details in `~/.hermes/logs/agent.log`.\n\nProvider said: Provider has been unresponsive (no response received) for 6 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry.\n\nThis turn did not complete. Some actions may already have run; verify their effects before resending.\n\nFailed after possible agent work; automatic writer replay forbidden.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены.",
+      "failure_streak": 1,
+      "last_delivery_error": null,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "last_failure": {
+        "at": "2026-10-31T21:52:02.586791+01:00",
+        "detail": "Script exited with code 75\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 4000s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3900s\nRunning (timeout 3900s, skills=—): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nNVIDIA NIM rejected the request and retrying won't help. Pick another model with /model, or check the details in `~/.hermes/logs/agent.log`.\n\nProvider said: Provider has been unresponsive (no response received) for 6 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry.\n\nThis turn did not complete. Some actions may already have run; verify their effects before resending.\n\nFailed after possible agent work; automatic writer replay forbidden.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены."
+      },
+      "failure_deliver": "local",
+      "pending_slot": {
+        "scheduled_at": "2026-11-01T04:00:00+01:00",
+        "at": "2026-11-01T08:23:00.817465+01:00",
+        "by": "cathedral:2980"
+      }
+    },
+    {
+      "id": "ec9bf2639910",
+      "name": "LV-coder-project3",
+      "prompt": "Агент-Кодер проекта Project3 в Протоколе Живого Кода. Слот 3 — запуск в 03:00, далее каждые 4 часа. Один запуск = ОДИН цикл эволюции. Проект: /home/thomas/LivingCode/Project3",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": "wrappers/wrapper_project3.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 5,9,13,17,21 * * *"
+      },
+      "schedule_display": "cron 0 5,9,13,17,21 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 81
+      },
+      "enabled": true,
+      "created_at": "2026-08-16T23:06:14.132681+02:00",
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Project3",
+      "next_run_at": "2026-11-01T13:00:00+01:00",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T09:00:00+01:00",
+        "dispatched_at": "2026-11-01T09:00:00.441242+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "fire_claim": null,
+      "last_run_at": "2026-10-31T22:45:29.849961+01:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 75\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 4000s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3900s\nRunning (timeout 3900s, skills=—): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nNVIDIA NIM rejected the request and retrying won't help. Pick another model with /model, or check the details in `~/.hermes/logs/agent.log`.\n\nProvider said: Provider has been unresponsive (no response received) for 5 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry.\n\nThis turn did not complete. Some actions may already have run; verify their effects before resending.\n\nFailed after possible agent work; automatic writer replay forbidden.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены.",
+      "failure_streak": 3,
+      "last_delivery_error": null,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "last_failure": {
+        "at": "2026-10-31T22:45:29.849961+01:00",
+        "detail": "Script exited with code 75\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 4000s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3900s\nRunning (timeout 3900s, skills=—): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nNVIDIA NIM rejected the request and retrying won't help. Pick another model with /model, or check the details in `~/.hermes/logs/agent.log`.\n\nProvider said: Provider has been unresponsive (no response received) for 5 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry.\n\nThis turn did not complete. Some actions may already have run; verify their effects before resending.\n\nFailed after possible agent work; automatic writer replay forbidden.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены."
+      },
+      "failure_deliver": "local",
+      "pending_slot": {
+        "scheduled_at": "2026-11-01T09:00:00+01:00",
+        "at": "2026-11-01T09:00:00.441242+01:00",
+        "by": "cathedral:2980"
+      }
+    },
+    {
+      "id": "435fcd067442",
+      "name": "LV-coder-project4",
+      "prompt": "Агент-Кодер проекта Project4 в Протоколе Живого Кода. Слот 4 — запуск в 04:00, далее каждые 4 часа. Один запуск = ОДИН цикл эволюции. Проект: /home/thomas/LivingCode/Project4",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "z-ai/glm-5.3",
+      "base_url": null,
+      "script": "wrappers/wrapper_project4.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 6,10,14,18,22 * * *"
+      },
+      "schedule_display": "cron 0 6,10,14,18,22 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 84
+      },
+      "enabled": true,
+      "created_at": "2026-08-16T23:06:14.132681+02:00",
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Project4",
+      "next_run_at": "2026-11-01T14:00:00+01:00",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-01T10:00:00+01:00",
+        "dispatched_at": "2026-11-01T10:00:00.449765+01:00",
+        "lateness_seconds": 0.4,
+        "kind": "on_time"
+      },
+      "fire_claim": null,
+      "last_run_at": "2026-10-31T23:49:53.749654+01:00",
+      "last_status": "error",
+      "last_error": "Restart-safe cron worker exited with status -15 after adopting this execution, without writing a durable terminal state; whether side effects ran is unknown.; worker stderr: <frozen runpy>:130: RuntimeWarning: 'cron.scheduler' found in sys.modules after import of package 'cron', but prior to execution of 'cron.scheduler'; this may result in unpredictable behaviour",
+      "failure_streak": 2,
+      "last_delivery_error": null,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "last_failure": {
+        "at": "2026-10-31T23:49:53.749654+01:00",
+        "detail": "Restart-safe cron worker exited with status -15 after adopting this execution, without writing a durable terminal state; whether side effects ran is unknown.; worker stderr: <frozen runpy>:130: RuntimeWarning: 'cron.scheduler' found in sys.modules after import of package 'cron', but prior to execution of 'cron.scheduler'; this may result in unpredictable behaviour"
+      },
+      "failure_deliver": "local",
+      "pending_slot": {
+        "scheduled_at": "2026-11-01T10:00:00+01:00",
+        "at": "2026-11-01T10:00:00.449765+01:00",
+        "by": "cathedral:2980"
+      }
+    },
+    {
+      "id": "94484e0e54e3",
+      "name": "LV-coder-paranoidx",
+      "prompt": "",
+      "skills": [
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "test-driven-development",
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "wrappers/wrapper_paranoidx.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "7 * * * *",
+        "display": "7 * * * *"
+      },
+      "schedule_display": "7 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 20
+      },
+      "enabled": false,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-10-03T12:38:16.736118+02:00",
+      "next_run_at": "2026-10-05T00:07:00+02:00",
+      "last_run_at": "2026-10-04T23:25:39.007871+02:00",
+      "last_status": "error",
+      "last_error": "Restart-safe cron worker exited with status -15 after adopting this execution, without writing a durable terminal state; whether side effects ran is unknown.; worker stderr: <frozen runpy>:130: RuntimeWarning: 'cron.scheduler' found in sys.modules after import of package 'cron', but prior to execution of 'cron.scheduler'; this may result in unpredictable behaviour",
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "failure_streak": 1,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-10-04T23:07:00+02:00",
+        "dispatched_at": "2026-10-04T23:07:13.617500+02:00",
+        "lateness_seconds": 13.6,
+        "kind": "on_time"
+      },
+      "model_snapshot": "z-ai/glm-5.3",
+      "provider_snapshot": "nvidia"
+    },
+    {
+      "id": "f683abe80fb5",
+      "name": "LV-auditor",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": "minimaxai/minimax-m3.1-flash",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "wrappers/wrapper_auditor.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-10-31T21:24:25.302964+01:00",
+        "display": "once at 2026-10-31 21:24"
+      },
+      "schedule_display": "once at 2026-10-31 21:24",
+      "repeat": {
+        "times": 1,
+        "completed": 1
+      },
+      "enabled": false,
+      "state": "completed",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-10-19T21:19:40.471924+02:00",
+      "next_run_at": null,
+      "last_run_at": "2026-10-31T23:13:11.910682+01:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 124\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 3400s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3339s\nRunning (timeout 3339s, skills=—): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nTIMEOUT after 3339s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n\nTIMEOUT after 3339s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены.",
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": {
+        "at": "2026-10-31T23:13:11.910682+01:00",
+        "detail": "Script exited with code 124\nstdout:\nЦепочка: ['minimaxai/minimax-m3.1-flash'] | бюджет 3400s\nAttempt 1/1: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=3339s\nRunning (timeout 3339s, skills=—): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nTIMEOUT after 3339s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n\nTIMEOUT after 3339s: model=minimaxai/minimax-m3.1-flash provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены."
+      },
+      "failure_streak": 3,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "run_claim": null
+    }
+  ],
+  "updated_at": "2026-11-01T10:21:03.606549+01:00"
+}

@@ -1,0 +1,15 @@
+#!/bin/bash
+# Laya — финальный судья конвейера Живого Кода. Тебя триггерит Продюсер.
+# Самостоятельного расписания НЕТ: Laya запускается только через NEXT_JOB_ID,
+# иначе она дублировала бы вердикт параллельно с кодером следующего слота.
+# Вердикт возвращается в конвейер записями [LAYA_VERDICT] / [LAYA_FINDINGS],
+# которые читает следующий Кодер.
+set -o pipefail
+export LIVING_CODE_ROLE="Судья Laya"
+DIR=/home/thomas/LivingCode/orchestration/scripts
+PROMPT=$(cat "$DIR/wrappers/prompts/laya.txt")
+
+# Конвейец закрыт: после Laya цепочка возвращается к Кодерам.
+NEXT_JOB_ID="None"
+
+/usr/bin/python3 "$DIR/living_code_agent_wrapper.py" "$PROMPT" "$NEXT_JOB_ID" "minimaxai/minimax-m3.1-flash" "nvidia"

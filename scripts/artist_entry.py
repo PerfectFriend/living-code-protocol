@@ -1,0 +1,1 @@
+/home/thomas/LivingCode/scripts/artist_entry.py

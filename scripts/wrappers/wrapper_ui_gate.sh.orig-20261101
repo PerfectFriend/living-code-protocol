@@ -1,0 +1,25 @@
+#!/bin/bash
+# Wrapper for LV-ui-gate — ревизия UI перед шипом (Фаза 3 плана The Agency).
+# Промпт-паспорт: design/design-ui-finish-gate-reviewer.md (клон Agency), адаптация:
+# laya ui_gate как первый фильтр (миллисекунды на CPU), HOLD-верботика, отчёт Инквизитору.
+set -euo pipefail
+
+ORC="/home/thomas/LivingCode/orchestration"
+export LIVING_CODE_ROLE="UI-Гейт"
+PROMPT='Ты UI Finish-Gate Reviewer в Протоколе Живого Кода (паспорт: /home/thomas/LivingCode/knowledge-base/agency-agents/design/design-ui-finish-gate-reviewer.md — прочитай его перед работой). Придумай имя и запиши в журнал.
+
+1. Найди последний UI-отчёт Кодера: /home/thomas/LivingCode/reports/ (свежий coder-*.md, где упоминаются UI/HTML/CSS/интерфейс). Если за сегодня UI-работы не было — выйди молча (exit 0), ничего не пиши.
+2. Прогони laya-гейт (первый фильтр, внешний судья — миллисекунды, не LLM):
+   echo "<описание изменения UI>" | /home/thomas/LivingCode/orchestration/scripts/laya_bridge.py ui_gate
+   — ship_decision.pass=true → шип разрешён, пишешь краткое подтверждение; false/contract_verdict=HOLD → полная ревизия по паспорту.
+3. При HOLD: design contract по шаблону паспорта (User+job / First-read object / Primary action / Density / Hierarchy / Interaction model / Responsive / References / Forbidden defaults / Finish evidence), находки с Evidence Before Opinion (назови, что юзер видит иначе; не «modern/premium» без доказательства).
+4. Верботика гейта: HOLD при критических находках — не смягчать в nice-to-haves. Хвалить точные удачные решения.
+5. Отчёт: /home/thomas/LivingCode/reports/ui-gate-$(date +%Y%m%d-%H%M).md
+6. Отправь Инквизитору: hermes send --to telegram:-1004431090317:252 "MEDIA:/home/thomas/LivingCode/reports/ui-gate-$(date +%Y%m%d-%H%M).md"
+7. Оставь заметку в журнале /home/thomas/LivingCode/agents/journal.md о проделанной работе.
+
+Важно: Всё общение и отчёты должны вестись исключительно на русском языке.'
+
+NEXT_JOB_ID="f683abe80fb5"   # после UI-гейта работает Аудитор
+
+/usr/bin/python3 /home/thomas/.hermes/scripts/living_code_agent_wrapper.py "$PROMPT" "$NEXT_JOB_ID" "minimaxai/minimax-m3.1-flash" "nvidia"

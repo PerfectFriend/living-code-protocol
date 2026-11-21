@@ -1,0 +1,17 @@
+#!/bin/bash
+# Обёртка Кодера Project3 — слот 1 час (ротация раз в 4 часа).
+# Ψ-FIX 19.10.2026: промпт вынесен из инлайн-heredoc в wrappers/prompts/project3.txt
+# (инлайн жил своей жизнью: слот 45 минут, мёртвый hermes send, триггер "project3" в
+# нижнем регистре, NEXT_JOB_ID на мёртвый bf9ae9bb523d). Теперь: слот 1 час, кодер
+# работает только внутри ~/LivingCode/Project3 и коммитит в его собственный git.
+# Пуш делает cycle_close.py в конце цепочки.
+set -o pipefail
+DIR=/home/thomas/LivingCode/orchestration/scripts
+export LIVING_CODE_CRON_BUDGET=4000
+# Отчёт слота → Telegram-топик 252 (приказ владельца: кодеры должны быть видимы).
+export LIVING_CODE_TELEGRAM="telegram:-1004431090317:252"
+export LIVING_CODE_ROLE="Кодер Project3"
+PROMPT=$(cat "$DIR/wrappers/prompts/project3.txt")
+NEXT_JOB_ID="f683abe80fb5"  # LV-auditor
+
+/usr/bin/python3 "$DIR/living_code_agent_wrapper.py" "$PROMPT" "$NEXT_JOB_ID" "minimaxai/minimax-m3.1-flash" "nvidia"

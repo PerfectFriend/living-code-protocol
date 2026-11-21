@@ -1,0 +1,17 @@
+#!/bin/bash
+# Обёртка Продюсера — слот 15 минут, последний в цепочке Кодер→Аудитор→Владыка→Продюсер.
+# Ψ-FIX 19.10.2026: убран NEXT_JOB_ID на фиктивного LV-laya (mock-судью, не участника
+# протокола) — цепочка здесь заканчивается; из промпта убраны триггеры Артиста/Музыканта
+# и мёртвый hermes send; пуш в Projects/<project> заменён детерминированным cycle_close.py
+# (коммит+пуш flash+github, холодные гейты, Releases/<project>, телеграм-уведомление).
+set -o pipefail
+export LIVING_CODE_ROLE="Продюсер"
+DIR=/home/thomas/LivingCode/orchestration/scripts
+export LIVING_CODE_CRON_BUDGET=1600
+PROMPT=$(cat "$DIR/wrappers/prompts/producer.txt")
+
+/usr/bin/python3 "$DIR/living_code_agent_wrapper.py" "$PROMPT" "" "minimaxai/minimax-m3.1-flash" "nvidia"
+ENGINE_RC=$?
+echo "[producer] движок завершился rc=$ENGINE_RC"
+/usr/bin/python3 "$DIR/cycle_close.py"
+echo "[producer] cycle_close rc=$?"

@@ -1,0 +1,11 @@
+When One Agent Isn't Enough: Secure Parallel Swarms
+Multi-Agent Patterns: Agent Swarms
+Learning Self-Orchestration in Decentralized Agent Swarms
+SwarmEvolve: Latent Agent Swarms
+SwarmRSI: Recursive Self-Improvement
+SwarmBench: LLMs as Swarm Orchestrators
+Best AI Agent Frameworks 2026
+Making Swarm Work: Coordination Primitives
+From Single Agent To Production Swarm
+NVIDIA/auto-ontology
+Monolith AIs vs Swarm AIs

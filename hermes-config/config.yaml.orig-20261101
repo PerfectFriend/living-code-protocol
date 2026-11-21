@@ -1,0 +1,369 @@
+_config_version: 51
+agent:
+  fast_auto_seconds: 60
+  max_turns: 150
+  personalities: {}
+  reasoning_effort: high
+  reasoning_overrides:
+    agnes-2.0-flash: medium
+    agnes-2.5-flash: medium
+    agnes-3.0-flash: medium
+    apodex-1.1-mini: medium
+    atria-dawn-preview: medium
+    big-pickle: medium
+    deepseek-v4-flash-free: medium
+    deepseek-v4-flash-vision-exp-free: medium
+    deepseek-v4.1-flash-free: medium
+    diffusiongemma-26b-a4b-it: medium
+    dots-3-note-preview: medium
+    fledge-alpha: medium
+    glm-5.3-flash-free: medium
+    glm-5.3-free: medium
+    gpt-5.6-luna-free: medium
+    grok-4.5-free: medium
+    grok-4.7-free: medium
+    kilo-auto: medium
+    kimi-k3-free: medium
+    laguna-s-2.1: medium
+    laguna-xs-2.1: medium
+    lfm-2.5-2.6b: medium
+    ling-3.0-flash-sante: medium
+    ling-3.1-flash: medium
+    longcat-2.5-preview: medium
+    mimo-v2.5: medium
+    mimo-v2.6-flash: medium
+    muse-spark-1.2-contributor: medium
+    muse-spark-1.3-contributor: medium
+    north-mini-code: medium
+    qwen3.8-27b-free: medium
+    qwen3.8-flash-free: medium
+    sensenova-6.8-flash-lite: medium
+    step-3.7-flash: medium
+    space-bunny-alpha: medium
+  service_tier: ""
+  verbose: false
+  run_budget_seconds: 2600
+auth:
+  adopt_external_logins: true
+  codex_login_flow: device_code
+auxiliary:
+  compression:
+    # 2026-10-29: реальное окно компрессора. Nemotron Lightning держит 838k входа
+    # (проверено живым прогоном), 262144 безопасно.
+    context_length: 262144
+    # Локальная llama.cpp отключена (VRAM/swap). Компрессор = NVIDIA Nemotron Lightning.
+    # ВАЖНО: model:'' + provider:auto отправляли сжатие на ОСНОВНУЮ модель с окном
+    # 65536 → «Compacting context…» по кругу до таймаута 1800s. Только явный рабочий id.
+    model: nvidia/nemotron-3.5-super-vl-120b-a12b
+    provider: nvidia
+    timeout: 900
+    no_progress_timeout: 300
+browser:
+  cloud_provider: nous
+  extension_control:
+    enabled: false
+  inactivity_timeout: 120
+code_execution:
+  max_tool_calls: 50
+  timeout: 300
+command_allowlist:
+  - execute_code
+  - recursive delete
+  - script execution via -e/-c flag
+compression:
+  checkpoint_required: false
+  codex_app_server_auto: native
+  codex_gpt55_autoraise: true
+  codex_responses_compact_threshold:
+  codex_responses_native: false
+  # 2026-10-04: Nemotron 3.5 Lightning 30B-A3B — удалённый компрессор сессий.
+  # Живой тест: 3.2 с, чистый вывод. ВАЖНО: id требует префикс "nvidia/" (без него 404).
+  compressor_model: nvidia/nemotron-3.5-super-vl-120b-a12b
+  enabled: true
+  hygiene_max_turn_hold_seconds: 10
+  idle_compact_after_seconds: 0
+  max_attempts: 3
+  min_tail_user_messages: 1
+  proactive_prune_min_reclaim_tokens: 4096
+  proactive_prune_min_result_chars: 8000
+  proactive_prune_tokens: 0
+  progress_notices: false
+  protect_first_n: 3
+  protect_last_n: 20
+  target_ratio: 0.2
+  # Было 0.5: сжатие срабатывало на 32768 токенов, но protect_last_n:20 не даёт
+  # ужать единственное пользовательское сообщение → "couldn't shrink it enough",
+  # хотя запрос (41 806 токенов) отлично влезает в 65536. Теперь жмём только
+  # у реального предела 80% = 52428 токенов.
+  threshold: 0.8
+  threshold_tokens: 200000
+cron:
+  catch_up_missed: true
+  script_timeout_seconds: 14400
+  max_parallel_jobs: 3
+  model: minimaxai/minimax-m3.1-flash
+  provider: nvidia
+database:
+  journal_mode: wal
+delegation:
+  max_iterations: 250
+  model: minimaxai/minimax-m3.1-flash
+  provider: nvidia
+display:
+  background_process_notifications: concise
+  bell_on_complete: false
+  bell_on_prompt: false
+  busy_input_mode: interrupt
+  cleanup_progress: false
+  compact: false
+  skin: default
+  streaming: true
+  suppress_warning_notifications: false
+  in_app_tips: false
+  in_app_tours: false
+gateway:
+  allow_all_users: false
+  api_server:
+    history_tool_output_max_chars: 0
+    max_concurrent_runs: 10
+  auto_multiplex_migration: true
+  bot_loop_guard:
+    cooldown_seconds: 600
+    enabled: true
+    max_events: 20
+    window_seconds: 300
+  delivery_ledger: true
+  loop_watchdog: true
+  loop_watchdog_max_strikes: 3
+  loop_watchdog_probe_interval_s: 30
+  loop_watchdog_probe_timeout_s: 10
+  max_inbound_media_bytes: 134217728
+  media_delivery_allow_dirs: []
+  message_timestamps:
+    enabled: false
+  multiplex_profiles: true
+  platform_connect_timeout: 30
+  profile_routes: []
+  respawn_storm:
+    max_starts: 5
+    window_seconds: 120
+  restart_loop_guard:
+    max_gap_seconds: 300
+    max_restarts: 3
+    window_seconds: 60
+  scale_to_zero:
+    idle_timeout_minutes: 2
+  signal_interrupt_grace_timeout: 1
+  startup_watchdog: true
+  startup_watchdog_timeout_seconds: 300
+  strict: false
+  trust_env: true
+  trust_recent_files: true
+  trust_recent_files_seconds: 600
+  write_sessions_json: true
+group_sessions_per_user: true
+image_gen:
+  provider: nous
+kanban:
+  review_dispatch: true
+max_concurrent_sessions:
+memory:
+  memory_char_limit: 2200
+  memory_enabled: true
+  nudge_interval: 10
+  user_char_limit: 1375
+  user_profile_enabled: true
+model:
+  aliases:
+  base_url: https://integrate.api.nvidia.com/v1
+  default: mistralai/mistral-large-4-1t-a52b
+  provider: nvidia
+  reasoning_overrides: {}
+  api_mode: chat_completions
+onboarding:
+  seen:
+    busy_input_prompt: true
+    tool_progress_prompt: true
+platform_toolsets:
+  cli:
+    - hermes-cli
+  discord:
+    - hermes-discord
+  google_chat:
+    - hermes-google_chat
+  homeassistant:
+    - hermes-homeassistant
+  qqbot:
+    - hermes-qqbot
+  signal:
+    - hermes-signal
+  slack:
+    - hermes-slack
+  teams:
+    - hermes-teams
+  telegram:
+    - hermes-telegram
+  whatsapp:
+    - hermes-whatsapp
+  yuanbao:
+    - hermes-yuanbao
+plugins:
+  clone_timeout_seconds: 300
+  disabled: []
+  enabled:
+    - superpowers
+    - orca-status
+prompt_caching:
+  cache_ttl: 5m
+runtime:
+  nofile_soft_limit: 4096
+skills:
+  creation_nudge_interval: 15
+streaming:
+  enabled: true
+stt:
+  enabled: true
+  language: en
+  local:
+    model: base
+  openai:
+    language: ""
+    max_retries: 1
+    model: whisper-1
+    timeout: 60
+  provider: nous
+telemetry:
+  shared_metrics:
+    enabled: false
+    send: false
+    offer_version: 2
+terminal:
+  backend: local
+  container_cpu: 1
+  container_disk: 51200
+  container_memory: 5120
+  container_persistent: true
+  cwd: .
+  docker_mount_cwd_to_workspace: false
+  home_mode: auto
+  lifetime_seconds: 300
+  timeout: 180
+tool_loop_guardrails:
+  hard_stop_after:
+    exact_failure: 5
+    idempotent_no_progress: 5
+    same_tool_failure: 8
+  hard_stop_enabled: false
+  non_interactive_hard_stop_enabled: true
+  warn_after:
+    exact_failure: 2
+    idempotent_no_progress: 2
+    same_tool_failure: 3
+  warnings_enabled: true
+toolsets:
+  - hermes-cli
+  - web
+updates:
+  backup_keep: 5
+  check: true
+  non_interactive_local_changes: stash
+  pre_update_backup: false
+web:
+  backend: nous
+moa:
+  presets:
+    default:
+      reference_models:
+        - provider: opencode-zen
+          model: space-bunny-free
+          enabled: true
+        - provider: nvidia
+          model: moonshotai/kimi-k3
+          enabled: true
+      aggregator:
+        provider: nvidia
+        model: z-ai/glm-5.3
+      degraded_reference_policy: loud
+      fanout: user_turn
+  reference_models:
+    - provider: nvidia
+      model: minimaxai/minimax-m3.1-flash
+      enabled: true
+  aggregator:
+    provider: nvidia
+    model: minimaxai/minimax-m3.1-flash
+  degraded_reference_policy: loud
+  fanout: user_turn
+  enabled: true
+fallback_providers: []
+providers:
+  kiosapi:
+    name: KiosAPI
+    base_url: https://kiosapi.com/v1
+    key_env: KIOSAPI_API_KEY
+    api_mode: chat_completions
+    model: qwen3.8-flash-free
+    context_length: 65536
+    models:
+      - grok-4.7-free
+      - grok-4.5-free
+      - glm-5.3-free
+      - gpt-5.6-luna-free
+      - qwen3.8-27b-free
+      - deepseek-v4-flash-free
+      - space-bunny-alpha
+      - north-mini-code
+      - qwen3.8-flash-free
+      - glm-5.3-flash-free
+      - step-3.7-flash
+  codecraft:
+    name: Codecraft
+    base_url: https://codecraftapi.com/v1
+    key_env: HERMES_CUSTOM_CODECRAFT_API_KEY
+    api_mode: chat_completions
+    model: claude-mythos-preview
+    context_length: 131072
+    models:
+      gpt-5.6-terra: {}
+      claude-opus-4.7: {}
+      claude-fable-5.1: {}
+      grok-4.6: {}
+      kimi-k2.6: {}
+      deepseek-v4-pro-max: {}
+      claude-opus-5.5: {}
+      gemma-2-2b: {}
+      kimi-k3: {}
+      grok-4.5: {}
+      deepseek-v4-flash-0731: {}
+      qwen3.7-max: {}
+      seed-2.1-turbo: {}
+      claude-mythos-preview:
+        context_length: 131072
+      glm-5.3: {}
+      qwen3.8-max: {}
+      qwen3.8-27b: {}
+      gemini-3.6-flash: {}
+      claude-opus-5: {}
+      gpt-5.6-luna: {}
+      seed-2.1-pro: {}
+      claude-opus-4.6: {}
+      gpt-5.5-pro: {}
+      muse-spark-1.1: {}
+      claude-sonnet-5: {}
+      gpt-5.5: {}
+      gpt-5.6-sol: {}
+      claude-fable-5: {}
+      deepseek-v4-pro-0813: {}
+      claude-opus-4.8: {}
+      gemini-3.7-flash: {}
+      glm-5.2: {}
+      gemini-3.1-pro: {}
+      codecraft-default:
+        context_length: 131072
+    discover_models: true
+tts:
+  provider: nous
+model_overrides:
+  nvidia:
+    minimaxai/minimax-m3.1-flash:
+      context_window: 262144

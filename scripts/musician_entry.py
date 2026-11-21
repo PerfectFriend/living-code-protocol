@@ -1,0 +1,1 @@
+/home/thomas/LivingCode/scripts/musician_entry.py

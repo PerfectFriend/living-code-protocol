@@ -1,0 +1,1788 @@
+{
+  "jobs": [
+    {
+      "id": "9a0002295b51",
+      "name": "LV-extinction-check",
+      "prompt": "Daily Extinction Check (03:00). python extinction.py --min-days 7. Nodes dead >7 days -> move to Evolution/Archive/, update graph.yaml, commit.",
+      "skills": [
+        "godmode-coder",
+        "graph-engineering",
+        "obsidian-graph-engineering"
+      ],
+      "skill": "godmode-coder",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "wrappers/living-code-extinction-check.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "display": "0 3 * * *"
+      },
+      "schedule_display": "0 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 30
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-15T23:03:31.175711+02:00",
+      "next_run_at": "2026-11-22T03:00:00+01:00",
+      "last_run_at": "2026-11-21T03:00:35.732015+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T03:00:00+01:00",
+        "dispatched_at": "2026-11-21T03:00:34.038037+01:00",
+        "lateness_seconds": 34.0,
+        "kind": "on_time"
+      }
+    },
+    {
+      "id": "d63b06c71b4b",
+      "name": "LV-graph-pulse-export",
+      "prompt": "Graph Pulse Export (every 4h). Export graph.yaml to Obsidian Vault, git commit, run verification.",
+      "skills": [
+        "obsidian-graph-engineering",
+        "obsidian"
+      ],
+      "skill": "obsidian-graph-engineering",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "run_graph_pulse.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 */4 * * *",
+        "display": "20 */4 * * *"
+      },
+      "schedule_display": "20 */4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 124
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-15T23:03:51.010796+02:00",
+      "next_run_at": "2026-11-22T00:20:00+01:00",
+      "last_run_at": "2026-11-21T20:20:34.591471+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T20:20:00+01:00",
+        "dispatched_at": "2026-11-21T20:20:32.329369+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-11-21T04:00:21.398593+01:00",
+        "detail": "Script exited with code 1\nstdout:\n[2026-11-21 04:00:21] Starting graph pulse export...\nEXPORT FAILED: /home/thomas/build/bin/python3: can't open file '/home/thomas/Projects/GodModeCoder/scripts/export_graph_to_obsidian.py': [Errno 2] No such file or directory"
+      }
+    },
+    {
+      "id": "8193679a7473",
+      "name": "key-rotation",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "monitor_llm_keys.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/30 * * * *",
+        "display": "*/30 * * * *"
+      },
+      "schedule_display": "*/30 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 2346
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T20:13:05.159530+02:00",
+      "next_run_at": "2026-11-21T23:30:00+01:00",
+      "last_run_at": "2026-11-21T23:00:34.602648+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T23:00:00+01:00",
+        "dispatched_at": "2026-11-21T23:00:32.326562+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-11-17T22:01:05.565685+01:00",
+        "detail": "Script exited with code 1\nstdout:\nпул nous: 1 ключ(ей)\nпул nvidia: 11 ключ(ей)\nпул copilot: 0 ключ(ей)\nпул openrouter: 3 ключ(ей)\nпул custom:ollama: 0 ключ(ей)\nпул opencode-zen: 11 ключ(ей)\nпул anthropic: 1 ключ(ей)\nпул openai-api: 1 ключ(ей)\n[key-rotation] пулы: nous:1, nvidia:11, copilot:0, openrouter:3, custom:ollama:0, opencode-zen:11, anthropic:1, openai-api:1\n[key-rotation] дубликатов ключей нет\n[key-rotation] ⚠️  openrouter: HTTP 000000 после 3 попыток (сеть/ключ) — рой уйдёт на локальную модель\n[key-rotation] ⚠️  OPENCODE_ZEN_API_KEY нет в .env — локальный оплот недоступен\n[key-rotation] квоты пула: все свободны\n[key-rotation] СТАТУС: FAIL — ни быстрый пул, ни локальная модель недоступны"
+      }
+    },
+    {
+      "id": "004fdb156a82",
+      "name": "LV-artist",
+      "prompt": "Ты Агент Художник в Протоколе Живого Кода. Работай по v2-контракту заявок (см. /home/thomas/LivingCode/agents/TASK_CONTRACT.md).\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — найди самую свежую строку [TRIGGER_ARTIST] <project> | <task-file>, которой ещё нет ответа [ART_DONE]. Если такой нет — в отчёте напиши «заданий нет» и заверши цикл.\n2. Прочитай заявку: /home/thomas/LivingCode/Projects/<project>/<task-file>. Если файла нет, а после маркера есть текст — работай по этому тексту (старый формат).\n3. Сгенерируй артефакты по заявке. Приоритет генерации: (а) image_generate — Nano Banana 2 (fal-ai/nano-banana-2 через Nous gateway; для edit/вариаций с референсами — image_url и reference_image_urls, до 3 референсов); (б) если image_generate вернул ошибку биллинга (HTTP 402) или модель недоступна — локальный ComfyUI (http://127.0.0.1:8188, если поднят); (в) для UI/экранов — canvas-design/sketch с прогоном в превью. Референсы, палитра, размеры — строго из заявки. Ошибку 402 зафиксируй в отчёте и продолжи фолбэком.\n4. Проверь качество: для UI/скриншотов — ui_gate через laya_bridge (сервис :8731) по СКРИНШОТУ, а не по текстовому описанию (VISTA); для графики — vision-проверка по чеклисту из заявки. Не прошёл гейт — перегенерируй, максимум 3 попытки, затем сохрани лучшее и отметь в отчёте.\n5. Сохрани файлы в /home/thomas/LivingCode/Projects/<project>/assets/ с именами из заявки.\n6. Отметь заявку выполненной: переименуй <task-file> в <task-file>.done и допиши в journal.md строку: [ART_DONE] <project> | <путь к артефакту> | <1-2 предложения что сделано>.\n7. Составь отчёт: /home/thomas/LivingCode/reports/artist-$(date +%Y%m%d-%H%M).md — артефакты, какой генератор использовался, гейты (прошёл/нет), файлы.\n8. Доставь отчёт через deliver задания (telegram-топик) и продублируй путь к отчёту строкой в journal.md.\n9. В самом конце своего вывода отдельной строкой выведи путь к файлу отчёта с префиксом MEDIA: — например: MEDIA:/home/thomas/LivingCode/reports/<имя файла отчёта>.md Шедулер по этой строке доставит отчёт документом (файлом) в топик 252. Текстом в топик не отправлять.\n\nKnown issues (обновлено 2026-11-08 H-step): media-функции (image_generate / ComfyUI) иногда возвращают transient HTTP 404 «Function ... Not found» на стороне провайдера — повтори вызов 1 раз через 60 с; при повторной ошибке зафиксируй в отчёте и продолжай следующим приоритетом генерации.",
+      "skills": [
+        "claude-design",
+        "comfyui",
+        "canvas-design",
+        "frontend-design",
+        "make-interfaces-feel-better",
+        "popular-web-designs"
+      ],
+      "skill": "claude-design",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "52 0,2,4,6,8,10,12,14,16,18,20,22 * * *",
+        "display": "52 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
+      },
+      "schedule_display": "52 0,2,4,6,8,10,12,14,16,18,20,22 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 218
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:37.157351+02:00",
+      "next_run_at": "2026-11-22T00:52:00+01:00",
+      "last_run_at": "2026-11-21T22:58:07.575310+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T22:52:00+01:00",
+        "dispatched_at": "2026-11-21T22:52:32.324978+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-11-21T04:49:01.464364+01:00",
+        "detail": "Cron execution unverified; reconcile /home/thomas/.hermes/cron/admissions/b6e3ad8175281c7dd43054592aa5bdfb2d9fbb624d9d571f601b973cef84abc5.json: Gateway connection failed; no local fallback"
+      },
+      "canonical_completions": [
+        "0550ccc576fb481990322c1951eba693"
+      ],
+      "failure_deliver": "telegram:-1004431090317:252"
+    },
+    {
+      "id": "a1efc19ab826",
+      "name": "LV-dj-musician",
+      "prompt": "Ты Агент DJ-Музыкант в Протоколе Живого Кода. Работай по v2-контракту заявок (см. /home/thomas/LivingCode/agents/TASK_CONTRACT.md).\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — найди самую свежую строку [TRIGGER_MUSICIAN] <project> | <task-file>, которой ещё нет ответа [SND_DONE]. Если такой нет — в отчёте напиши «заданий нет» и заверши цикл.\n2. Прочитай заявку: /home/thomas/LivingCode/Projects/<project>/<task-file>. Если файла нет, а после маркера есть текст — работай по этому тексту (старый формат).\n3. Сгенерируй аудио по заявке (тип: трек/SFX/voiceover; BPM, настроение, длительность, формат из заявки).\n\n   МУЗЫКА — ACE-Step 1.5 API на хосте totomoto (Windows, AMD 780M):\n   - Base URL: http://100.124.152.97:8001 (Tailscale; имя хоста totomoto). Сначала проверь GET /health.\n   - Если /health не отвечает — в отчёте зафиксируй «ACE-Step на totomoto выключен; поднять на ноуте: PowerShell от админа, /home/thomas/RadioArmageddonFM/scripts/start-acestep-totomoto.ps1 (firewall 8001 + python -m acestep.api_server --host 0.0.0.0 --port 8001)» и переходи к фолбэку (piper/ffmpeg).\n   - Вызов: POST /release_task, JSON body:\n     * prompt = caption — «теги стиля» через запятую на английском: жанр, инструменты, настроение, вокальный стиль, темп (напр. \"upbeat funky house radio jingle, bright piano, handclaps, male vocal, bright joyful singing voice, 124 bpm\"). Макс ~512 символов.\n     * lyrics = текст со структурными тегами [Intro]/[Verse]/[Chorus]/[Bridge]/[Outro] и вокальными тегами в них (напр. \"[Chorus - raspy shouting vocal]\"); чистая музыка без вокала — lyrics=\"[Instrumental]\".\n     * vocal_language=\"ru\" для русского; audio_duration = длительность из заявки (сек); inference_steps=8 (turbo); audio_format=\"mp3\" (или из заявки); batch_size=1; bpm и seed из заявки (seed=-1 или use_random_seed=true, если не задан); thinking=true; use_format=true.\n   - Ответ {\"data\":{\"task_id\":...}} → опрашивай POST /query_result {\"task_ids\":[id]} пока статус не станет success/finished, затем забери аудиофайл (путь/имя из результата, либо GET /v1/audio). Асинхронный путь: POST /v1/music/generate → poll GET /v1/jobs/{job_id}.\n   - Готовые паттерны caption/lyrics по эмоциям (angry/cheerful/calm/hype) — /home/thomas/RadioArmageddonFM/ace_jingle.py (словарь EMO); рабочая обёртка HTTP-вызова — /home/thomas/RadioArmageddonFM/radio_gen.py (_ace_step_generate_once, ACE_STEP_URL = http://127.0.0.1:8001 или Tailscale-IP).\n   - Один вызов ACE-Step за раз (без параллельных запросов к GPU).\n   ГОЛОС (voiceover/SFX): XTTS v2 (порт :8731) или piper ru_RU-ruslan-medium локально; ffmpeg для нарезки/нормализации.\n4. Проверь качество ffmpeg: громкость по ebur128 (музыка целевая −14 LUFS, речь −16 LUFS), нет клиппинга, длительность в допуске заявки. Не прошло — переделай, максимум 3 попытки, затем лучшее + примечание в отчёте.\n5. Сохрани файлы в /home/thomas/LivingCode/Projects/<project>/assets/sounds/ с именами из заявки.\n6. Отметь заявку выполненной: переименуй <task-file> в <task-file>.done и допиши в journal.md строку: [SND_DONE] <project> | <путь к файлу> | <1-2 предложения что сделано>.\n7. Составь отчёт: /home/thomas/LivingCode/reports/musician-$(date +%Y%m%d-%H%M).md — файлы, параметры аудио (caption/lyrics/bpm/seed/duration, какая модель генерила), гейты.\n8. Доставь отчёт через deliver задания (telegram-топик) и продублируй путь к отчёту строкой в journal.md.\n9. В самом конце своего вывода отдельной строкой выведи путь к файлу отчёта с префиксом MEDIA: — например: MEDIA:/home/thomas/LivingCode/reports/<имя файла отчёта>.md Шедулер по этой строке доставит отчёт документом (файлом) в топик 252. Текстом в топик не отправлять. Сам отчёт в Telegram НЕ отправляй — доставку делает движок в топик 252.\n\nKnown issues (обновлено 2026-11-20): ACE-Step API на totomoto (100.124.152.97:8001) может быть выключен — тогда отметь это в отчёте и используй локальный фолбэк (piper/ffmpeg). Аудио-функции иногда возвращают transient HTTP 404 на стороне провайдера — повтори вызов 1 раз через 60 с; при повторной ошибке зафиксируй в отчёте и продолжай фолбэком.\n",
+      "skills": [
+        "songwriting-and-ai-music",
+        "comfyui",
+        "audio-visualization-presets",
+        "ffmpeg-audio-enhance"
+      ],
+      "skill": "songwriting-and-ai-music",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 1,3,5,7,9,11,13,15,17,19,21,23 * * *",
+        "display": "45 1,3,5,7,9,11,13,15,17,19,21,23 * * *"
+      },
+      "schedule_display": "45 1,3,5,7,9,11,13,15,17,19,21,23 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 225
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:37.191225+02:00",
+      "next_run_at": "2026-11-21T23:45:00+01:00",
+      "last_run_at": "2026-11-21T21:47:59.052495+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T21:45:00+01:00",
+        "dispatched_at": "2026-11-21T21:45:32.464329+01:00",
+        "lateness_seconds": 32.5,
+        "kind": "on_time"
+      },
+      "canonical_completions": [
+        "adf50bd82a524e919e5c25fecd014883"
+      ],
+      "last_failure": {
+        "at": "2026-11-21T13:53:26.327562+01:00",
+        "detail": "RuntimeError: ⚠️ No reply: Hermes couldn't save this conversation to disk, so it stopped rather than lose your messages. The disk is probably full: free some space (or fix the permissions on ~/.hermes/state.db), then send your message again."
+      },
+      "failure_deliver": "telegram:-1004431090317:252"
+    },
+    {
+      "id": "da6991877b14",
+      "name": "LV-searcher",
+      "prompt": "Ты Агент-Искатель в Протоколе Живого Кода. Модели: mistralai/mistral-large-4-1t-a52b (NVIDIA, основная), запасная — minimaxai/minimax-m3.1-flash (NVIDIA). Ты единственный агент с правом закачки и установки софта.\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — найди все запросы от кодеров и других агентов на поиск информации, софта, библиотек.\n2. Исследуй соцсети, GitHub, топ-20 IT порталов на тему AI Engineering и Programming — самое горячее.\n3. Выполни поиск по конкретным запросам агентов из переписки.\n4. Если нужно — скачай и установи софт/библиотеки по запросам.\n5. Результаты по запросам агентов верни в /home/thomas/LivingCode/agents/journal.md — сообщи что скачал, установил, ссылки.\n6. Laya-скоринг находок перед раскладкой (внешний судья, миллисекунды на CPU, калиброванный скор вместо эвристики):\n   printf \"%s\\n\" \"<находка1>\" \"<находка2>\" | /home/thomas/LivingCode/orchestration/scripts/laya_bridge.py score --state-context \"Проекты Живого Кода: рой агентов-кодеров на mistralai/mistral-large-4-1t-a52b (NVIDIA), запасная minimaxai/minimax-m3.1-flash (NVIDIA), оркестрация кронов Hermes, UI-гейты\"\n   — score 1.2+ = приоритет изучения высокий, 0.8-1.2 = средний, ниже 0.8 = отложить или отбросить.\n7. Дайджест IT/AI/Code новостей расклади по темам в /home/thomas/LivingCode/textbook/ помечая красными метками [NEW] как новые материалы для изучения. Приоритет изучения — по laya-скору из шага 6.\n8. Составь отчёт: /home/thomas/LivingCode/reports/searcher-$(date +%Y%m%d-%H%M).md\n10. Триггер Профессора: запиши в журнал \"[TRIGGER_PROFESSOR]\".\n\nРОУТЕР СПЕЦИАЛИСТОВ (agency_router, Фаза 4): при незнакомой задаче подбери специалиста из каталога The Agency и возьми его паспорт:\n  /home/thomas/LivingCode/venvs/laya/bin/python /home/thomas/LivingCode/orchestration/scripts/agency_router.py search \"<тема>\"\n  ... load <slug> --task \"<задача>\" → готовый промпт-паспорт специалиста.\nМалый вход — большой каталог на диске (280 паспортов, 19 дивизионов); паспорт читается только по request.\n\nKnown issues (обновлено 2026-11-08 H-step): web_extract может отвечать HTTP 402, agent-reach для X требует логин — это штатные ограничения, отмечай в отчёте и двигайся дальше. Провайдер иногда отдаёт transient HTTP 404/RuntimeError — повтори вызов 1 раз, затем продолжай.\n\nОТЧЁТ: сам НЕ отправляй ничего (ни hermes send, ни curl) — движок доставит отчёт документом в топик 252.",
+      "skills": [
+        "web-research",
+        "social-web-research",
+        "blogwatcher"
+      ],
+      "skill": "web-research",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "wrappers/wrapper_searcher.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "50 * * * *"
+      },
+      "schedule_display": "cron 50 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 413
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:51.215661+02:00",
+      "last_run_at": "2026-11-21T22:50:37.460682+01:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 1\nstdout:\nЦепочка: ['mistralai/mistral-large-4-1t-a52b', 'minimaxai/minimax-m3.1-flash'] | бюджет 2700s\nAttempt 1/2: model=mistralai/mistral-large-4-1t-a52b, provider=nvidia, timeout=1583s\nRunning (timeout 1583s, skills=['note-taking/obsidian', 'agent-reach']): hermes -p default -z <prompt> --model mistralai/mistral-large-4-1t-a52b --provider nvidia\nBlockingIOError: [Errno 11] Resource temporarily unavailable (прошло 0s)\nAttempt failed: BlockingIOError: [Errno 11] Resource temporarily unavailable (прошло 0s)\nAttempt 2/2: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=2637s\nRunning (timeout 2637s, skills=['note-taking/obsidian', 'agent-reach']): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nBlockingIOError: [Errno 11] Resource temporarily unavailable (прошло 0s)\nAttempt failed: BlockingIOError: [Errno 11] Resource temporarily unavailable (прошло 0s)\nAll fallback attempts failed. Last error: BlockingIOError: [Errno 11] Resource temporarily unavailable (прошло 0s)",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "failure_streak": 1,
+      "next_run_at": "2026-11-21T23:50:00+01:00",
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T22:50:00+01:00",
+        "dispatched_at": "2026-11-21T22:50:32.324206+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-11-21T22:50:37.460682+01:00",
+        "detail": "Script exited with code 1\nstdout:\nЦепочка: ['mistralai/mistral-large-4-1t-a52b', 'minimaxai/minimax-m3.1-flash'] | бюджет 2700s\nAttempt 1/2: model=mistralai/mistral-large-4-1t-a52b, provider=nvidia, timeout=1583s\nRunning (timeout 1583s, skills=['note-taking/obsidian', 'agent-reach']): hermes -p default -z <prompt> --model mistralai/mistral-large-4-1t-a52b --provider nvidia\nBlockingIOError: [Errno 11] Resource temporarily unavailable (прошло 0s)\nAttempt failed: BlockingIOError: [Errno 11] Resource temporarily unavailable (прошло 0s)\nAttempt 2/2: model=minimaxai/minimax-m3.1-flash, provider=nvidia, timeout=2637s\nRunning (timeout 2637s, skills=['note-taking/obsidian', 'agent-reach']): hermes -p default -z <prompt> --model minimaxai/minimax-m3.1-flash --provider nvidia\nBlockingIOError: [Errno 11] Resource temporarily unavailable (прошло 0s)\nAttempt failed: BlockingIOError: [Errno 11] Resource temporarily unavailable (прошло 0s)\nAll fallback attempts failed. Last error: BlockingIOError: [Errno 11] Resource temporarily unavailable (прошло 0s)"
+      }
+    },
+    {
+      "id": "3e18b5951ee5",
+      "name": "LV-professor",
+      "prompt": "Ты Агент-Профессор в Протоколе Живого Кода. Модели: mistralai/mistral-large-4-1t-a52b (NVIDIA, основная), запасная — minimaxai/minimax-m3.1-flash (NVIDIA). Тебя триггерит Искатель.\n\nСРОЧНО: Все неизученные темы (🔴) в Учебнике должны быть изучены ДО 08:00 завтра!\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md — найди [TRIGGER_PROFESSOR].\n2. Прочитай ГЛАВНЫЙ УЧЕБНИК: /home/thomas/Documents/ObsidianVault/Учебник.md — найди ВСЕ темы с 🔴 (не изучено).\n3. Laya-приоритизация тем перед изучением (внешний судья, миллисекунды на CPU, калиброванный скор):\n   printf \"%s\\n\" \"<тема1>\" \"<тема2>\" | /home/thomas/LivingCode/orchestration/scripts/laya_bridge.py score --state-context \"Проекты Живого Кода: рой агентов-кодеров на mistralai/mistral-large-4-1t-a52b (NVIDIA), запасная minimaxai/minimax-m3.1-flash (NVIDIA), UI-гейты, самообучение роя\"\n   — score 1.2+ = изучать первым, 0.8-1.2 = следующим, ниже 0.8 = в конец очереди.\n4. За ОДИН запуск изучи МАКСИМУМ тем (минимум 3-5) в порядке laya-приоритета.\n5. Для каждой темы: извлеки пользу в виде краткого конспекта со ссылками.\n6. Добавь темы в базу знаний: обнови wiki и граф знаний в /home/thomas/LivingCode/knowledge-base/\n   - В Учебнике сними 🔴 и поставь 🟢 (Изучено) для каждой изученной темы\n7. Сообщи в /home/thomas/LivingCode/agents/journal.md какие темы изучены и их laya-скоры.\n8. Составь отчёт: /home/thomas/LivingCode/reports/professor-$(date +%Y%m%d-%H%M).md\n\nЦЕЛЬ: К 08:00 завтра В Учебнике не должно остаться НИ ОДНОЙ 🔴 темы!\n\nРОУТЕР СПЕЦИАЛИСТОВ (agency_router, Фаза 4): при незнакомой задаче подбери специалиста из каталога The Agency и возьми его паспорт:\n  /home/thomas/LivingCode/venvs/laya/bin/python /home/thomas/LivingCode/orchestration/scripts/agency_router.py search \"<тема>\"\n  ... load <slug> --task \"<задача>\" → готовый промпт-паспорт специалиста.\nМалый вход — большой каталог на диске (280 паспортов, 19 дивизионов); паспорт читается только по request.\n\nKnown issues (обновлено 2026-11-08 H-step): слот теперь часовой (расписание 0 * * * *), бюджет 2700 с — не пытайся уместить в 30 минут, у тебя час. Провайдер иногда отдаёт transient HTTP 404/RuntimeError — повтори вызов 1 раз, затем продолжай.\n\nОТЧЁТ: сам НЕ отправляй ничего (ни hermes send, ни curl) — движок доставит отчёт документом в топик 252.",
+      "skills": [
+        "web-research",
+        "blogwatcher",
+        "obsidian"
+      ],
+      "skill": "web-research",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "wrappers/wrapper_professor.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "10 * * * *",
+        "display": "10 * * * *"
+      },
+      "schedule_display": "10 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 467
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:06:51.251514+02:00",
+      "last_run_at": "2026-11-21T23:10:33.785789+01:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 1\nstderr:\nTraceback (most recent call last):\n  File \"/home/thomas/LivingCode/orchestration/scripts/living_code_agent_wrapper.py\", line 137, in <module>\n    assert not (ALLOWED_PAIRS & HISTORICALLY_DEAD), \"мёртвая модель попала в белый список\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: мёртвая модель попала в белый список",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "failure_streak": 2,
+      "next_run_at": "2026-11-22T00:10:00+01:00",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T23:10:00+01:00",
+        "dispatched_at": "2026-11-21T23:10:32.323785+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "fire_claim": null,
+      "last_failure": {
+        "at": "2026-11-21T23:10:33.785789+01:00",
+        "detail": "Script exited with code 1\nstderr:\nTraceback (most recent call last):\n  File \"/home/thomas/LivingCode/orchestration/scripts/living_code_agent_wrapper.py\", line 137, in <module>\n    assert not (ALLOWED_PAIRS & HISTORICALLY_DEAD), \"мёртвая модель попала в белый список\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: мёртвая модель попала в белый список"
+      }
+    },
+    {
+      "id": "e9cecea7874b",
+      "name": "LV-inquisitor",
+      "prompt": "Ты Агент-Инквизитор в Протоколе Живого Кода. Ты собираешь все отчёты и решаешь проблемы.\n\n1. Прочитай все отчёты в /home/thomas/LivingCode/reports/ за текущий час.\n2. Прочитай /home/thomas/LivingCode/agents/journal.md — выпиши все проблемы и ошибки упомянутые агентами.\n3. Laya-триаж каждой проблемы перед решением (внешний судья, миллисекунды на CPU — приоритизация без траты больших моделей):\n   echo \"<проблема>\" | /home/thomas/LivingCode/orchestration/scripts/laya_bridge.py triage\n   — маршрутизация по verdict: kritichno/chinit_seychas → фиксируй немедленно (шаг 4-6), otlozhit → запиши в план, operatoru → оставь оператору с пометкой в отчёте.\n   laya — первый фильтр и приоритизатор, НЕ замена твоего анализа. Семантика и уроки: /home/thomas/LivingCode/orchestration/LAYA.md\n4. Изучи каждую проблему (начиная с laya-критичных) и реши максимально эффективно и оперативно. Не делай ошибок.\n5. Если проблема требует код-fix — исправь напрямую.\n6. Если проблема требует изменения кронов — исправь кроны.\n7. Если проблема требует изменения конфигурации — исправь конфиг.\n8. Открой профессора: если в учебнике есть темы помеченные [STUDIED] (жёлтые) — отметь их [DEPLOYED] (зелёные) в knowledge-base.\n9. Запиши в журнал переписки \"[KNOWLEDGE_BASE_UPDATED] обновления готовы к загрузке всеми агентами\".\n10. Составь отчёт: /home/thomas/LivingCode/reports/inquisitor-$(date +%Y%m%d-%H%M).md\n\nОТЧЁТ: сам НЕ отправляй ничего (ни hermes send, ни curl) — движок доставит отчёт документом в топик 252.",
+      "skills": [
+        "super-coder",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "17 * * * *",
+        "display": "17 * * * *"
+      },
+      "schedule_display": "17 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 316
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:07:05.553895+02:00",
+      "next_run_at": "2026-11-21T23:17:00+01:00",
+      "last_run_at": "2026-11-21T23:05:24.830114+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T22:17:00+01:00",
+        "dispatched_at": "2026-11-21T22:17:32.325059+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-11-21T20:21:11.197819+01:00",
+        "detail": "RuntimeError: Provider has been unresponsive (no response received) for 6 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry."
+      },
+      "canonical_completions": [
+        "2a16e5bd642d4670a28f386c9ef28cf0"
+      ],
+      "failure_deliver": "telegram:-1004431090317:252"
+    },
+    {
+      "id": "e169a2b3db99",
+      "name": "LV-harness-opt",
+      "prompt": "Читает промпт из файла: /home/thomas/LivingCode/orchestration/scripts/wrappers/prompts/harness_opt.txt\n\nТы Агент-Оптимизатор Харнесса (H-step) в Протоколе Живого Кода (Self-HPO цикл).\n\nРаз в сутки выполни оптимизацию харнесса:\n\n1. Прочитай /home/thomas/LivingCode/agents/journal.md.\n2. Analyse ~/.hermes/cron/output/*/attempt_*.json — найди неудачные запуски, rc=75, stale/unresponsive.\n3. Прочитай ~/.hermes/cron/errors.log — ошибки шедулера.\n4. Analyse результаты l3_critic из отчётов кодеров — сколько regress, сколько stabilen.\n5. На основе метрик правми:\n   - ~/.hermes/cron/jobs.json (модели, расписание, skills, deliver) — исправь проблемы.\n   - Промпты ролей (через hermes cron edit) — уточни инструкции на основе ошибок.\n6. Составь отчёт: /home/thomas/LivingCode/reports/harness-opt-$(date +%Y%m%d-%H%M).md — что изменено, какие метрики.\n8. В конце вывода отдельной строкой MEDIA:<путь к отчёту>.\n\nОТЧЁТ: сам НЕ отправляй ничего (ни hermes send, ни curl) — движок доставит отчёт документом в топик 252.",
+      "skills": [
+        "godmode-coder"
+      ],
+      "skill": "godmode-coder",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "13 3 * * *",
+        "display": "13 3 * * *"
+      },
+      "schedule_display": "13 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 237
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:07:05.587162+02:00",
+      "next_run_at": "2026-11-22T03:13:00+01:00",
+      "last_run_at": "2026-11-21T03:35:50.889906+01:00",
+      "last_status": "error",
+      "last_error": "interrupted",
+      "last_delivery_error": "live adapter send failed: flood_control:899.0; live adapter delivery to telegram:-1004431090317:252 failed: flood_control:899.0; standalone send to telegram:-1004431090317:252 timed out after 60s (the send may still be in flight)",
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "failure_streak": 3,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T03:00:00+01:00",
+        "dispatched_at": "2026-11-21T03:00:34.038037+01:00",
+        "lateness_seconds": 34.0,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-11-21T03:35:50.889906+01:00",
+        "detail": "interrupted"
+      },
+      "canonical_completions": [
+        "86d819fc43ba4c02a6292dfab224b180"
+      ],
+      "failure_deliver": "telegram:-1004431090317:252"
+    },
+    {
+      "id": "e8d24ce90705",
+      "name": "LV-cycle-start",
+      "prompt": "Living Code Cycle Start — runs every 4 hours at :00. Git sync, health checks, promotion check, chronicle, briefing.",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "cycle_start_cron.py",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "40 */4 * * *",
+        "display": "40 */4 * * *"
+      },
+      "schedule_display": "40 */4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 146
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T23:27:51.275820+02:00",
+      "next_run_at": "2026-11-22T00:40:00+01:00",
+      "last_run_at": "2026-11-21T20:40:33.676764+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T20:40:00+01:00",
+        "dispatched_at": "2026-11-21T20:40:32.325070+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      }
+    },
+    {
+      "id": "ad747df8b74b",
+      "name": "LV-vault-sync",
+      "prompt": "Bidirectional Vault sync across Tailscale nodes every 30 minutes",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "run_vault_sync.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/30 * * * *",
+        "display": "*/30 * * * *"
+      },
+      "schedule_display": "*/30 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 583
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-17T00:47:18.098461+02:00",
+      "next_run_at": "2026-11-21T23:30:00+01:00",
+      "last_run_at": "2026-11-21T23:00:33.877957+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T23:00:00+01:00",
+        "dispatched_at": "2026-11-21T23:00:32.326562+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-11-04T01:30:47.381299+01:00",
+        "detail": "Script exited with code 126\nstderr:\n/home/thomas/LivingCode/orchestration/scripts/run_vault_sync.sh: line 4: /home/thomas/LivingCode/scripts/vault_sync.sh: Permission denied"
+      }
+    },
+    {
+      "id": "9b02899a0169",
+      "name": "LV-model-sync",
+      "prompt": "Sync Ollama models across Tailscale nodes weekly",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "sync_models.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 2 * * 0",
+        "display": "0 2 * * 0"
+      },
+      "schedule_display": "0 2 * * 0",
+      "repeat": {
+        "times": null,
+        "completed": 4
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-17T00:47:23.878160+02:00",
+      "next_run_at": "2026-11-22T02:00:00+01:00",
+      "last_run_at": "2026-11-20T06:15:35.595181+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-15T02:00:00+01:00",
+        "dispatched_at": "2026-11-20T06:15:12.815552+01:00",
+        "lateness_seconds": 447312.8,
+        "kind": "catch_up"
+      },
+      "failure_streak": 0,
+      "last_failure": {
+        "at": "2026-10-26T09:41:48.524446+01:00",
+        "detail": "Blocked: script path resolves outside the scripts directory (/home/thomas/LivingCode/orchestration/scripts): 'sync_models.sh'"
+      }
+    },
+    {
+      "id": "e6738e2b9396",
+      "name": "LV-node-health",
+      "prompt": "Node Health Monitor — publish metrics every 30 seconds",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "node_health.py",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/1 * * * *",
+        "display": "*/1 * * * *"
+      },
+      "schedule_display": "*/1 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 10890
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-17T12:57:02.051323+02:00",
+      "next_run_at": "2026-11-21T23:15:00+01:00",
+      "last_run_at": "2026-11-21T23:14:34.746946+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T23:14:00+01:00",
+        "dispatched_at": "2026-11-21T23:14:32.326925+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "last_failure": {
+        "at": "2026-11-05T02:49:11.791058+01:00",
+        "detail": "Restart-safe cron worker dispatch failed: cron external worker exited before ownership acknowledgement (exit 1); worker stderr: Failed to start transient scope unit: Transaction for hermes-worker-cron-e6738e2b9396-exec-ef34244fae07441ab55431c5b868ad70.scope/start is destructive (shutdown.target has 'start' job queued, but 'stop' is included in transaction)."
+      }
+    },
+    {
+      "id": "e635a66c3e95",
+      "name": "Topic252 → Учебник конвейер",
+      "prompt": "[РЕКОНСТРУИРОВАНО] Каждые 15 минут: python3 topic252_to_textbook.py — забрать новые сообщения из topic 252 и превратить их в записи учебника; при отсутствии новых сообщений скрипт печатает NO_NEW_MESSAGES и отчёт не отправляется.",
+      "skills": [
+        "textbook-learning-pipeline"
+      ],
+      "skill": "textbook-learning-pipeline",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "topic252_to_textbook.py",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/15 * * * *",
+        "display": "*/15 * * * *"
+      },
+      "schedule_display": "*/15 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 3414
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-27T04:45:17+02:00",
+      "next_run_at": "2026-11-21T23:15:00+01:00",
+      "last_run_at": "2026-11-21T23:00:33.585894+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.hermes/scripts",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "drift_alerted": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T23:00:00+01:00",
+        "dispatched_at": "2026-11-21T23:00:32.326562+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      }
+    },
+    {
+      "id": "be65a65d784e",
+      "name": "LV-config-backup",
+      "prompt": "Ежедневный экспорт конфига Hermes в репозиторий living-code и на внешний диск",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "backup-config.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 3 * * *",
+        "display": "30 3 * * *"
+      },
+      "schedule_display": "30 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 19
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-09-26T02:55:24.419482+02:00",
+      "next_run_at": "2026-11-22T03:30:00+01:00",
+      "last_run_at": "2026-11-21T03:35:58.891619+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "failure_deliver": "local",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "provider_snapshot": "nvidia",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T03:30:00+01:00",
+        "dispatched_at": "2026-11-21T03:35:50.942980+01:00",
+        "lateness_seconds": 350.9,
+        "kind": "late"
+      },
+      "fire_claim": null,
+      "last_failure": {
+        "at": "2026-11-03T03:32:04.152221+01:00",
+        "detail": "Script exited with code 2\nstdout:\n[backup-config] слепки сняты: config.yaml, jobs.json, скиллы\nСканирую /home/thomas/LivingCode/orchestration/skills-export\n  очищено   2 в devops/repair-api-keys/SKILL.md\n  очищено  21 в devops/repair-api-keys/scripts/full_clean.sh\n  очищено   9 в hermes/hermes-api-key-rotation/references/key-file-format.md\nСканирую /home/thomas/LivingCode/orchestration/hermes-config\n  чисто — ключей не найдено\nСканирую /home/thomas/LivingCode/orchestration/jobs\n  чисто — ключей не найдено\nСканирую /home/thomas/LivingCode/orchestration/runtime\n  чисто — ключей не найдено\n\nВсего очищено: 32\n[backup-config] коммит создан\n[backup-config] git push: OK"
+      }
+    },
+    {
+      "id": "98b0ab9c37ec",
+      "name": "LV-coder-project1",
+      "prompt": "Агент-Кодер проекта Project1 в Протоколе Живого Кода. Слот 1 — запуск в 01:00, далее каждые 4 часа. Один запуск = ОДИН цикл эволюции. Проект: /home/thomas/LivingCode/Project1",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "qwen35-coder-vulkan",
+      "provider": "custom",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "wrappers/wrapper_project1.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "display": "0 */4 * * *"
+      },
+      "schedule_display": "0 */4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 148
+      },
+      "enabled": true,
+      "created_at": "2026-08-16T23:06:14.132681+02:00",
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Project1",
+      "next_run_at": "2026-11-22T00:00:00+01:00",
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T20:00:00+01:00",
+        "dispatched_at": "2026-11-21T20:00:32.326047+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "last_run_at": "2026-11-21T21:00:17.715186+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "failure_streak": 0,
+      "last_delivery_error": null,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "last_failure": {
+        "at": "2026-11-21T01:12:48.465283+01:00",
+        "detail": "Script exited with code 75\nstdout:\nЦепочка: ['mistralai/mistral-large-4-1t-a52b', 'minimaxai/minimax-m3.1-flash'] | бюджет 3480s\nAttempt 1/2: model=mistralai/mistral-large-4-1t-a52b, provider=nvidia, timeout=3419s\nRunning (timeout 3419s, skills=—): hermes -p default -z <prompt> --model mistralai/mistral-large-4-1t-a52b --provider nvidia\n\nUnknown remote outcome; inspect before retry.\n♻️ rc=75 (unknown remote outcome) — один авто-ретрай через 60s (план v3, фаза 6)...\nRunning (timeout 3419s, skills=—): hermes -p default -z <prompt> --model mistralai/mistral-large-4-1t-a52b --provider nvidia\n\nUnknown remote outcome; inspect before retry.\n⛔ rc после авто-ретрая — ручная инспекция, цепочка остановлена."
+      },
+      "failure_deliver": "local"
+    },
+    {
+      "id": "b87ad1b5c770",
+      "name": "LV-coder-project2",
+      "prompt": "Агент-Кодер проекта Project2 в Протоколе Живого Кода. Слот 2 — запуск в 02:00, далее каждые 4 часа. Один запуск = ОДИН цикл эволюции. Проект: /home/thomas/LivingCode/Project2",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "qwen35-coder-vulkan",
+      "provider": "custom",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "wrappers/wrapper_project2.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "1 */4 * * *",
+        "display": "1 */4 * * *"
+      },
+      "schedule_display": "1 */4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 127
+      },
+      "enabled": true,
+      "created_at": "2026-08-16T23:06:14.132681+02:00",
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Project2",
+      "next_run_at": "2026-11-22T00:01:00+01:00",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T20:01:00+01:00",
+        "dispatched_at": "2026-11-21T20:01:32.326274+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "fire_claim": null,
+      "last_run_at": "2026-11-21T21:01:33.705562+01:00",
+      "last_status": "error",
+      "last_error": "Script timed out after 3600s: /home/thomas/LivingCode/orchestration/scripts/wrappers/wrapper_project2.sh",
+      "failure_streak": 1,
+      "last_delivery_error": null,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "last_failure": {
+        "at": "2026-11-21T21:01:33.705562+01:00",
+        "detail": "Script timed out after 3600s: /home/thomas/LivingCode/orchestration/scripts/wrappers/wrapper_project2.sh"
+      },
+      "failure_deliver": "local"
+    },
+    {
+      "id": "ec9bf2639910",
+      "name": "LV-coder-project3",
+      "prompt": "Агент-Кодер проекта Project3 в Протоколе Живого Кода. Слот 3 — запуск в 03:00, далее каждые 4 часа. Один запуск = ОДИН цикл эволюции. Проект: /home/thomas/LivingCode/Project3",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "qwen35-coder-vulkan",
+      "provider": "custom",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "wrappers/wrapper_project3.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "2 */4 * * *",
+        "display": "2 */4 * * *"
+      },
+      "schedule_display": "2 */4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 124
+      },
+      "enabled": true,
+      "created_at": "2026-08-16T23:06:14.132681+02:00",
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Project3",
+      "next_run_at": "2026-11-22T00:02:00+01:00",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T20:02:00+01:00",
+        "dispatched_at": "2026-11-21T20:02:32.326417+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "fire_claim": null,
+      "last_run_at": "2026-11-21T21:02:33.517371+01:00",
+      "last_status": "error",
+      "last_error": "Script timed out after 3600s: /home/thomas/LivingCode/orchestration/scripts/wrappers/wrapper_project3.sh",
+      "failure_streak": 1,
+      "last_delivery_error": null,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "last_failure": {
+        "at": "2026-11-21T21:02:33.517371+01:00",
+        "detail": "Script timed out after 3600s: /home/thomas/LivingCode/orchestration/scripts/wrappers/wrapper_project3.sh"
+      },
+      "failure_deliver": "local"
+    },
+    {
+      "id": "435fcd067442",
+      "name": "LV-coder-project4",
+      "prompt": "Агент-Кодер проекта Project4 в Протоколе Живого Кода. Слот 4 — запуск в 04:00, далее каждые 4 часа. Один запуск = ОДИН цикл эволюции. Проект: /home/thomas/LivingCode/Project4",
+      "skills": [
+        "super-coder",
+        "test-driven-development",
+        "systematic-debugging"
+      ],
+      "skill": "super-coder",
+      "model": "qwen35-coder-vulkan",
+      "provider": "custom",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "wrappers/wrapper_project4.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "3 */4 * * *",
+        "display": "3 */4 * * *"
+      },
+      "schedule_display": "3 */4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 127
+      },
+      "enabled": true,
+      "created_at": "2026-08-16T23:06:14.132681+02:00",
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/Project4",
+      "next_run_at": "2026-11-22T00:03:00+01:00",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T20:03:00+01:00",
+        "dispatched_at": "2026-11-21T20:03:32.341508+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "fire_claim": null,
+      "last_run_at": "2026-11-21T21:03:33.620992+01:00",
+      "last_status": "error",
+      "last_error": "Script timed out after 3600s: /home/thomas/LivingCode/orchestration/scripts/wrappers/wrapper_project4.sh",
+      "failure_streak": 1,
+      "last_delivery_error": null,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "last_failure": {
+        "at": "2026-11-21T21:03:33.620992+01:00",
+        "detail": "Script timed out after 3600s: /home/thomas/LivingCode/orchestration/scripts/wrappers/wrapper_project4.sh"
+      },
+      "failure_deliver": "local"
+    },
+    {
+      "id": "super-supervisor-001",
+      "name": "LV-super-supervisor",
+      "prompt": "Super-Supervisor: пост-верификация роя и авто-релиз (ГОРЯЧИЙ + l3_critic stabilen → Продюсер).",
+      "skills": [
+        "godmode-coder"
+      ],
+      "skill": "godmode-coder",
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "provider_snapshot": "nvidia",
+      "model_snapshot": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "base_url": null,
+      "script": "wrappers/wrapper_super_supervisor.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "display": "0 * * * *"
+      },
+      "schedule_display": "0 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 390
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-04T00:00:00+01:00",
+      "next_run_at": "2026-11-22T00:00:00+01:00",
+      "last_run_at": "2026-11-21T23:00:33.775259+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "failure_streak": 0,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T23:00:00+01:00",
+        "dispatched_at": "2026-11-21T23:00:32.326562+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "run_claim": null,
+      "last_failure": {
+        "at": "2026-11-04T21:19:17.596021+01:00",
+        "detail": "Script exited with code 1\nstdout:\n[2026-11-04 20:19:17 UTC] === Super-Supervisor started (Фаза 0: пост-верификация + релиз-тегирование) ===\n[2026-11-04 20:19:17 UTC] ⛔ Проблемы с кронами: 9\n[2026-11-04 20:19:17 UTC] ✅ Все проекты чистые (git status --porcelain пуст)\n[2026-11-04 20:19:17 UTC] Отчёт записан: /home/thomas/LivingCode/reports/super-supervisor-20261104-2119.md\n[2026-11-04 20:19:17 UTC] Доставка отчёта в топик 252...\n[2026-11-04 20:19:17 UTC] Отчёт доставлен в топик 252\n[super-supervisor] завершён rc=1"
+      }
+    },
+    {
+      "id": "560a7ff96d7d",
+      "name": "LV-critic",
+      "prompt": "L3-критик: review свежих отчётов кодеров в чистом контексте; findings + [CRITIC_FINDINGS] в журнал. Промпт — в обёртке.",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "wrappers/wrapper_critic.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "25 */6 * * *",
+        "display": "25 */6 * * *"
+      },
+      "schedule_display": "25 */6 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 24
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-04T07:42:23.985131+01:00",
+      "next_run_at": "2026-11-22T00:25:00+01:00",
+      "last_run_at": "2026-11-21T18:59:41.529764+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-e43477a64d83e6d863ff9e2620a557bd26686110fc905da65a7738318d940f5f",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/orchestration",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T18:00:00+01:00",
+        "dispatched_at": "2026-11-21T18:40:32.895748+01:00",
+        "lateness_seconds": 2432.9,
+        "kind": "late"
+      },
+      "fire_claim": null
+    },
+    {
+      "id": "74dbec7efa04",
+      "name": "LV-proposer",
+      "prompt": "Proposer: ≥2 кандидата правок самого протокола по PPC; [PROPOSER_CANDIDATES] в журнал. Промпт — в обёртке.",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "wrappers/wrapper_proposer.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 5 * * 1",
+        "display": "0 5 * * 1"
+      },
+      "schedule_display": "0 5 * * 1",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-04T07:42:24.626708+01:00",
+      "next_run_at": "2026-11-23T05:00:00+01:00",
+      "last_run_at": "2026-11-20T07:08:20.230201+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-e43477a64d83e6d863ff9e2620a557bd26686110fc905da65a7738318d940f5f",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/orchestration",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-09T05:00:00+01:00",
+        "dispatched_at": "2026-11-20T06:15:12.815552+01:00",
+        "lateness_seconds": 954912.8,
+        "kind": "catch_up"
+      },
+      "fire_claim": null
+    },
+    {
+      "id": "65832fd38d11",
+      "name": "LV-role-pulse",
+      "prompt": "Deadman-пульс всех ролей протокола: ЖИВ/БОЛЕН/МЁРТВ (role_pulse.py, exit 1 при МЁРТВ).",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "role_pulse.py",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "50 */4 * * *",
+        "display": "50 */4 * * *"
+      },
+      "schedule_display": "50 */4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 38
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-04T07:42:25.275603+01:00",
+      "next_run_at": "2026-11-22T00:50:00+01:00",
+      "last_run_at": "2026-11-21T20:50:33.614422+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": {
+        "at": "2026-11-21T14:50:31.293522+01:00",
+        "detail": "Script exited with code 1\nstdout:\nМЁРТВ   LV-node-health               sched=*/1 * * * *    last=11-21T13:53 age=1.0ч\n  ЖИВ     LV-artist                    sched=30 0,2,4,6,8,10,12,14,16,18,20,22 * * * last=11-21T13:51 age=1.0ч\n  ЖИВ     LV-auditor                   sched=               last=11-21T05:08 age=9.7ч\n  ЖИВ     LV-coder-project1            sched=0 */4 * * *    last=11-21T14:49 age=0.0ч\n  ЖИВ     LV-coder-project2            sched=1 */4 * * *    last=11-21T14:38 age=0.2ч\n  ЖИВ     LV-coder-project3            sched=2 */4 * * *    last=11-21T14:50 age=0.0ч\n  ЖИВ     LV-coder-project4            sched=3 */4 * * *    last=11-21T04:49 age=10.0ч\n  ЖИВ     LV-config-backup             sched=30 3 * * *     last=11-21T03:35 age=11.2ч\n  ЖИВ     LV-critic                    sched=0 */6 * * *    last=11-21T06:37 age=8.2ч\n  ЖИВ     LV-cycle-start               sched=0 */4 * * *    last=11-21T13:53 age=1.0ч\n  ЖИВ     LV-dj-musician               sched=40 1,3,5,7,9,11,13,15,17,19,21,23 * * * last=11-21T13:53 age=1.0ч\n  ЖИВ     LV-extinction-check          sched=0 3 * * *      last=11-21T03:00 age=11.8ч\n  ЖИВ     LV-graph-pulse-export        sched=0 */4 * * *    last=11-21T13:48 age=1.0ч\n  ЖИВ     LV-harness-opt               sched=0 3 * * *      last=11-21T03:35 age=11.2ч\n  ЖИВ     LV-inquisitor                sched=35 * * * *     last=11-21T13:48 age=1.0ч\n  ЖИВ     LV-intake                    sched=15 */2 * * *   last=11-21T06:34 age=8.3ч\n  НОВ     LV-lord-of-code              sched=               last=никогда age=—\n  ЖИВ     LV-model-sync                sched=0 2 * * 0      last=11-20T06:15 age=32.6ч\n  НОВ     LV-producer                  sched=               last=никогда age=—\n  ЖИВ     LV-professor                 sched=0 * * * *      last=11-21T13:54 age=0.9ч\n  ЖИВ     LV-proposer                  sched=0 5 * * 1      last=11-20T07:08 age=31.7ч\n  ЖИВ     LV-role-pulse                sched=0 */4 * * *    last=11-21T04:35 age=10.3ч\n  ЖИВ     LV-searcher            "
+      },
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-e43477a64d83e6d863ff9e2620a557bd26686110fc905da65a7738318d940f5f",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode/orchestration",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T20:50:00+01:00",
+        "dispatched_at": "2026-11-21T20:50:32.326846+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      },
+      "fire_claim": null
+    },
+    {
+      "id": "5d25d7bec383",
+      "name": "W420-cyber-news",
+      "prompt": "W420 ежечасный обзор киберновостей (интервал 120м). Собери через web_search за последние 2 часа: critical CVE, крупные утечки данных, атаки на инфраструктуру, обновления безопасности. Сформируй краткий дайджест на русском (3-5 пунктов с источниками) и верни его — он уйдёт в топик 252 автоматически.\n\nОТЧЁТ: сам НЕ отправляй ничего (ни hermes send, ни curl) — движок доставит отчёт документом в топик 252.",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": [
+        "self"
+      ],
+      "schedule": {
+        "kind": "interval",
+        "minutes": 120,
+        "display": "every 120m"
+      },
+      "schedule_display": "every 120m",
+      "repeat": {
+        "times": null,
+        "completed": 84
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-04T22:29:43.164130+01:00",
+      "next_run_at": "2026-11-22T01:04:13.541745+01:00",
+      "last_run_at": "2026-11-21T23:04:13.541745+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": {
+        "at": "2026-11-21T13:48:26.388835+01:00",
+        "detail": "RuntimeError: ⚠️ No reply: Hermes couldn't save this conversation to disk, so it stopped rather than lose your messages. The disk is probably full: free some space (or fix the permissions on ~/.hermes/state.db), then send your message again."
+      },
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-ac5c4de55423a4490f4bf1ec5387cbab3097a650a649fc5c0ec654e7481c68f3",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.w420",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T22:56:56.919166+01:00",
+        "dispatched_at": "2026-11-21T22:57:32.322495+01:00",
+        "lateness_seconds": 35.4,
+        "kind": "on_time"
+      },
+      "fire_claim": null,
+      "canonical_completions": [
+        "ec9897b1cec34bfd8502f2f7f4437feb"
+      ]
+    },
+    {
+      "id": "21a3c1789e14",
+      "name": "W420-news-digest",
+      "prompt": "W420 ежедневный дайджест новостей кибербезопасности (09:00). Собери через web_search за последние 24 часа: critical CVE, major breaches, атаки на инфраструктуру, обновления безопасности Linux/Windows. Сформируй дайджест на русском (5-8 пунктов, каждый с источником) и верни его — он уйдёт в топик 252 автоматически.",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "display": "every day at 9am"
+      },
+      "schedule_display": "every day at 9am",
+      "repeat": {
+        "times": null,
+        "completed": 10
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-04T22:29:43.192344+01:00",
+      "next_run_at": "2026-11-22T09:00:00+01:00",
+      "last_run_at": "2026-11-21T14:56:28.626094+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": {
+        "at": "2026-11-20T13:42:44.342286+01:00",
+        "detail": "RuntimeError: HTTP 400: qwen35-coder-vulkan is not a valid model ID"
+      },
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-ac5c4de55423a4490f4bf1ec5387cbab3097a650a649fc5c0ec654e7481c68f3",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/.w420",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T09:00:00+01:00",
+        "dispatched_at": "2026-11-21T13:53:26.370361+01:00",
+        "lateness_seconds": 17606.4,
+        "kind": "catch_up"
+      },
+      "fire_claim": null,
+      "canonical_completions": [
+        "db9c1982d62242dfae13544f8803702d"
+      ]
+    },
+    {
+      "id": "16985abc09bc",
+      "name": "W420-voice-engine",
+      "prompt": "W420 проверка голосового движка (каждые 15 мин, автономно). Задача: curl -s -m 5 http://127.0.0.1:8420/health. Если не отвечает — подними: cd ~/.w420/tts-server && W420_TTS_TOKEN=$(grep W420_TTS_TOKEN ~/.w420/tts.env | cut -d= -f2) nohup ./.venv/bin/python -m w420_tts --port 8420 >> ~/.w420/tts.log 2>&1 & затем подожди 5 с и проверь /health снова. Ответь: движок up/down, voices count, были ли рестарт.",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 15,
+        "display": "every 15m"
+      },
+      "schedule_display": "every 15m",
+      "repeat": {
+        "times": null,
+        "completed": 143
+      },
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-11-08T21:50:50.064687+01:00",
+      "paused_reason": null,
+      "created_at": "2026-11-04T22:29:43.255150+01:00",
+      "next_run_at": "2026-11-08T21:59:43.939139+01:00",
+      "last_run_at": "2026-11-08T21:44:43.939139+01:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Provider has been unresponsive (no response received) for 5 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry.",
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": {
+        "at": "2026-11-08T21:44:43.939139+01:00",
+        "detail": "RuntimeError: Provider has been unresponsive (no response received) for 5 consecutive stale attempts — aborting this call to avoid an indefinite stall. Switch models or start a new session, then retry."
+      },
+      "failure_streak": 13,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-ac5c4de55423a4490f4bf1ec5387cbab3097a650a649fc5c0ec654e7481c68f3",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": "/home/thomas/.w420",
+      "last_dispatch": {
+        "scheduled_at": "2026-11-08T21:28:32.590744+01:00",
+        "dispatched_at": "2026-11-08T21:29:16.204514+01:00",
+        "lateness_seconds": 43.6,
+        "kind": "on_time"
+      },
+      "fire_claim": null,
+      "canonical_completions": [
+        "fce2bbf314f843d394419c71fd9b4f63"
+      ]
+    },
+    {
+      "id": "3559121cb5be",
+      "name": "LV-intake",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "intake_cron.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 */2 * * *",
+        "display": "15 */2 * * *"
+      },
+      "schedule_display": "15 */2 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 58
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-05T01:29:59.172433+01:00",
+      "next_run_at": "2026-11-22T00:15:00+01:00",
+      "last_run_at": "2026-11-21T22:15:34.802164+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-e43477a64d83e6d863ff9e2620a557bd26686110fc905da65a7738318d940f5f",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-21T22:15:00+01:00",
+        "dispatched_at": "2026-11-21T22:15:32.321776+01:00",
+        "lateness_seconds": 32.3,
+        "kind": "on_time"
+      }
+    },
+    {
+      "id": "08675e02fe8e",
+      "name": "self-health-maintenance",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "self_health.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "display": "0 */4 * * *"
+      },
+      "schedule_display": "0 */4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 18
+      },
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-11-08T21:50:49.467190+01:00",
+      "paused_reason": null,
+      "created_at": "2026-11-05T14:41:22.110417+01:00",
+      "next_run_at": "2026-11-09T00:00:00+01:00",
+      "last_run_at": "2026-11-08T20:58:04.350976+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-8dec29d97e21ca8f92bdefb5682f9b5c0550ff7fe54b84c5f3077223f0de611c",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-08T20:00:00+01:00",
+        "dispatched_at": "2026-11-08T20:00:16.160047+01:00",
+        "lateness_seconds": 16.2,
+        "kind": "on_time"
+      },
+      "fire_claim": null
+    },
+    {
+      "id": "80487bc08a9c",
+      "name": "LV-lord-of-code",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "wrappers/wrapper_lord_of_code.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2099-01-01T00:00:00+01:00",
+        "display": "once at 2099-01-01 00:00"
+      },
+      "schedule_display": "once at 2099-01-01 00:00",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-21T01:43:13.832610+01:00",
+      "next_run_at": "2099-01-01T00:00:00+01:00",
+      "last_run_at": "2026-11-21T22:56:43.911666+01:00",
+      "last_status": "error",
+      "last_error": "Script timed out after 3600s: /home/thomas/LivingCode/orchestration/scripts/wrappers/wrapper_lord_of_code.sh",
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": {
+        "at": "2026-11-21T22:56:43.911666+01:00",
+        "detail": "Script timed out after 3600s: /home/thomas/LivingCode/orchestration/scripts/wrappers/wrapper_lord_of_code.sh"
+      },
+      "failure_streak": 1,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-e43477a64d83e6d863ff9e2620a557bd26686110fc905da65a7738318d940f5f",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null
+    },
+    {
+      "id": "90f76ccbbdab",
+      "name": "LV-producer",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "wrappers/wrapper_producer.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2099-01-01T00:00:00+01:00",
+        "display": "once at 2099-01-01 00:00"
+      },
+      "schedule_display": "once at 2099-01-01 00:00",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-21T01:43:15.789418+01:00",
+      "next_run_at": "2099-01-01T00:00:00+01:00",
+      "last_run_at": "2026-11-21T21:18:57.008392+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-e43477a64d83e6d863ff9e2620a557bd26686110fc905da65a7738318d940f5f",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null
+    },
+    {
+      "id": "7924c46d8dbf",
+      "name": "LV-auditor",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": "mistralai/mistral-large-4-1t-a52b",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "wrappers/wrapper_auditor.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2099-01-01T00:00:00+01:00",
+        "display": "once at 2099-01-01 00:00"
+      },
+      "schedule_display": "once at 2099-01-01 00:00",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-21T01:43:18.819642+01:00",
+      "next_run_at": "2099-01-01T00:00:00+01:00",
+      "last_run_at": "2026-11-21T21:56:42.987612+01:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": {
+        "at": "2026-11-21T19:25:41.477039+01:00",
+        "detail": "Script exited with code 124\nstdout:\nЦепочка: ['mistralai/mistral-large-4-1t-a52b', 'minimaxai/minimax-m3.1-flash'] | бюджет 1200s\nAttempt 1/2: model=mistralai/mistral-large-4-1t-a52b, provider=nvidia, timeout=1139s\nRunning (timeout 1139s, skills=—): hermes -p default -z <prompt> --model mistralai/mistral-large-4-1t-a52b --provider nvidia\nTIMEOUT after 1139s: model=mistralai/mistral-large-4-1t-a52b provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n\nTIMEOUT after 1139s: model=mistralai/mistral-large-4-1t-a52b provider=nvidia. Работа могла быть частичной; автоматическое повторение запрещено.\n⛔ Неизвестный/частичный исход или ошибка запуска: повтор модели и запуск следующей роли остановлены."
+      },
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-e43477a64d83e6d863ff9e2620a557bd26686110fc905da65a7738318d940f5f",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:1000",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": "/home/thomas/LivingCode",
+      "fire_claim": null
+    }
+  ],
+  "updated_at": "2026-11-21T23:14:34.780874+01:00"
+}

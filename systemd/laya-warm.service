@@ -1,0 +1,32 @@
+[Unit]
+Description=Laya warm service (CPU, тёплая модель, выгрузка по простою)
+Documentation=file:///home/thomas/LivingCode/orchestration/LAYA_WARM_SERVICE.md
+After=default.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/thomas/LivingCode
+Environment=LAYA_IDLE_UNLOAD_S=7200
+Environment=LAYA_PRELOAD=1
+Environment=LAYA_THREADS=8
+Environment=LAYA_DEVICE=cpu
+Nice=5
+# ВАЖНО: MemoryHigh здесь вреден. Веса модели (1.6 ГБ) должны жить в RAM резидентно:
+# при лимите ядро вытесняет их, и каждый вызов заново читает чекпоинт с диска
+# (наблюдалось 9217 major page faults и 500+ с стопора). Держим мягкий потолок
+# только как предохранитель, а веса защищаем mlock (LAYA_MLOCK=1 ниже).
+MemoryMax=4G
+# memory.low: ядро сильно неохотно вытесняет эту cgroup. mlock у нас упирается в ENOMEM
+# (torch резервирует большие арены), поэтому резиденцию весов защищаем cgroup-политикой.
+MemoryMin=2G
+# Разрешаем mlockall, если он всё же сработает
+LimitMEMLOCK=infinity
+Environment=OMP_NUM_THREADS=8
+Environment=MKL_NUM_THREADS=8
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+ExecStart=/home/thomas/LivingCode/venvs/laya/bin/python /home/thomas/LivingCode/orchestration/scripts/laya_service.py
+
+[Install]
+WantedBy=default.target
